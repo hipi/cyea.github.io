@@ -43,7 +43,9 @@ module.exports = function(hexo) {
     let columns = 1;
     if (
       this.is_home() ||
-      this.is_post() 
+      this.is_post() ||
+      this.is_category() || 
+      this.is_tag()
     ) {
       return 2;
     } else if (this.is_archive()) {
