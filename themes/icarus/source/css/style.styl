@@ -9,6 +9,22 @@ screen-fullhd = 1472px
 /* ---------------------------------
  *       Override CSS Framework
  * --------------------------------- */
+
+/* my */
+.footer{
+    padding: 20px
+    text-align: center
+}
+#toc{
+    position: sticky
+    max-height: calc(100vh - 100px)
+    overflow: auto
+}
+.site-info{
+    font-size: 12px
+    color: #858585
+}
+/* --------------------------------- */
 html
     font-size: 14px
 
@@ -212,11 +228,7 @@ img.thumbnail
         .qrcode
             right: -0.75rem
 
-#toc{
-    position: sticky; 
-    max-height: calc(100vh - 100px)
-    overflow: auto;
-}
+
 
 @media screen and (max-width: screen-tablet - 1)
     #toc

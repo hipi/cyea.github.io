@@ -36,15 +36,15 @@ navbar:
 footer:
   # Links to be shown on the right of the footer section
   links:
-    Creative Commons:
-      icon: fab fa-creative-commons
-      url: "https://creativecommons.org/"
-    Attribution 4.0 International:
-      icon: fab fa-creative-commons-by
-      url: "https://creativecommons.org/licenses/by/4.0/"
-    Download on GitHub:
-      icon: fab fa-github
-      url: "https://github.com/ppoffice/hexo-theme-icarus"
+    # Creative Commons:
+    #   icon: fab fa-creative-commons
+    #   url: "https://creativecommons.org/"
+    # Attribution 4.0 International:
+    #   icon: fab fa-creative-commons-by
+    #   url: "https://creativecommons.org/licenses/by/4.0/"
+    # Download on GitHub:
+    #   icon: fab fa-github
+    #   url: "https://github.com/ppoffice/hexo-theme-icarus"
 # Article display settings
 article:
   # Code highlight theme
@@ -79,24 +79,24 @@ comment:
 # Donation entries
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
 donate:
-  - # Donation entry name
-    type: alipay
-    # Qrcode image URL
-    qrcode: "https://api.chenyeah.com/qr?text=142"
-  - # Donation entry name
-    type: wechat
-    # Qrcode image URL
-    qrcode: "https://api.chenyeah.com/qr?text=142"
-  - # Donation entry name
-    type: paypal
-    # Paypal business ID or email address
-    business: "asd"
-    # Currency code
-    currency_code: USD
-  - # Donation entry name
-    type: patreon
-    # URL to the Patreon page
-    url: "asas"
+  # - # Donation entry name
+  #   type: alipay
+  #   # Qrcode image URL
+  #   qrcode: "https://api.chenyeah.com/qr?text=142"
+  # - # Donation entry name
+  #   type: wechat
+  #   # Qrcode image URL
+  #   qrcode: "https://api.chenyeah.com/qr?text=142"
+  # - # Donation entry name
+  #   type: paypal
+  #   # Paypal business ID or email address
+  #   business: "asd"
+  #   # Currency code
+  #   currency_code: USD
+  # - # Donation entry name
+  #   type: patreon
+  #   # URL to the Patreon page
+  #   url: "asas"
 # Share plugin settings
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share
 share:
@@ -114,7 +114,7 @@ sidebar:
   right:
     # Whether the right sidebar is sticky when page scrolls
     # https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/
-    sticky: fasle
+    sticky: true
 # Sidebar widget settings
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
 widgets:
@@ -135,7 +135,7 @@ widgets:
     # Whether to show avatar image rounded or square
     avatar_rounded: true
     # Path or URL for the follow button
-    follow_link: "https://github.com/ppoffice"
+    follow_link: "https://github.com/cyea"
     # Links to be shown on the bottom of the profile widget
     social_links:
       Github:

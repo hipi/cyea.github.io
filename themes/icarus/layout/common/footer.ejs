@@ -1,6 +1,6 @@
 <footer class="footer">
-    <div class="container">
-        <div class="level">
+  <div class="container">
+    <!-- <div class="level">
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="<%- url_for('/') %>">
                 <% if (has_config('logo.text') && get_config('logo.text')) { %>
@@ -10,11 +10,13 @@
                 <% } %>
                 </a>
                 <p class="is-size-7">
+                
                 &copy; <%= date(new Date(), 'YYYY') %> <%= get_config('author') || get_config('title') %>&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
-                <% if (has_config('plugins.busuanzi') ? get_config('plugins.busuanzi') : false) { %>
+                <% if (has_config('plugins.busuanzi') ? get_config('plugins.busuanzi') : false) { %> 
                 <br>
+                
                 <span id="busuanzi_container_site_uv">
                 <%- _p('plugin.visitor', '<span id="busuanzi_value_site_uv">0</span>') %>
                 </span>
@@ -40,6 +42,20 @@
                 </div>
             <% } %>
             </div>
-        </div>
+        </div> 
+        -->
+  </div>
+  <div class="lever">
+    <p class="is-size-7">
+      Copyright © 2019 Yu Ye |
+      <span id="busuanzi_container_site_uv">
+        <%- _p('plugin.visitor', '<span id="busuanzi_value_site_uv">0</span>')%>
+      </span>
+    </p>
+    <div class="site-info">
+      已运行
+      <span id="time-to-now"></span>
+      <span class="my-face">(●'◡'●)ﾉ♥</span>
     </div>
+  </div>
 </footer>
