@@ -14,6 +14,12 @@
                         <img class="thumbnail" src="<%= get_thumbnail(post) %>" alt="<%= post.title %>">
                     </p>
                 </a>
+                <% } else if(theme.article.thumbnailauto.enable) {%>
+                <a href="<%- url_for((post.link?post.link:post.path)) %>" class="media-left">
+                    <p class="image is-64x64">
+                        <img class="thumbnail" src="<%= theme.article.thumbnailauto.url %>" alt="<%= post.title %>">
+                    </p>
+                </a>    
                 <% } %>
                 <div class="media-content">
                     <div class="content">

@@ -53,6 +53,9 @@ article:
   highlight: atom-one-light
   # Whether to show article thumbnail images
   thumbnail: true
+  thumbnailauto:
+    enable: true
+    url: https://ae01.alicdn.com/kf/HTB1_eaSXHus3KVjSZKbq6xqkFXar.jpg
   # Whether to show estimate article reading time
   readtime: true
 
@@ -60,7 +63,7 @@ article:
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
   enable: true
-  length: 150
+  length: 0
 
 # Search plugin settings
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search
@@ -119,7 +122,7 @@ widgets:
     # Where should the widget be placed, left or right
     position: left
     # Author name to be shown in the profile widget
-    author: Your name
+    author: YuYe
     # Title of the author to be shown in the profile widget
     author_title: Your title
     # Author's current location to be shown in the profile widget
@@ -149,38 +152,40 @@ widgets:
       RSS:
         icon: fas fa-rss
         url: /
-  - # Widget name
-    type: toc
-    # Where should the widget be placed, left or right
-    position: left
-  - # Widget name
-    type: links
-    # Where should the widget be placed, left or right
-    position: left
-    # Links to be shown in the links widget
-    links:
-      Hexo: "https://hexo.io"
-      PPOffice: "https://github.com/ppoffice"
-  - # Widget name
-    type: category
-    # Where should the widget be placed, left or right
-    position: left
-  - # Widget name
-    type: tagcloud
-    # Where should the widget be placed, left or right
-    position: left
+
   - # Widget name
     type: recent_posts
     # Where should the widget be placed, left or right
     position: right
   - # Widget name
-    type: archive
+    type: toc
     # Where should the widget be placed, left or right
     position: right
   - # Widget name
+    type: category
+    # Where should the widget be placed, left or right
+    position: left
+  #   - # Widget name
+  #     type: tagcloud
+  #     # Where should the widget be placed, left or right
+  #     position: left
+  - # Widget name
     type: tag
     # Where should the widget be placed, left or right
-    position: right
+    position: left
+  #   - # Widget name
+  #     type: archive
+  #     # Where should the widget be placed, left or right
+  #     position: right
+  #   - # Widget name
+  #     type: links
+  #     # Where should the widget be placed, left or right
+  #     position: left
+  #     # Links to be shown in the links widget
+  #     links:
+  #       Hexo: "https://hexo.io"
+  #       PPOffice: "https://github.com/ppoffice"
+
 # Other plugin settings
 plugins:
   # Enable page animations
