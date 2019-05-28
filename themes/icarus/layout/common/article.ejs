@@ -51,6 +51,13 @@
             <% } %>
         </h1>
         <div class="content">
+                
+            <% if (is_current("/links")) { %>
+                <%- partial('common/links') %>
+            <% } %>            
+
+
+
             <% if (index) { %>    
                 <% if (post.excerpt) { %>
                     <%- post.excerpt %>
@@ -141,3 +148,4 @@
     </div>
 </div>
 <% } %>
+

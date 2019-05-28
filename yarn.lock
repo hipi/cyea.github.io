@@ -953,6 +953,14 @@ has-values@^1.0.0:
     is-number "^3.0.0"
     kind-of "^4.0.0"
 
+hexo-abbrlink@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.npm.taobao.org/hexo-abbrlink/download/hexo-abbrlink-2.0.5.tgz#d7aba4daed3b9697bb05d1d2302e64b008ff3a75"
+  integrity sha1-16uk2u07lpe7BdHSMC5ksAj/OnU=
+  dependencies:
+    hexo-front-matter "^0.2.3"
+    hexo-fs "^0.2.2"
+
 hexo-bunyan@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/hexo-bunyan/download/hexo-bunyan-1.0.0.tgz#b2106b26547b232f0195db863cb5d5ff8527fd36"
@@ -979,14 +987,14 @@ hexo-cli@^1.1.0:
     resolve "^1.5.0"
     tildify "^1.2.0"
 
-hexo-front-matter@^0.2.2:
+hexo-front-matter@^0.2.2, hexo-front-matter@^0.2.3:
   version "0.2.3"
   resolved "https://registry.npm.taobao.org/hexo-front-matter/download/hexo-front-matter-0.2.3.tgz#c7ca8ef420ea36bd85e8408a2e8c9bf49efa605e"
   integrity sha1-x8qO9CDqNr2F6ECKLoyb9J76YF4=
   dependencies:
     js-yaml "^3.6.1"
 
-hexo-fs@^0.2.0:
+hexo-fs@^0.2.0, hexo-fs@^0.2.2:
   version "0.2.3"
   resolved "https://registry.npm.taobao.org/hexo-fs/download/hexo-fs-0.2.3.tgz#c3a81b46e457dfafc56d87c78ef114104f4a3e41"
   integrity sha1-w6gbRuRX36/FbYfHjvEUEE9KPkE=

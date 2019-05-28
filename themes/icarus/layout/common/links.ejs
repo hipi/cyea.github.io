@@ -1,0 +1,75 @@
+<div id="links">
+  <style>
+    .link {
+      width: 100%;
+    }
+    .links-content {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .links-card {
+      width: 40%;
+      font-size: 1rem;
+      padding: 10px 20px;
+      border-radius: 4px;
+      transition-duration: 0.15s;
+      margin-bottom: 1rem;
+      display: flex;
+    }
+    .links-card:hover {
+      transform: scale(1.1);
+      box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
+    }
+    .links-card:hover .links-nickname {
+      color: #d480aa !important;
+      text-decoration: none;
+    }
+    .links-card .ava {
+      width: 3rem !important;
+      height: 3rem !important;
+      margin: 0 !important;
+      margin-right: 1em !important;
+      border-radius: 4px;
+    }
+    .links-card .links-card-header {
+      font-style: italic;
+      overflow: hidden;
+      display: block;
+    }
+    .links-card .links-card-header .links-nickname {
+      font-style: normal;
+      color: #2bbc8a !important;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .links-card:hover .links-nickname {
+      color: #d480aa !important;
+      text-decoration: none;
+    }
+    .links-card .links-card-header .links-info {
+      font-style: normal;
+      color: #a3a3a3 !important;
+      font-size: 14px;
+      min-width: 0;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  </style>
+  <div class="links-content">
+    <% for(let link of theme.links){ %>
+    <a href="<%- link.site %>" class="links-card">
+      <img class="ava" src="<%- link.avatar %>" />
+      <div class="links-card-header">
+        <div class="links-nickname">
+          @ <%- link.nickname %>
+        </div>
+        <div class="links-info"><%- link.info %></div>
+      </div>
+    </a>
+    <% } %>
+  </div>
+</div>

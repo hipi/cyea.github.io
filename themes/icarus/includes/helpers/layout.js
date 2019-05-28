@@ -41,9 +41,18 @@ module.exports = function(hexo) {
 
   hexo.extend.helper.register("column_count", function() {
     let columns = 1;
-    if (this.page.__post === true || this.page.__page === true) {
+    console.log(this.page.type);
+    if (this.page.type === "about" || this.page.type === "links") {
+      return 1;
+    }
+    if (
+      this.page.__index === true ||
+      this.page.__post === true ||
+      this.page.__page === true
+    ) {
       return 2;
     }
+
     const hasColumn = hexo.extend.helper.get("has_column").bind(this);
     columns += hasColumn("left") ? 1 : 0;
     columns += hasColumn("right") ? 1 : 0;

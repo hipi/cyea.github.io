@@ -1,38 +1,37 @@
 # Version of the Icarus theme that is currently used
 version: 2.3.0
 # Path or URL to the website's icon
-favicon: /images/favicon.svg
+favicon: /images/favicon.ico
 # Path or URL to RSS atom.xml
 rss:
 # Path or URL to the website's logo to be shown on the left of the navigation bar or footer
-logo: /images/logo.svg
+logo: /images/logo.png
 # Open Graph metadata
 # https://hexo.io/docs/helpers.html#open-graph
 open_graph:
   # Facebook App ID
-  fb_app_id:
+  fb_app_id: yuyehack
   # Facebook Admin ID
-  fb_admins:
+  fb_admins: yuyehack
   # Twitter ID
-  twitter_id:
+  twitter_id: yuyehack
   # Twitter site
-  twitter_site:
+  twitter_site: yuyehack
   # Google+ profile link
-  google_plus:
+  google_plus: yuyehack
 # Navigation bar link settings
 navbar:
   # Navigation bar menu links
   menu:
     Home: /
     Archives: /archives
-    Categories: /categories
-    Tags: /tags
     About: /about
+    Links: /links
   # Navigation bar links to be shown on the right
   links:
-    Download on GitHub:
-      icon: fab fa-github
-      url: "https://github.com/ppoffice/hexo-theme-icarus"
+    # GitHub:
+    #   icon: fab fa-github
+    #   url: "https://github.com/cyea"
 # Footer section link settings
 footer:
   # Links to be shown on the right of the footer section
@@ -55,7 +54,7 @@ article:
   thumbnail: true
   thumbnailauto:
     enable: true
-    url: https://ae01.alicdn.com/kf/HTB1_eaSXHus3KVjSZKbq6xqkFXar.jpg
+    url: https://cdn.nlark.com/yuque/0/2019/jpeg/124897/1558942976291-assets/web-upload/1c411ca3-e569-4f54-905b-9116a79f664e.jpeg
   # Whether to show estimate article reading time
   readtime: true
 
@@ -74,7 +73,9 @@ search:
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment
 comment:
   # Name of the comment plugin
-  type:
+  type: valine
+  app_id: psJpFJcodbLyU5938xwzn0KK-9Nh9j0Va
+  app_key: 8Anhqwk2clWY0wX7dRG3hPYB
 # Donation entries
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
 donate:
@@ -124,39 +125,42 @@ widgets:
     # Author name to be shown in the profile widget
     author: YuYe
     # Title of the author to be shown in the profile widget
-    author_title: Your title
+    author_title: 专注前端技术
     # Author's current location to be shown in the profile widget
-    location: Your location
+    location: China
     # Path or URL to the avatar to be shown in the profile widget
     avatar:
     # Email address for the Gravatar to be shown in the profile widget
     gravatar:
     # Whether to show avatar image rounded or square
-    avatar_rounded: false
+    avatar_rounded: true
     # Path or URL for the follow button
     follow_link: "https://github.com/ppoffice"
     # Links to be shown on the bottom of the profile widget
     social_links:
       Github:
         icon: fab fa-github
-        url: "https://github.com/ppoffice"
-      Facebook:
-        icon: fab fa-facebook
-        url: "https://facebook.com"
-      Twitter:
-        icon: fab fa-twitter
-        url: "https://twitter.com"
-      Dribbble:
-        icon: fab fa-dribbble
-        url: "https://dribbble.com"
-      RSS:
-        icon: fas fa-rss
-        url: /
+        url: "https://github.com/cyea"
+      Telegram:
+        icon: fab fa-telegram
+        url: "https://t.me/yuyehack"
+      Email:
+        icon: fas fa-envelope
+        url: "mailto:yuyehack@gmail.com"
+      # Twitter:
+      #   icon: fab fa-twitter
+      #   url: "https://twitter.com"
+      # Dribbble:
+      #   icon: fab fa-dribbble
+      #   url: "https://dribbble.com"
+      # RSS:
+      #   icon: fas fa-rss
+      #   url: /
 
-  - # Widget name
-    type: recent_posts
-    # Where should the widget be placed, left or right
-    position: right
+  # - # Widget name
+  #   type: recent_posts
+  #   # Where should the widget be placed, left or right
+  #   position: right
   - # Widget name
     type: toc
     # Where should the widget be placed, left or right
@@ -173,10 +177,10 @@ widgets:
     type: tag
     # Where should the widget be placed, left or right
     position: left
-  #   - # Widget name
-  #     type: archive
-  #     # Where should the widget be placed, left or right
-  #     position: right
+  - # Widget name
+    type: archive
+    # Where should the widget be placed, left or right
+    position: right
   #   - # Widget name
   #     type: links
   #     # Where should the widget be placed, left or right
@@ -205,12 +209,12 @@ plugins:
   # https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Google-Analytics
   google-analytics:
     # Google Analytics tracking id
-    tracking_id:
+    tracking_id: UA-124238877-1
   # Baidu Analytics plugin settings
   # https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Baidu-Analytics
   baidu-analytics:
     # Baidu Analytics tracking id
-    tracking_id:
+    tracking_id: 4acd4332b8b5641542150bb2453c8450
   # Hotjar user feedback plugin
   # https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Hotjar
   hotjar:
@@ -222,7 +226,7 @@ plugins:
   clipboard: true
   # BuSuanZi site/page view counter
   # https://busuanzi.ibruce.info
-  busuanzi: false
+  busuanzi: true
 # CDN provider settings
 # https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
 providers:
@@ -232,3 +236,80 @@ providers:
   fontcdn: google
   # Name or URL of the webfont Icon CDN provider
   iconcdn: fontawesome
+
+# Fill in your Links
+links:
+  - nickname: Yu Ye
+    avatar: https://gravatar.loli.net/avatar/40206d98ff6e85da457c341e4a4ea437?v=1
+    site: https://chenyeah.com
+    info: 就是本人了QAQ
+
+  - nickname: 南澈
+    avatar: https://i.loli.net/2019/04/24/5cbff90e7e645.jpg
+    site: https://www.npmrundev.com/
+    info: 无以伦比的追求冰冷的敲打着我的灵魂
+
+  - nickname: 随遇而安
+    avatar: https://i.loli.net/2019/04/24/5cbff910b8183.jpg
+    site: https://www.iszy.cc
+    info: 生活吐槽 & 学习记录
+
+  - nickname: LUYMM
+    avatar: https://i.loli.net/2019/04/24/5cbff90eeda6c.jpg
+    site: https://luymm.com
+    info: 合抱之木 生于毫末
+
+  - nickname: Finen
+    avatar: https://i.loli.net/2019/04/24/5cbff90fe8250.jpg
+    site: https://www.finen.top/
+    info: Stay Hungry! Stay Foolish!
+
+  - nickname: 三水非冰
+    avatar: https://i.loli.net/2019/04/24/5cbff90f676a0.jpg
+    site: https://www.sanshuifeibing.cn
+    info: 一个菜鸟的博客，爱文学、爱电脑、更爱生活。
+
+  - nickname: Kevan's Blog
+    avatar: https://i.loli.net/2019/04/24/5cbff9a3bd38e.jpg
+    site: https://www.qqstop.cn
+    info: 用欣赏的眼光去看待别人，用感恩的情怀去体验生活。
+
+  - nickname: Hoe
+    avatar: https://i.loli.net/2019/04/24/5cbff9b2d099f.jpg
+    site: https://www.hoehub.com
+    info: 专注于后端开发的技术博客
+
+  - nickname: 不死鸟
+    avatar: https://lai.yuweining.cn/ning/logo.jpg
+    site: https://lai.yuweining.cn
+    info: 不死鸟 - 分享为王
+
+  - nickname: 小桃子’s Blog
+    avatar: https://i.loli.net/2019/04/24/5cbff9d633467.jpg
+    site: https://Vxxt.cn
+    info: 爱情,其实是一种甜蜜的痛苦。
+
+  - nickname: 96SIR - Deng's Blog
+    avatar: https://i.loli.net/2019/04/24/5cbffa06623a0.jpg
+    site: https://www.96sir.com/
+    info: 所谓人生不过是三五好友，一壶老酒，佳人相伴，无灾无难。
+
+  - nickname: 王保庆个人博客
+    avatar: https://i.loli.net/2019/04/24/5cbffa113c81e.jpg
+    site: https://www.imwbq.com/
+    info: 记录个人生活、工作和分享免费资源的个人主页（imwbq.com）
+
+  - nickname: 青衫慧博客
+    avatar: https://qsh5.cn/wp-content/uploads/2019/03/1551934474-IOS-ico.png
+    site: https://qsh5.cn
+    info: 青衫慧博客(qsh5.cn)建立于2014年10月01日,目前是一个摄影、编程为一体的个人博客；因乐趣而做，记录分享的个人博客。
+
+  - nickname: 左岸博客
+    avatar: https://cdn.zrahh.com/img/avatar.jpg
+    site: https://zrahh.com
+    info: 科技宅有趣的技术分享！
+
+  - nickname: 中国博客联盟
+    avatar: https://zgboke.org/favicon.ico
+    site: https://zgboke.org
+    info: 收录国内优秀独立博客！
