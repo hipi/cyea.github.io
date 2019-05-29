@@ -6,6 +6,7 @@ tag:
   - node.js
 abbrlink: 713d3487
 date: 2019-04-10 15:45:01
+thumbnail: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407732-assets/web-upload/91f1f1c7-6b88-4f21-9b42-02804ae26daf.jpeg
 ---
 
 > 根据用户配置 爬取 one 和不同地区墨迹天气 每天定时发邮件，支持多人地区个性化定制

@@ -11,6 +11,7 @@ tag:
   - graphql
 abbrlink: 8058f2c3
 date: 2019-02-13 10:41:34
+thumbnail: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407275-assets/web-upload/3f597dca-45f6-43f9-801e-5da86cb23223.jpeg
 ---
 
 > 前端发展依旧迅速 各种技术，我快学不动啦😂😂😂😂😂

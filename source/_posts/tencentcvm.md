@@ -4,6 +4,7 @@ categories: 全栈
 abbrlink: aa43c23f
 date: 2019-03-10 11:54:16
 tags:
+thumbnail: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407818-assets/web-upload/5f1d9f7c-84b4-42ca-ba20-8f78d6b7325a.jpeg
 ---
 
 ## 一、配置 root 登陆

@@ -6,6 +6,7 @@ tag:
   - js
 abbrlink: 2d537b50
 date: 2019-04-02 16:43:46
+thumbnail: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407700-assets/web-upload/6944447e-2b67-4e35-9ab4-4aec130b4471.jpeg
 ---
 
 > 自己搭了一个在线二维码生成接口
