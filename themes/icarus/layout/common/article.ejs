@@ -1,14 +1,8 @@
 <div class="card">
-    <% if (has_thumbnail(post)) { %>
+    <% if (get_thumbnail(post)) { %>
         <div class="card-image">
             <%- index ? '<a href="' + url_for(post.link ? post.link : post.path) + '"' : '<span ' %> class="image is-7by1">
                 <img class="thumbnail" src="<%= get_thumbnail(post) %>" alt="<%= post.title %>">
-            <%- index ? '</a>' : '</span>' %>
-        </div>
-    <% } else if(theme.article.thumbnailauto.enable){%>
-        <div class="card-image">
-            <%- index ? '<a href="' + url_for(post.link ? post.link : post.path) + '"' : '<span ' %> class="image is-7by1">
-                <img class="thumbnail" src="<%= theme.article.thumbnailauto.url %>" alt="<%= post.title %>">
             <%- index ? '</a>' : '</span>' %>
         </div>
     <% } %>    
