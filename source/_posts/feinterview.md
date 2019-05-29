@@ -64,7 +64,7 @@ date: 2018-01-02 10:41:34
     - 在同一层叠上下文中，层叠等级才有意义
     - `z-index`的优先级最高
 
-![z-index的优先级](https://wx2.sinaimg.cn/large/0079V2lRgy1g0cm3ky7oej30ug0najuf.jpg)
+![z-index的优先级](https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559117575858-assets/web-upload/6a2b3971-8905-43a8-a7ad-47c325cb9754.jpeg)
 
 ### 4. 居中布局
 
@@ -188,7 +188,7 @@ const prototype = Object.prototype
 实例.constructor === 构造函数
 ```
 
-![原型关系](https://wx4.sinaimg.cn/large/0079V2lRgy1g0cm3kl8xbj310o0lg41q.jpg)
+![原型关系](https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559117575649-assets/web-upload/43574e09-c40d-4278-9305-1c6be4602f73.jpeg)
 
 ### 2.原型链：
 
@@ -506,7 +506,7 @@ function square(n){
 
 通过解析转化成的`AST`如下图:
 
-![AST](https://wx4.sinaimg.cn/large/0079V2lRgy1g0cm3l4hw0j30ne0fegmw.jpg)
+![AST](https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559117575649-assets/web-upload/43574e09-c40d-4278-9305-1c6be4602f73.jpeg)
 
 ### 19. babel编译原理
 
@@ -813,7 +813,7 @@ worker.onmessage = function (event) {
 
 两者详细对比如下图:
 
-![get post 对比](https://wx2.sinaimg.cn/large/0079V2lRgy1g0cm3krcvkj310u0logqr.jpg)
+![get post 对比](https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559117576177-assets/web-upload/35539501-9570-453a-9d69-48ac7236d5fb.jpeg)
 
 ### 4. Websocket
 
@@ -1397,7 +1397,7 @@ function quickSort(arr) {
 
 - 口诀: 插冒归基稳定，快选堆希不稳定
 
-![复杂度对比](https://wx4.sinaimg.cn/large/0079V2lRgy1g0cm3ketpxj31160i640d.jpg)
+![复杂度对比](https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559117575806-assets/web-upload/f7713da0-bc18-4f87-9360-8e628c8e113b.jpeg)
 
 稳定性： 同大小情况下是否可能会被交换位置, 虚拟dom的diff，不稳定性会导致重新渲染；
 
@@ -1424,7 +1424,7 @@ function cStairs(n) {
     - 小值在左，大值在右
     - 节点 n 的所有左子树值小于 n，所有右子树值大于 n
 
-![二叉树](https://wx1.sinaimg.cn/large/0079V2lRgy1g0cm3l8c55j30b30d4dfz.jpg)
+![二叉树](https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559117575657-assets/web-upload/d0cf5fc5-a488-4c52-9f40-337fbe0c4055.jpeg)
  
 - 遍历节点
     - 前序遍历
