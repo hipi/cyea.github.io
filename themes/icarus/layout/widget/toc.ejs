@@ -1,4 +1,4 @@
-<% if(is_post()) { %>
+
     <% if (get_config('toc') !== false && (post.layout === 'page' || post.layout === 'post')) {
     function buildToc(toc) {
         let result = '';
@@ -38,4 +38,3 @@
         </div>
     </div>
     <% } %>
-<% } %>

@@ -114,7 +114,7 @@ sidebar:
   right:
     # Whether the right sidebar is sticky when page scrolls
     # https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/
-    sticky: true
+    sticky: false
 # Sidebar widget settings
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
 widgets:
@@ -164,7 +164,7 @@ widgets:
   - # Widget name
     type: toc
     # Where should the widget be placed, left or right
-    position: right
+    position: left
   - # Widget name
     type: category
     # Where should the widget be placed, left or right
@@ -177,10 +177,10 @@ widgets:
     type: tag
     # Where should the widget be placed, left or right
     position: left
-  - # Widget name
-    type: archive
-    # Where should the widget be placed, left or right
-    position: right
+  # - # Widget name
+  #   type: archive
+  #   # Where should the widget be placed, left or right
+  #   position: left
   #   - # Widget name
   #     type: links
   #     # Where should the widget be placed, left or right

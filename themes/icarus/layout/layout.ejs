@@ -24,12 +24,11 @@
                     <%- body %>
                 </div>
                 
-                <% if ( page.__page !== true && page.__post !== true) { %>
+                <% if(is_home() || is_post() || is_category() || is_tag() || is_archive()) { %>
                     <%- partial('common/widget', { position: 'left' }) %>
                 <% } %>
-                <% if ( page.__index !== true ) { %>
-                    <%- partial('common/widget', { position: 'right' }) %>
-                <% } %>
+                <!-- <%- partial('common/widget', { position: 'right' }) %> -->
+                
 
 
             </div>

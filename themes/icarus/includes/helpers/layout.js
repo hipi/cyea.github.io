@@ -44,12 +44,11 @@ module.exports = function(hexo) {
     if (
       this.is_home() ||
       this.is_post() ||
-      this.is_category() || 
-      this.is_tag()
+      this.is_category() ||
+      this.is_tag() ||
+      this.is_archive()
     ) {
       return 2;
-    } else if (this.is_archive()) {
-      return 3;
     } else {
       return 1;
     }
