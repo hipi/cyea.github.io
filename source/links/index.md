@@ -23,7 +23,7 @@ type: "links"
 名称：羽叶の Blog
 链接：https://chenyeah.com
 Logo：https://chenyeah.com/images/logo.png
-头像： https://chenyeah.com/images/avatar.jpg
+头像： https://chenyeah.com/images/avatar.png
 简介：一个前端之身全栈之魂的技术分享博客，专注于前端开发,分享前端开发资源和前端开发技术资讯等
 
 ## 更新
