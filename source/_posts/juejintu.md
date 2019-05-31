@@ -19,10 +19,12 @@ date: 2019-05-31 16:58:12
 
 ![2019/5/31/16b0d26f97d1e626](https://user-gold-cdn.xitu.io/2019/5/31/16b0d26f97d1e626?w=1920&h=937&f=png&s=166054)
 
+<strong style="color:red">上传服务会因为掘金调整可能随时会挂 ,但上传完成的图片肯定在!</strong>
+
 ## 地址
 
 **[https://upload.chenyeah.com](https://upload.chenyeah.com)**
 
 ## 注意
 
-**仅供学习之用,请勿商用和上传违反中国大陆和香港法律的图片，违者后果自负**
+<strong style="color:red">仅供学习之用,请勿商用和上传违反中国大陆和香港法律的图片，违者后果自负</strong>
