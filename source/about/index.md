@@ -16,7 +16,7 @@ Github：[https://github.com/cyea](https://github.com/cyea)
 Mail：yuyehack@gmail.com
 
 ## 个人服务网站
-
+- 掘金图库 : https://upload.chenyeah.com/
 - OneIndex : https://pan.chenyeah.com/
 - API : https://api.chenyeah.com/
   - https://api.chenyeah.com/shanbay (扇贝每日一句)
