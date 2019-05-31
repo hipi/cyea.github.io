@@ -80,7 +80,8 @@
             </div>
         </div>
         <% } %>
-        <% if (index && (post.excerpt||theme.auto_excerpt.enable)) { %>
+
+        <!-- <% if (index && (post.excerpt||theme.auto_excerpt.enable)) { %>
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
@@ -88,7 +89,8 @@
                 </div>
             </div>
         </div>
-        <% } %>
+        <% } %> -->
+
         <% if (!index && has_config('share.type')) { %>
         <%- partial('share/' + get_config('share.type')) %>
         <% } %>

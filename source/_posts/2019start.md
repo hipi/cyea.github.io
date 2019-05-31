@@ -34,7 +34,7 @@ React Hooks 带来的好处不仅是 “更 FP，更新粒度更细，代码更�
 从 2013 年 React 发布至今已近 6 个年头，前端框架逐渐形成 React/Vue/Angular 三足鼎立之势。几年前还在争论单向绑定和双向绑定孰优孰劣，现在三大框架已经不约而同选择单向绑定，双向绑定沦为单纯的语法糖。框架间的差异越来越小，加上 Ant-Design/Fusion-Design/NG-ZORRO/ElementUI 组件库的成熟，选择任一你熟悉的框架都能高效完成业务。
 那接下来核心问题是什么？我们认为是 状态管理。简单应用使用组件内 State 方便快捷，但随着应用复杂度上升，会发现数据散落在不同的组件，组件通信会变得异常复杂。我们先后尝试过原生 Redux、分形 Fractal 的思路、自研类 Mobx 框架、Angular Service，最终认为 Redux 依旧是复杂应用数据流处理最佳选项之一。
 庆幸的是除了 React 社区，Vue 社区有类似的 Vuex，Angular 社区有 NgRx 也提供了几乎同样的能力，甚至 NgRx 还可以无缝使用 redux-devtools 来调试状态变化。
-![image](https://wx4.sinaimg.cn/large/0079V2lRgy1g04ltzlsy3j314u0co76z.jpg)
+![image](https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559281381738-assets/web-upload/06c3259e-dad0-45c5-b48b-1cad6d3bbf9b.jpeg)
 
 | 原则                                 | 方法                             | 引发的问题                    |
 | :----------------------------------- | :------------------------------- | :---------------------------- |
