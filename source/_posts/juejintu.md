@@ -2,6 +2,7 @@
 title: 自建基于掘金的图床
 thumbnail: "https://user-gold-cdn.xitu.io/2019/5/31/16b0d28b669f399e?w=1214&h=556&f=png&s=19080"
 categories: 全栈
+abbrlink: 4fdcb40b
 tag:
   - js
 date: 2019-05-31 16:58:12
