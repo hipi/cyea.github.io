@@ -1,7 +1,7 @@
 ---
 title: 关于
 date: 2019-01-02 10:56:15
-type: "about"
+type: about
 ---
 
 ## 关于本人：
@@ -16,7 +16,8 @@ Github：[https://github.com/cyea](https://github.com/cyea)
 Mail：yuyehack@gmail.com
 
 ## 个人服务网站
-- 掘金图库 : https://upload.chenyeah.com/
+
+- 掘金图床 : https://upload.chenyeah.com/
 - OneIndex : https://pan.chenyeah.com/
 - API : https://api.chenyeah.com/
   - https://api.chenyeah.com/shanbay (扇贝每日一句)
@@ -26,4 +27,4 @@ Mail：yuyehack@gmail.com
 
 ## 关于博客：
 
-本博客由`hexo`驱动，`Icarus`主题 ,加上基于 [Valine](https://valine.js.org/)的评论系统,又经过我的魔性改动成了现在这样。本人喜欢折腾，所以本博客可能随时会改，等哪天折腾不动了就不改了。
+本博客由`hexo`驱动,`Icarus`主题 ,加上基于 [Valine](https://valine.js.org/)的评论系统,又经过我的魔性改动成了现在这样。
