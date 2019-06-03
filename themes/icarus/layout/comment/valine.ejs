@@ -13,7 +13,9 @@
         verify: <%= get_config('comment.verify') %>,
         app_id: '<%= get_config('comment.app_id') %>',
         app_key: '<%= get_config('comment.app_key') %>',
-        placeholder: '<%= get_config('comment.placeholder') %>'
+        placeholder: '<%= get_config('comment.placeholder') %>',
+        avatar_cdn:'https://2.gravatar.com/avatar/',
+        avatar:'robohash'
     });
 </script>
 <% } %>
