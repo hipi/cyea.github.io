@@ -1,5 +1,5 @@
 ---
-title: 必须要掌握的几个JS技巧
+title: 几个JS🙃技巧
 thumbnail: 'https://ae01.alicdn.com/kf/HTB1_eaSXHus3KVjSZKbq6xqkFXar.jpg'
 categories: 前端
 tag:
@@ -8,7 +8,7 @@ abbrlink: 9d7da21c
 date: 2019-06-04 17:46:37
 ---
 
-> 一个合格的前端工程师必须要掌握 JavaScript 技巧
+> 一个前端瞎逼技巧🙃
 
 ## 更好的处理 async/await
 
