@@ -78,7 +78,7 @@ http://v3-dy-x.ixigua.com/ee9da215d515dbd3e504bf2e0db2ea16/5cc1ddbc/video/m/2206
 
 > 特地写了去水印的 API 接口
 
-```js
+```
 https://api.chenyeah.com/douyin?url=
 ```
 
