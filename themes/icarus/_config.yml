@@ -79,14 +79,14 @@ comment:
 # Donation entries
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
 donate:
-   #- # Donation entry name
-   #  type: alipay
-   #  # Qrcode image URL
-   #  qrcode: "https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559713847098-assets/web-upload/bd4be737-0b20-42cb-a0bb-13d66822b672.jpeg"
-   - # Donation entry name
-     type: wechat
-     # Qrcode image URL
-     qrcode: "https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559715241592-assets/web-upload/2b16f970-45bd-4701-8e90-9f669ec76fd3.jpeg"
+  #- # Donation entry name
+  #  type: alipay
+  #  # Qrcode image URL
+  #  qrcode: "https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559713847098-assets/web-upload/bd4be737-0b20-42cb-a0bb-13d66822b672.jpeg"
+  - # Donation entry name
+    type: wechat
+    # Qrcode image URL
+    qrcode: "/images/donate.jpg"
   # - # Donation entry name
   #   type: paypal
   #   # Paypal business ID or email address
@@ -318,4 +318,3 @@ links:
     avatar: https://cn.gravatar.com/avatar/b20750c40cd911256ddbd76a7f7e724c
     site: https://godbmw.com/
     info: 目光露着温暖，心间藏着想念
-
