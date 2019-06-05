@@ -86,7 +86,7 @@ donate:
    - # Donation entry name
      type: wechat
      # Qrcode image URL
-     qrcode: "https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559714025772-assets/web-upload/89fa44ad-4723-4ebe-93e4-0b2af22f5bce.jpeg"
+     qrcode: "https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559715241592-assets/web-upload/2b16f970-45bd-4701-8e90-9f669ec76fd3.jpeg"
   # - # Donation entry name
   #   type: paypal
   #   # Paypal business ID or email address
