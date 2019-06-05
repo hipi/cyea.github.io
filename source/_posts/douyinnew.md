@@ -22,7 +22,8 @@ thumbnail: https://ae01.alicdn.com/kf/HTB1_eaSXHus3KVjSZKbq6xqkFXar.jpg
 http://v.douyin.com/616Smb/
 
 我们用浏览器直接打开这个链接会重定向到一个正式页面
-![WX20190425-230243@2x.png](https://user-gold-cdn.xitu.io/2019/6/3/16b1b231d4c32724?w=1790&h=1448&f=png&s=420276)
+
+![WX20190425-230612@2x.png](https://user-gold-cdn.xitu.io/2019/6/3/16b1b231c3641c96?w=2680&h=1546&f=png&s=523896)
 
 ```
 https://www.iesdouyin.com/share/video/6628848121952603405/?region=CN&mid=6628848126449060616&u_code=m1d5960d&titleType=title&timestamp=1556203935&utm_campaign=client_share&app=aweme&utm_medium=ios&tt_from=copy&utm_source=copy&iid=69794020868
@@ -33,8 +34,7 @@ https://www.iesdouyin.com/share/video/6628848121952603405/?region=CN&mid=6628848
 ## 二、获取视频的地址
 
 播放按钮浏览器检查可以看见视频的地址
-
-![WX20190425-230612@2x.png](https://user-gold-cdn.xitu.io/2019/6/3/16b1b231c3641c96?w=2680&h=1546&f=png&s=523896)
+![WX20190425-230243@2x.png](https://user-gold-cdn.xitu.io/2019/6/3/16b1b231d4c32724?w=1790&h=1448&f=png&s=420276)
 
 ```
 https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v0200f3d0000bfv6ccn3cp5e8vksdb5g&line=0
