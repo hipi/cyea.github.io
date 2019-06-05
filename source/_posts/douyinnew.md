@@ -67,7 +67,7 @@ https://aweme.snssdk.com/aweme/v1/play/?video_id=v0200f3d0000bfv6ccn3cp5e8vksdb5
 
 ```
 http://v3-dy-x.ixigua.com/ee9da215d515dbd3e504bf2e0db2ea16/5cc1ddbc/video/m/220664abf96662b468583c854a44d7ccff011610a1bc00001613e5649251/?rc=amV2eWhzNmY5aTMzZ2kzM0ApQHRAbzs0NDgzNTszNDs6Njg3PDNAKXUpQGczdylAZmxkamV6aGhkZjs0QDJhaDUyYGtgc18tLTAtL3NzLW8jbyMuLTY2NS0uLS0xLi8vLS4vaTpiLW8jOmAtbyNtbCtiK2p0OiMvLl4%3D
-```  
+```
 
 
 **这才是我们最终目标无水印的真实视频地址**  
