@@ -13,7 +13,8 @@ after_success:
 - git config user.name "cyea"
 - git config user.email "yuyehack@gmail.com"
 - git add .
-- git commit -m "Update site by travis-ci from branch icuras"
+- date
+- git commit -m "Update site by travis-ci from branch icuras $1"
 - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
 branches:
   only:
@@ -25,4 +26,3 @@ env:
 before_install:
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- -- version 0.23.2
 - export PATH="$HOME/.yarn/bin:$PATH"
-- echo -e "Host 129.211.88.76\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
