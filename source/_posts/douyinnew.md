@@ -33,8 +33,9 @@ https://www.iesdouyin.com/share/video/6628848121952603405/?region=CN&mid=6628848
 
 ## 二、获取视频的地址
 
-播放按钮浏览器检查可以看见视频的地址
-![WX20190425-230243@2x.png](https://user-gold-cdn.xitu.io/2019/6/3/16b1b231d4c32724?w=1790&h=1448&f=png&s=420276)
+播放按钮浏览器检查可以看见视频的地址  
+
+![WX20190425-231339@2x.png](https://user-gold-cdn.xitu.io/2019/6/3/16b1b231ee6c9282?w=2304&h=1268&f=png&s=600141)
 
 ```
 https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v0200f3d0000bfv6ccn3cp5e8vksdb5g&line=0
@@ -56,19 +57,20 @@ http://v3-dy.ixigua.com/3e795a46d915afac45e114d491e6d64e/5cc1daed/video/m/220835
 https://aweme.snssdk.com/aweme/v1/play/?video_id=v0200f3d0000bfv6ccn3cp5e8vksdb5g&line=0
 ```
 
-我们打开这个这个地址会发现 视频不存在
+我们打开这个这个地址会发现 视频不存在  
 
-![WX20190425-231339@2x.png](https://user-gold-cdn.xitu.io/2019/6/3/16b1b231ee6c9282?w=2304&h=1268&f=png&s=600141)
+![WX20190425-230243@2x.png](https://user-gold-cdn.xitu.io/2019/6/3/16b1b231d4c32724?w=1790&h=1448&f=png&s=420276)
 
-**不要慌，抖音坏呢，这被坑了。主要原因是抖音服务器会判断一下 浏览器的`user-agent`，不是手机可能不给放，用 `chrome` 模拟 手机打开就行了。**
+**不要慌，这被坑了。主要原因是抖音服务器会判断一下 浏览器的`user-agent`，不是手机可能不给放，用 `chrome` 模拟 手机打开就行了。**
 
 > 上文同样方法就能看到重定向后的真实视频地址
 
 ```
 http://v3-dy-x.ixigua.com/ee9da215d515dbd3e504bf2e0db2ea16/5cc1ddbc/video/m/220664abf96662b468583c854a44d7ccff011610a1bc00001613e5649251/?rc=amV2eWhzNmY5aTMzZ2kzM0ApQHRAbzs0NDgzNTszNDs6Njg3PDNAKXUpQGczdylAZmxkamV6aGhkZjs0QDJhaDUyYGtgc18tLTAtL3NzLW8jbyMuLTY2NS0uLS0xLi8vLS4vaTpiLW8jOmAtbyNtbCtiK2p0OiMvLl4%3D
-```
+```  
 
-**这才是我们最终目标无水印的真实视频地址**
+
+**这才是我们最终目标无水印的真实视频地址**  
 
 **注意：这个地址时效性很短，想再次获取就必须按照上一步操作获取新的真实地址**
 
