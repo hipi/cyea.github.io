@@ -49,9 +49,9 @@ let asyncFunc = (a, b, c) => {
 
 ## await-to-js
 
-> await-to-js 是运用 Go-lang 处理异常的的灵感
+> [await-to-js](https://github.com/scopsy/await-to-js) 是作者 `scopsy` 运用 Go-lang 处理异常的灵感
 
-源码是用 ts 写的，短小精悍,我解析成 js
+源码是用 ts 写的，短小精悍
 
 ### await-to-js ts 源码
 
