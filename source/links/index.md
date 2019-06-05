@@ -30,7 +30,7 @@ type: links
 
 尽量填写
 
-名称：羽叶の Blog
+名称：羽叶丶
 链接：https://chenyeah.com
 Logo：https://chenyeah.com/images/logo.png
 头像： https://chenyeah.com/images/avatar.png
