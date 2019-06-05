@@ -1,6 +1,6 @@
 ---
-title: 几个JS🙃技巧
-thumbnail: 'https://ae01.alicdn.com/kf/HTB1_eaSXHus3KVjSZKbq6xqkFXar.jpg'
+title: 优雅的处理 async/await 异常
+thumbnail: "https://ae01.alicdn.com/kf/HTB1_eaSXHus3KVjSZKbq6xqkFXar.jpg"
 categories: 前端
 tag:
   - js
@@ -8,11 +8,9 @@ abbrlink: 9d7da21c
 date: 2019-06-04 17:46:37
 ---
 
-> 一个前端瞎逼技巧🙃
+> 每次使用 async/await 都包裹一层 try/catch ，很麻烦，这里提供另外一个思路
 
 ## 更好的处理 async/await
-
-每次使用 async/await 都包裹一层 try/catch ，很麻烦，这里提供另外一个思路
 
 ```js
 // 定义一个全局方法
@@ -49,4 +47,4 @@ let asyncFunc = (a, b, c) => {
 })();
 ```
 
-## 待。。。
+
