@@ -27,4 +27,4 @@ Mail：yuyehack@gmail.com
 
 ## 关于博客：
 
-本博客由`hexo`驱动,`Icarus`主题 ,加上基于 [Valine](https://valine.js.org/)的评论系统,又经过我的魔性改动成了现在这样。
+本博客由[hexo](https://github.com/hexojs/hexo)驱动，[Icarus](https://github.com/ppoffice/hexo-theme-icarus)主题，加上基于 [Valine](https://valine.js.org/)的评论系统，又经过我的魔性改动成了现在这样。
