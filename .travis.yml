@@ -17,8 +17,8 @@ after_success:
   - git config user.name "cyea"
   - git config user.email "yuyehack@gmail.com"
   - git add .
-  - $date=date
-  - git commit -m "Update site by travis-ci from branch icuras $date"
+  - t=`date '+%Y-%m-%d %H:%M:%S'`
+  - git commit -m "Update site by travis-ci from branch icuras $t"
   - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
 branches:
   only:
