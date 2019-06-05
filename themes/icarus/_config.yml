@@ -79,14 +79,14 @@ comment:
 # Donation entries
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
 donate:
-  # - # Donation entry name
-  #   type: alipay
-  #   # Qrcode image URL
-  #   qrcode: "https://api.chenyeah.com/qr?text=142"
-  # - # Donation entry name
-  #   type: wechat
-  #   # Qrcode image URL
-  #   qrcode: "https://api.chenyeah.com/qr?text=142"
+   - # Donation entry name
+     type: alipay
+     # Qrcode image URL
+     qrcode: "https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559713847098-assets/web-upload/bd4be737-0b20-42cb-a0bb-13d66822b672.jpeg"
+   - # Donation entry name
+     type: wechat
+     # Qrcode image URL
+     qrcode: "https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559714025772-assets/web-upload/89fa44ad-4723-4ebe-93e4-0b2af22f5bce.jpeg"
   # - # Donation entry name
   #   type: paypal
   #   # Paypal business ID or email address
