@@ -12,7 +12,7 @@ date: 2018-06-20 15:06:41
 
 redux 作为一种单向数据流的实现，配合 react 非常好用，尤其是在项目比较大，逻辑比较复杂的时候，单项数据流的思想能使数据的流向、变化都能得到清晰的控制，并且能很好的划分业务逻辑和视图逻辑。下图是 redux 的基本运作的流程。
 
-![](https://user-gold-cdn.xitu.io/2018/7/31/164edab5e41258c1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![](https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559886555665-assets/web-upload/b7bd6a99-7f74-4c34-9d42-aad6d7048b44.jpeg)
 
 如上图所示，该图展示了 Redux 框架数据的基本工作流程。简单来说，首先由 view dispatch 拦截 action，然后执行对应 reducer 并更新到 store 中，最终 views 会根据 store 数据的改变执行界面的刷新渲染操作。
 
