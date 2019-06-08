@@ -4,6 +4,7 @@ require('../includes/tasks/check_config');
 require('../includes/generators/categories')(hexo);
 require('../includes/generators/category')(hexo);
 require('../includes/generators/tags')(hexo);
+require('../includes/generators/top')(hexo);
 require('../includes/generators/insight')(hexo);
 require('../includes/filters/highlight')(hexo);
 require('../includes/helpers/cdn')(hexo);
