@@ -1,6 +1,6 @@
 ---
 title: 优雅的处理 async/await 异常
-thumbnail: "https://user-gold-cdn.xitu.io/2019/6/5/16b2557d295ca71b"
+thumbnail: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559701568356-assets/web-upload/3c2e4ebd-ce01-465b-8362-1926265dc58f.jpeg
 categories: 前端
 tag:
   - js
