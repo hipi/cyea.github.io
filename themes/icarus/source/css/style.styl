@@ -466,10 +466,13 @@ figure.highlight
  * --------------------------------- */
 .card-index
     display: block
-    .card-index-image .image
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+    .card-index-image
+        border-radius: 4px
+        .image
+            border-radius: 4px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
 .card-index + .card-index{
     margin-top: 2.5rem;
 } 
@@ -483,7 +486,7 @@ figure.highlight
     display: flex
     align-items: center
     background: rgba(0,0,0,0.5) 
-    border-radius: 4px
+    border-radius: 4px;
 .card-index-content
     width:100%
     text-align: center
