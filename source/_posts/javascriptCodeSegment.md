@@ -7,7 +7,7 @@ abbrlink: cdbb0408
 date: 2019-05-19 10:41:34
 ---
 
-![前端面试常见手写](//img.chenyeah.com/20190520134413.png)
+![前端面试常见手写](https://cdn.nlark.com/yuque/0/2019/png/172796/1558944957849-assets/web-upload/ba4596fd-eade-4d36-a197-1681fec4144b.png)
 
 ## 数组去重
 

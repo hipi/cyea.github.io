@@ -27,7 +27,7 @@ date: 2018-06-25 15:08:38
 
 根据[官网](https://link.jianshu.com?t=https://github.com/reactjs/react-redux)推荐将 React 组件分为容器组件 container 和展示组件 component。为了使代码结构更加合理，我们如下图，在项目根目录里新建 container 和 component 目录。container 目录里的组件需要关心 Redux。而 component 目录里的组件仅做展示用，不需要关心 Redux。这是一种最佳实践，并没有语法上的强制规定，因此 component 目录的组件绑定 Redux 也没问题，但最佳实践还是遵守比较好，否则业务代码会比较混乱。
 
-![](//img.chenyeah.com/20190523190713.jpg)
+![](https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1560152702220-assets/web-upload/14337cbd-84c2-4339-b577-c43315175fa7.jpeg)
 
 components 目录下放两个供展示用的 alert 和 number 组件，这两个组件完全不会感知到 Redux 的存在，它们依赖传入的 props 变化，来触发自身的 render 方法。本系列不是 React 教程，React 组件的代码请自行参照源码。
 
@@ -225,7 +225,7 @@ export default class Provider extends Component {
 
 经过 conncet 后的组件是一个 HOC 高阶组件（High-order Component），参照[React.js 小书](https://link.jianshu.com?t=http://huziketang.com/books/react/lesson38)的图，一图胜千言：
 
-![](//img.chenyeah.com/20190523190743.jpg)
+![](https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1560152702337-assets/web-upload/cf8ea441-13d4-43ae-9b3c-4ab5b20e343c.jpeg)
 
 HOC 高阶组件听上去名字比较吓人，不像人话，我第一次听到的反映也是“什么鬼？”。但其实原理不复杂，说穿了就是为了消除重复代码用的。有些代码每个组件都要重复写（例如 getChildContext），干脆将它们抽取出来写到一个组件内，这个组件就是高阶组件。高阶组件内部的包装组件和被包装组件之间通过 props 传递数据。即让 connect 和 context 打交道，然后通过 props 把参数传给组件自身。我们来实现一下 connect。
 
