@@ -17,9 +17,9 @@ Mail：yuyehack@gmail.com
 
 ## 个人服务网站
 
-另一个域名 https://kawcp.com
+另一个域名 https://yoaio.com
 
-- 掘金图床 : https://upload.chenyeah.com/
+- 掘金图床 : https://upload.chenyeah.com/400375
 - OneIndex : https://pan.chenyeah.com/
 - API : https://api.chenyeah.com/
   - https://api.chenyeah.com/shanbay (扇贝每日一句)
