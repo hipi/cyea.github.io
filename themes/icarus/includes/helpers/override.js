@@ -129,7 +129,6 @@ module.exports = function (hexo) {
         if (!url.endsWith('.js') && !url.includes('?')) {
             url += '.js';
         }
-        url += '?v=' + new Date().getTime()
         return `<script src="${urlFor(url)}"${async ? ' async' : ''}${defer ? ' defer' : ''}></script>`;
     });
 
@@ -138,7 +137,6 @@ module.exports = function (hexo) {
         if (!url.endsWith('.css') && !url.includes('?')) {
             url += '.css';
         }
-        url += '?v=' + new Date().getTime()
         return `<link rel="stylesheet" href="${urlFor(url)}">`;
     });
 }
