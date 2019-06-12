@@ -125,17 +125,25 @@ module.exports = function (hexo) {
     });
 
     hexo.extend.helper.register('_js', function (url, defer = false, async = false) {
+        const deferUrl = url
         const urlFor = hexo.extend.helper.get('url_for').bind(this);
         if (!url.endsWith('.js') && !url.includes('?')) {
             url += '.js';
+        }
+        if(deferUrl === 'js/my'){
+            url += '?v='+new Date().getTime()
         }
         return `<script src="${urlFor(url)}"${async ? ' async' : ''}${defer ? ' defer' : ''}></script>`;
     });
 
     hexo.extend.helper.register('_css', function (url) {
+        const deferUrl = url
         const urlFor = hexo.extend.helper.get('url_for').bind(this);
         if (!url.endsWith('.css') && !url.includes('?')) {
             url += '.css';
+        }
+        if(deferUrl === 'css/style'){
+            url += '?v='+new Date().getTime()
         }
         return `<link rel="stylesheet" href="${urlFor(url)}">`;
     });
