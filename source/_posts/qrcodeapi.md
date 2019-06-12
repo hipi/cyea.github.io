@@ -22,7 +22,7 @@ https://api.chenyeah.com/qr?
 - text : 二维码内容
 - size : 二维码大小 ( `Number` 单位 px, 默认 240 ,范围 100~1000)
 
-示例： 浏览器打开[https://api.chenyeah.com/qr?text=https://chenyeah.com](https://api.chenyeah.com/qr?text=https://chenyeah.com) 即可看到二维码
+示例： 浏览器打开[https://api.chenyeah.com/qr?text=https://yoaio.com](https://api.chenyeah.com/qr?text=https://yoaio.com) 即可看到二维码
 
 ## TODO
 

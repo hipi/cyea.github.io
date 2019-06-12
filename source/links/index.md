@@ -31,9 +31,9 @@ type: links
 尽量填写
 
 名称：羽叶丶
-链接：https://chenyeah.com
-Logo：https://chenyeah.com/images/logo.png
-头像： https://chenyeah.com/images/avatar.png
+链接：https://yoaio.com
+Logo：https://yoaio.com/images/logo.png
+头像： https://yoaio.com/images/avatar.png
 简介：一个前端之身全栈之魂的技术分享博客，专注于前端开发,分享前端开发资源和前端开发技术资讯等
 
 ## 更新

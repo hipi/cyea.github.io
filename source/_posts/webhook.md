@@ -196,10 +196,10 @@ const refreshCdnUrl = () => {
   qcloudSDK.request(
     "RefreshCdnUrl",
     {
-      "urls.0": "https://chenyeah.com",
-      "urls.1": "https://chenyeah.com/js/main.js",
-      "urls.2": "https://chenyeah.com/css/style.cssi",
-      "urls.3": "https://chenyeah.com/sitemap.xml"
+      "urls.0": "https://yoaio.com",
+      "urls.1": "https://yoaio.com/js/main.js",
+      "urls.2": "https://yoaio.com/css/style.cssi",
+      "urls.3": "https://yoaio.com/sitemap.xml"
     },
     res => {
       console.log(res.toString());

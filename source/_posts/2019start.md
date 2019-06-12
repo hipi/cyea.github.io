@@ -27,7 +27,7 @@ React Hooks 带来的好处不仅是 “更 FP，更新粒度更细，代码更�
 - Hooks 可以引用其他 Hooks。
 - 更容易将组件的 UI 与状态分离。
 
-文章：[一篇看懂 React Hooks](https://chenyeah.com/posts/61d76a16/)
+文章：[一篇看懂 React Hooks](https://yoaio.com/posts/61d76a16/)
 
 ## 基于 Redux 的状态管理
 

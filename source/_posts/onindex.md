@@ -12,7 +12,7 @@ thumbnail: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407648-assets/w
 
 ## 安装 Docker CE
 
-参考这里 [docker 安装](https://chenyeah.com/posts/aa43c23f/#%E4%BA%8C-%E5%AE%89%E8%A3%85-docker-%E5%8F%8A-docker-compose)
+参考这里 [docker 安装](https://yoaio.com/posts/aa43c23f/#%E4%BA%8C-%E5%AE%89%E8%A3%85-docker-%E5%8F%8A-docker-compose)
 
 ## Docker-oneindex 安装
 
