@@ -466,8 +466,18 @@ figure.highlight
  * --------------------------------- */
 .card-index
     display: block
+    &:hover
+        transform:translateY(-4px) scale(1.04)
+        transition: 0.3s ease all;
+    .top
+        position: absolute
+        left -4px
+        top: 0
+        width: 5rem
     .card-index-image
         border-radius: 4px
+        .is-7by1 
+            padding-top: 38%;
         .image
             border-radius: 4px;
             background-repeat: no-repeat;

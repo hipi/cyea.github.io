@@ -3,11 +3,11 @@
             <a href="<%- url_for(post.link ? post.link : post.path) %>" class="image is-7by1" style="background-image: url('<%= get_thumbnail(post) %>')">
                 <div class="card-index-container">
                     <div class="card-index-content">
+                            <% if (post.top) { %>
+                                <embed class="top" src="/images/top.svg" />
+                            <% } %>    
                             <h1 style="color: #fff" class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                        <% if (post.top) { %>
-                                            <span style="color:red">[置顶]</span>
-                                        <% } %>    
-                                        <%= post.title %>  
+                                <%= post.title %>  
                             </h1>
                              
                             <div class="card-index-content-info">
