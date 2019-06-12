@@ -38,4 +38,4 @@ Logo：https://yoaio.com/images/logo.png
 
 ## 更新
 
-- [YOHUA](https://yohua.ml) 访问不了已删除，如已修复请告知
+- ~~[YOHUA](https://yohua.ml) 访问不了已删除，如已修复请告知~~
