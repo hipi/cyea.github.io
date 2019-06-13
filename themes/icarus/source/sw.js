@@ -39,7 +39,6 @@ this.addEventListener("fetch", function(event) {
 
         // 请求失败了，直接返回失败的结果就好了。。
         if (!httpRes || httpRes.status !== 200) {
-          console.log("请求失败：", request.url);
           return httpRes;
         }
 
