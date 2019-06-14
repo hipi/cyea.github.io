@@ -30,12 +30,6 @@ sudo vim /etc/ssh/sshd_config
 **注意：这里的 sudo 前缀不可少，否则接下来的修改无法保存。进入 vim 编辑，用方向键向下滚动找到 PermitRootLogin 这项**
 按下 `insert` 键进入插入模式，将 `PermitRootLogin` 后面的 `prohibit-password` 改为 `yes`，再按下 `Esc` 键，然后依次按下`:`键(英文冒号键)、`w` 键和 `q` 键，最后按下回车键，保存修改成功。
 
-还有一种简便方法
-
-```bash
-sudo sed "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
-```
-
 ### 3. 重启 ssh 服务
 
 ```bash
