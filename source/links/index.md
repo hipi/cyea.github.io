@@ -30,12 +30,11 @@ type: links
 
 尽量填写
 
-名称：羽叶丶
-链接：https://yoaio.com
-Logo：https://yoaio.com/images/logo.png
-头像： https://yoaio.com/images/avatar.png
-简介：一个前端之身全栈之魂的技术分享博客，专注于前端开发,分享前端开发资源和前端开发技术资讯等
-
+名称: 羽叶丶
+链接: https://yoaio.com
+头像: https://yoaio.com/images/avatar.png
+简介: 身体和灵魂，总有一个在路上！
+logo:https://yoaio.com/images/logo.png
 ## 更新
 
 - ~~[YOHUA](https://yohua.ml) 访问不了已删除，如已修复请告知~~
