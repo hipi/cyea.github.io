@@ -4,16 +4,6 @@ date: 2019-01-02 10:56:03
 type: links
 ---
 
-## 个人服务网站
-
-- 掘金图床 : https://upload.chenyeah.com/
-- OneIndex : https://pan.chenyeah.com/
-- API : https://api.chenyeah.com/
-  - https://api.chenyeah.com/shanbay (扇贝每日一句)
-  - https://api.chenyeah.com/icba (icba 每日一句)
-  - https://api.chenyeah.com/qr?text=&size= (二维码)
-  - https://api.chenyeah.com/douyin?url= (抖音去水印)
-
 > 排名不分先后,如需交换友链请看下面
 
 ## 申请方式
@@ -24,7 +14,8 @@ type: links
 
 ## 注意事项
 
-先友后链，先友后链, 先友后链：毕竟是“友链”不是“导航页面”
+- 先友后链，先友后链, 先友后链：毕竟是“友链”不是“导航页面”
+- 头像尽量`https`协议，而且没有防盗链设置，不然会显示不了头像
 
 ## 申请格式( 我的友链信息 )：
 
@@ -35,6 +26,7 @@ type: links
 头像: https://yoaio.com/images/avatar.png
 简介: 身体和灵魂，总有一个在路上！
 logo:https://yoaio.com/images/logo.png
+
 ## 更新
 
 - ~~[YOHUA](https://yohua.ml) 访问不了已删除，如已修复请告知~~
