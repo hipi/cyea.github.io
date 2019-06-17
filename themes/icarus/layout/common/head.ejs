@@ -23,7 +23,7 @@
 <% } %>
 
 <% if (has_config('favicon')) { %>
-<link rel="icon" href="<%- url_for(get_config('favicon')) %>">
+<link id="dynamic-favicon" rel="icon" href="<%- url_for(get_config('favicon')) %>">
 <% } %>
 
 <%- _css(cdn('bulma', '0.7.2', 'css/bulma.css')) %>

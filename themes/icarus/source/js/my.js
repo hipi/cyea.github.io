@@ -19,6 +19,18 @@
   };
   updateTimeStr();
   //* 动态标题
+  document.head || (document.head = document.getElementsByTagName("head")[0]);
+  function changeFavicon(src) {
+    let link = document.createElement("link");
+    let oldLink = document.getElementById("dynamic-favicon");
+    link.id = "dynamic-favicon";
+    link.rel = "icon";
+    link.href = src;
+    if (oldLink) {
+      document.head.removeChild(oldLink);
+    }
+    document.head.appendChild(link);
+  }
   const title = document.title;
   // 不同浏览器 hidden 名称
   var hiddenProperty =
@@ -34,11 +46,14 @@
     /hidden/i,
     "visibilitychange"
   );
+  //
   var onVisibilityChange = function() {
     if (!document[hiddenProperty]) {
       document.title = title;
+      changeFavicon("/images/favicon.ico");
     } else {
-      document.title = "╥﹏╥ 快回来~~ " + title;
+      document.title = "快回来~~ " + title;
+      changeFavicon("/images/favicon-zzz.ico");
     }
   };
   document.addEventListener(visibilityChangeEvent, onVisibilityChange);

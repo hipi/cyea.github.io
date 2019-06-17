@@ -520,9 +520,33 @@ figure.highlight
     font-size: 12px
     color: #858585
 }
-.avatar:hover
-    transform: rotate(666turn);
-    transition-delay: 0.28s;
-    transition-property: all;
-    transition-duration: 59s;
-    transition-timing-function: cubic-bezier(.34,0,.84,1);
+.avatar
+    animation: move-around 4s infinite;
+    &:hover
+        transform: rotate(666turn);
+        transition-delay: 0.28s;
+        transition-property: all;
+        transition-duration: 59s;
+        transition-timing-function: cubic-bezier(.34,0,.84,1);
+
+@keyframes move-around {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    25% {
+        transform: rotate(-20deg)
+    }
+
+    50% {
+        transform: rotate(0deg)
+    }
+
+    75% {
+        transform: rotate(20deg)
+    }
+
+    to {
+        transform: rotate(0deg)
+    }
+}
