@@ -15,11 +15,10 @@
                     </p>
                 </a>
                 <% } %>
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="<%= date_xml(post.date) %>"><%= date(post.date) %></time>
+                <div class="archives-media-content media-content">
+                        <time class="has-text-grey is-size-7  is-uppercase" datetime="<%= date_xml(post.date) %>"><%= date(post.date) %></time>
                         <a href="<%- url_for((post.link?post.link:post.path)) %>" class="has-link-black-ter is-size-6"><%= post.title %></a>
-                        <div class="level article-meta is-mobile">
+                        <div class="level article-meta  is-mobile">
                             <div class="level-left">
                                 <% if (post.categories && post.categories.length) { %>
                                 <div class="level-item is-size-7 is-uppercase">
@@ -33,7 +32,7 @@
                                 <% } %>
                             </div>
                         </div>
-                    </div>
+                    
                 </div>
             </article>
         <% }) %>
