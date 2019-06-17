@@ -522,12 +522,12 @@ figure.highlight
 }
 .avatar
     animation: move-around 4s infinite;
-    &:hover
-        transform: rotate(666turn);
-        transition-delay: 0.28s;
-        transition-property: all;
-        transition-duration: 59s;
-        transition-timing-function: cubic-bezier(.34,0,.84,1);
+    // &:hover
+    //     transform: rotate(666turn)!important
+    //     transition-delay: 0.28s!important
+    //     transition-property: all!important
+    //     transition-duration: 59s!important
+    //     transition-timing-function: cubic-bezier(.34,0,.84,1)!important
 
 @keyframes move-around {
     0% {
@@ -535,7 +535,7 @@ figure.highlight
     }
 
     25% {
-        transform: rotate(-20deg)
+        transform: rotate(-15deg)
     }
 
     50% {
@@ -543,7 +543,7 @@ figure.highlight
     }
 
     75% {
-        transform: rotate(20deg)
+        transform: rotate(15deg)
     }
 
     to {
