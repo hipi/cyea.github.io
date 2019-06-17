@@ -12,14 +12,8 @@
                              
                             <div class="card-index-content-info">
                                 <time  datetime="<%= date_xml(post.date) %>"><%= date(post.date) %></time>
+                                &nbsp;&nbsp;
                                 <%- list_span_categories(post.categories) %>
-                                <% if (!has_config('article.readtime') || get_config('article.readtime') === true) { %>
-                                    <div >
-                                        <% const words = word_count(post._content); %>
-                                        <% const time = duration((words / 150.0) * 60, 'seconds') %>
-                                        <%= `${ time.locale(get_config('language', 'en')).humanize() } ${ __('article.read')} (${ __('article.about') } ${ words } ${ __('article.words') })` %>
-                                    </div>
-                                <% } %>
                             </div>
                            
                             
