@@ -181,14 +181,13 @@ widgets:
   #   type: archive
   #   # Where should the widget be placed, left or right
   #   position: left
-  #   - # Widget name
-  #     type: links
-  #     # Where should the widget be placed, left or right
-  #     position: left
-  #     # Links to be shown in the links widget
-  #     links:
-  #       Hexo: "https://hexo.io"
-  #       PPOffice: "https://github.com/ppoffice"
+  - # Widget name
+    type: links
+      # Where should the widget be placed, left or right
+    position: left
+      # Links to be shown in the links widget
+    links:
+      我的网盘: "https://pan.chenyeah.com"
 
 # Other plugin settings
 plugins:
