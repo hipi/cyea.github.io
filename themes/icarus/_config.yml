@@ -123,7 +123,7 @@ widgets:
     # Where should the widget be placed, left or right
     position: left
     # Author name to be shown in the profile widget
-    author: YuYe
+    author: Crito
     # Title of the author to be shown in the profile widget
     author_title: 专注前端技术，更专注生活
     # Author's current location to be shown in the profile widget
@@ -239,7 +239,7 @@ providers:
 
 # Fill in your Links
 links:
-  - nickname: Yu Ye
+  - nickname: Crito
     avatar: https://yoaio.com/images/avatar.png
     site: https://yoaio.com
     info: 就是本人了QAQ
