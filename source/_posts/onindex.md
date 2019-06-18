@@ -7,7 +7,7 @@ thumbnail: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407648-assets/w
 ---
 
 > 阿里云的一台服务器一直吃灰，今天打算打造基于 onindex 专属分享型网盘。OneIndex 针对 Onedrive 网盘的一个开源程序,可以将 Onedrive 存储的文件展示，直连下载。视频还能在线播放！不用服务器空间，不走服务器流量！非常推荐大家试一试，搭建自己的网盘！
-> ![阿里云](https://wx4.sinaimg.cn/large/0079V2lRly1g0t7fca3uzj309l09ndfr.jpg)
+> ![阿里云](https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1560819295547-assets/web-upload/e472b4dc-912d-4b35-ac65-e93e834450ce.jpeg)
 > 接下来说一下 `Ubuntu Docker Onedrive` 安装方式
 
 ## 安装 Docker CE
@@ -66,7 +66,7 @@ thumbnail: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407648-assets/w
 
 ## onindex 配置
 
-![onindex 配置](https://wx2.sinaimg.cn/large/0079V2lRly1g0t7eba0bkg30qe0nm1ky.gif)
+![onindex 配置](https://cdn.nlark.com/yuque/0/2019/gif/172796/1560819297633-assets/web-upload/8909f40e-a386-4188-9dfa-bbeb9d439fae.gif)
 
 **oneindex 设置地址为 `url/?/admin`**
 
