@@ -125,7 +125,7 @@ widgets:
     # Author name to be shown in the profile widget
     author: YuYe
     # Title of the author to be shown in the profile widget
-    author_title: 专注前端技术
+    author_title: 专注前端技术，更专注生活
     # Author's current location to be shown in the profile widget
     location: China
     # Path or URL to the avatar to be shown in the profile widget
@@ -183,8 +183,9 @@ widgets:
   #   position: left
   - # Widget name
     type: links
-      # Where should the widget be placed, left or right
-    position: left
+    # Where should the widget be placed, left or right
+    position:
+      left
       # Links to be shown in the links widget
     links:
       我的网盘: "https://pan.chenyeah.com"
