@@ -132,8 +132,6 @@ widgets:
     avatar:
     # Email address for the Gravatar to be shown in the profile widget
     gravatar:
-    # Whether to show avatar image rounded or square
-    avatar_rounded: true
     # Path or URL for the follow button
     follow_link: "https://github.com/cyea"
     # Links to be shown on the bottom of the profile widget
