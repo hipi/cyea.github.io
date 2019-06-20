@@ -25,6 +25,7 @@ navbar:
   menu:
     首页: /
     归档: /archives
+    音乐: /music
     关于: /about
     友链: /links
   # Navigation bar links to be shown on the right
