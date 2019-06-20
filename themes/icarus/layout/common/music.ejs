@@ -3,13 +3,22 @@
   href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"
 />
 <style>
-  #aplayer{
-    margin: 2rem 0 3rem
+  #aplayer {
+    margin: 2rem 0 3rem;
   }
 </style>
 <div id="aplayer"></div>
 <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
-<script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+<meting-js
+  server="netease"
+  type="playlist"
+  id="2602222983"
+  theme="#333"
+  volume="1"
+  autoplay="true"
+></meting-js>
+<!-- <script>
   const ap = new APlayer({
     container: document.getElementById("aplayer"),
     mini: false,
@@ -75,4 +84,4 @@
       }
     ]
   });
-</script>
+</script> -->
