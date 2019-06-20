@@ -81,6 +81,19 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: icarus
 
+# 压缩代码
+uglify_enable: true
+uglify_html:
+  enable: true
+  logger: true
+uglify_css:
+  enable: true
+  logger: true
+uglify_js:
+  enable: true
+  logger: true
+
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
