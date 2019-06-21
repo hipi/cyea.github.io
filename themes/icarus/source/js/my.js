@@ -1,4 +1,15 @@
 (function() {
+  window.addEventListener("load", function() {
+    if (window.location.hash) {
+      var checkExist = setInterval(function() {
+        var hash = decodeURIComponent(window.location.hash);
+        if (hash.length) {
+          $("html, body").animate({ scrollTop: $(hash).offset().top }, 1000);
+          clearInterval(checkExist);
+        }
+      }, 500);
+    }
+  });
   // * 底部时间
   function pad(num, length) {
     return length < num.toString().length
