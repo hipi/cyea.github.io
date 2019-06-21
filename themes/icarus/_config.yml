@@ -51,9 +51,9 @@ article:
   # Code highlight theme
   # https://github.com/highlightjs/highlight.js/tree/master/src/styles
   highlight: railscasts
-  # Whether to show article thumbnail images
-  thumbnail: true
-  thumbnailauto:
+  # Whether to show article cover images
+  cover: true
+  coverauto:
     enable: true
     url: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1560818411346-assets/web-upload/30c2d2ca-f8b6-4f8d-9731-3aed88377461.jpeg
   # Whether to show estimate article reading time

@@ -1,8 +1,8 @@
 <div class="card">
-    <% if (get_thumbnail(post)) { %>
+    <% if (get_cover(post)) { %>
         <div class="card-image">
             <%- index ? '<a href="' + url_for(post.link ? post.link : post.path) + '"' : '<span ' %> class="image is-7by1">
-                <img class="thumbnail" src="<%= get_thumbnail(post) %>" alt="<%= post.title %>">
+                <img class="cover" src="<%= get_cover(post) %>" alt="<%= post.title %>">
             <%- index ? '</a>' : '</span>' %>
         </div>
     <% } %>    

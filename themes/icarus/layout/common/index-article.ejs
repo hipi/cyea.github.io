@@ -1,6 +1,6 @@
 <div class="card card-index">
         <div class="card-index-image">
-            <a href="<%- url_for(post.link ? post.link : post.path) %>" class="image is-7by1" style="background-image: url('<%= get_thumbnail(post) %>')">
+            <a href="<%- url_for(post.link ? post.link : post.path) %>" class="image is-7by1" style="background-image: url('<%= get_cover(post) %>')">
                 <div class="card-index-container">
                     <div class="card-index-content">
                             <% if (post.top) { %>

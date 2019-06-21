@@ -6,11 +6,11 @@
         </h3>
         <% site.posts.sort('date', -1).limit(8).each(post => { %>
         <article class="media">
-            <% if (!has_config('article.thumbnail') || get_config('article.thumbnail') !== false) { %>
+            <% if (!has_config('article.cover') || get_config('article.cover') !== false) { %>
             <a href="<%- url_for((post.link?post.link:post.path)) %>" class="media-left">
                 <p class="image is-64x64">
-                    <% if (get_thumbnail(post)) { %>
-                    <img class="thumbnail" src="<%= get_thumbnail(post) %>" alt="<%= post.title %>">
+                    <% if (get_cover(post)) { %>
+                    <img class="cover" src="<%= get_cover(post) %>" alt="<%= post.title %>">
                     <% } %>
                 </p>
             </a>

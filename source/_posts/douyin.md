@@ -7,7 +7,7 @@ tags:
 # photos: 'https://cdn.chenyeah.com/blog/img/bac.34f8cef.jpg'
 abbrlink: d21e1b13
 date: 2019-01-01 00:00:00
-thumbnail: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407449-assets/web-upload/d27ab8a7-a3e2-4dbe-bb8b-6f005080d0d4.jpeg
+cover: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407449-assets/web-upload/d27ab8a7-a3e2-4dbe-bb8b-6f005080d0d4.jpeg
 ---
 
 ## 新方法

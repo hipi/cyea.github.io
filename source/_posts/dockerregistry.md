@@ -5,7 +5,7 @@ tag:
   - docker
 abbrlink: ce680882
 date: 2019-03-29 16:15:03
-thumbnail: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407486-assets/web-upload/dc836a69-0e03-4ad2-98bc-fe3f99346dec.jpeg
+cover: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407486-assets/web-upload/dc836a69-0e03-4ad2-98bc-fe3f99346dec.jpeg
 ---
 
 ## 哪些 docker hub 镜像加速

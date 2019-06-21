@@ -8,9 +8,9 @@ module.exports = {
         [doc]: 'Code highlight theme\nhttps://github.com/highlightjs/highlight.js/tree/master/src/styles',
         [defaultValue]: 'atom-one-light'
     },
-    thumbnail: {
+    cover: {
         [type]: 'boolean',
-        [doc]: 'Whether to show article thumbnail images',
+        [doc]: 'Whether to show article cover images',
         [defaultValue]: true
     },
     readtime: {

@@ -3,7 +3,7 @@ title: Mac下右键使用VSCode打开项目
 categories: 杂项
 tag:
   - mac
-thumbnail: >-
+cover: >-
   https://cdn.nlark.com/yuque/0/2019/png/172796/1559884864280-assets/web-upload/579e5bfa-124d-4c42-9d9b-690926c54326.png
 abbrlink: 4160ab6e
 date: 2019-06-06 10:41:34

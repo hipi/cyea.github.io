@@ -6,8 +6,8 @@
  *     <%- is_tags(page) %>
  *     <%- page_title(page) %>
  *     <%- meta(post) %>
- *     <%- has_thumbnail(post) %>
- *     <%- get_thumbnail(post) %>
+ *     <%- has_cover(post) %>
+ *     <%- get_cover(post) %>
  *     <%- get_og_image(post) %>
  */
 module.exports = function(hexo) {
@@ -92,27 +92,27 @@ module.exports = function(hexo) {
     return metaDOMArray.join("\n");
   });
 
-  hexo.extend.helper.register("has_thumbnail", function(post) {
+  hexo.extend.helper.register("has_cover", function(post) {
     const getConfig = hexo.extend.helper.get("get_config").bind(this);
-    const allowThumbnail = getConfig("article.thumbnail", true);
-    return allowThumbnail
-    // if (!allowThumbnail) {
+    const allowCover = getConfig("article.cover", true);
+    return allowCover
+    // if (!allowCover) {
     //   return false;
     // }
-    // return post.hasOwnProperty("thumbnail") && post.thumbnail;
+    // return post.hasOwnProperty("cover") && post.cover;
   });
 
-  hexo.extend.helper.register("get_thumbnail", function(post) {
+  hexo.extend.helper.register("get_cover", function(post) {
     const getConfig = hexo.extend.helper.get("get_config").bind(this);
-    var thumbnailauto_enable = getConfig("article.thumbnailauto.enable", true);
-    var thumbnailauto_url = getConfig("article.thumbnailauto.url", true);
-    const hasThumbnail = hexo.extend.helper.get("has_thumbnail").bind(this)(
+    var coverauto_enable = getConfig("article.coverauto.enable", true);
+    var coverauto_url = getConfig("article.coverauto.url", true);
+    const hasCover = hexo.extend.helper.get("has_cover").bind(this)(
       post
     );
-    if (!hasThumbnail) {
+    if (!hasCover) {
       return false;
     }
-    var url = post.thumbnail || "";
+    var url = post.cover || "";
     if (!url) {
       var imgPattern = /\<img\s.*?\s?src\s*=\s*['|"]?([^\s'"]+).*?\>/gi;
       var result = imgPattern.exec(post.content);
@@ -120,12 +120,12 @@ module.exports = function(hexo) {
         url = result[1];
       }
     }
-    if (!url && thumbnailauto_enable) {
-      url = thumbnailauto_url;
+    if (!url && coverauto_enable) {
+      url = coverauto_url;
     }
     return url;
-    // const hasThumbnail = hexo.extend.helper.get('has_thumbnail').bind(this)(post);
-    // return this.url_for(hasThumbnail ? post.thumbnail : "images/thumbnail.svg");
+    // const hasCover = hexo.extend.helper.get('has_cover').bind(this)(post);
+    // return this.url_for(hasCover ? post.cover : "images/cover.svg");
   });
 
   hexo.extend.helper.register("has_og_image", function(post) {
@@ -137,16 +137,16 @@ module.exports = function(hexo) {
     const hasConfig = hexo.extend.helper.get("has_config").bind(this);
 
     const hasOGImage = hexo.extend.helper.get("has_og_image").bind(this)(post);
-    const hasThumbnail = hexo.extend.helper.get("has_thumbnail").bind(this)(
+    const hasCover = hexo.extend.helper.get("has_cover").bind(this)(
       post
     );
 
-    const getThumbnail = hexo.extend.helper.get("get_thumbnail").bind(this);
+    const getCover = hexo.extend.helper.get("get_cover").bind(this);
 
     let og_image;
 
     if (hasOGImage) og_image = post.og_image;
-    else if (hasThumbnail) og_image = getThumbnail(post);
+    else if (hasCover) og_image = getCover(post);
     else og_image = getConfig("article.og_image", "/images/og_image.png");
 
     return this.url_for(og_image);

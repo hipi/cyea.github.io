@@ -8,10 +8,10 @@
         <div class="timeline">
         <% posts.each(post => { %>
             <article class="media">
-                <% if (get_thumbnail(post)) { %>
+                <% if (get_cover(post)) { %>
                 <a href="<%- url_for((post.link?post.link:post.path)) %>" class="media-left">
                     <p class="image is-64x64">
-                        <img class="thumbnail" src="<%= get_thumbnail(post) %>" alt="<%= post.title %>">
+                        <img class="cover" src="<%= get_cover(post) %>" alt="<%= post.title %>">
                     </p>
                 </a>
                 <% } %>

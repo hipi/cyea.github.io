@@ -3,7 +3,7 @@ title: 服务器打造专属分享型网盘
 categories: 服务端
 abbrlink: 6c1c0af
 date: 2019-03-15 10:46:23
-thumbnail: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407648-assets/web-upload/75719cd4-0de0-43a6-82e3-05ba70ee9dd9.jpeg
+cover: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407648-assets/web-upload/75719cd4-0de0-43a6-82e3-05ba70ee9dd9.jpeg
 ---
 
 > 阿里云的一台服务器一直吃灰，今天打算打造基于 onindex 专属分享型网盘。OneIndex 针对 Onedrive 网盘的一个开源程序,可以将 Onedrive 存储的文件展示，直连下载。视频还能在线播放！不用服务器空间，不走服务器流量！非常推荐大家试一试，搭建自己的网盘！

@@ -6,7 +6,7 @@ tag:
   - node.js
 abbrlink: 713d3487
 date: 2019-04-10 15:45:01
-thumbnail: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407732-assets/web-upload/91f1f1c7-6b88-4f21-9b42-02804ae26daf.jpeg
+cover: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407732-assets/web-upload/91f1f1c7-6b88-4f21-9b42-02804ae26daf.jpeg
 top: 99
 ---
 
