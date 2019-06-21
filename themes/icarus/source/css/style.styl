@@ -536,7 +536,7 @@ audio {
     color: #858585
 }
 .avatar
-    animation: move-around 4s infinite
+    animation: move-around 10s linear infinite
     border-radius: 50%
     // &:hover
     //     transform: rotate(666turn)!important
@@ -546,23 +546,23 @@ audio {
     //     transition-timing-function: cubic-bezier(.34,0,.84,1)!important
 
 @keyframes move-around {
-    0% {
+    from {
         transform: rotate(0deg)
     }
 
-    25% {
-        transform: rotate(-15deg)
-    }
+    // 25% {
+    //     transform: rotate(-15deg)
+    // }
 
-    50% {
-        transform: rotate(0deg)
-    }
+    // 50% {
+    //     transform: rotate(0deg)
+    // }
 
-    75% {
-        transform: rotate(15deg)
-    }
+    // 75% {
+    //     transform: rotate(15deg)
+    // }
 
     to {
-        transform: rotate(0deg)
+        transform: rotate(360deg)
     }
 }
