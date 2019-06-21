@@ -1,5 +1,5 @@
 ---
-title: 抖音去水印详细原理步骤
+title: 抖音去水印详细原理步骤及接口地址
 categories: 全栈
 abbrlink: 458fb5c9
 date: 2019-04-25 23:21:34
@@ -7,11 +7,7 @@ thumbnail: https://ae01.alicdn.com/kf/HTB1_eaSXHus3KVjSZKbq6xqkFXar.jpg
 top: 98
 ---
 
-## 2019-05-30 更新->接口依然有效
-
-> 最近抖音修复了本文介绍的方法，所以下面方法已失效!**接口也因此做了调整，依然可以正常使用**
-
-抖音分享链接得到的 id 已经不是`video_id` 还是变成了`s_vid` 所以本文介绍的方法已失效
+---
 
 ## 接口地址（依然有效）
 
@@ -19,7 +15,17 @@ top: 98
 https://api.chenyeah.com/douyin?url=xxx
 ```
 
-**xxx 是得到的抖音分享链接**
+**xxx 是得到的抖音分享链接**  
+
+例如：https://api.chenyeah.com/douyin?url=http://v.douyin.com/616Smb/
+
+
+---
+## 2019-05-30 更新 -> 接口依然有效
+
+> 最近抖音修复了本文介绍的方法，所以下面方法已失效!**接口也因此做了调整，依然可以正常使用**
+
+抖音分享链接得到的 id 已经不是`video_id` 还是变成了`s_vid` 所以本文介绍的方法已失效
 
 ---
 
