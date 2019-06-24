@@ -149,7 +149,10 @@
 <% if (!index && has_config('comment.type')) { %>
 <div class="card">
     <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal"><%= __('article.comments') %></h3>
+        <h3 class="title is-5 has-text-weight-normal">
+            <%= __('article.comments') %>
+            <span style="font-size: 12px;color: #276cda;margin-left: 10px">打不开disqus? 是不是上网不科学？</span>
+        </h3>
         <%- partial('comment/' + get_config('comment.type')) %>
     </div>
 </div>
