@@ -74,12 +74,9 @@ search:
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment
 comment:
   # Name of the comment plugin
-  # type: valine
-  # app_id: psJpFJcodbLyU5938xwzn0KK-9Nh9j0Va
-  # app_key: 8Anhqwk2clWY0wX7dRG3hPYB
-
-  type: disqus
-  shortname: yuyehack
+  type: valine
+  app_id: psJpFJcodbLyU5938xwzn0KK-9Nh9j0Va
+  app_key: 8Anhqwk2clWY0wX7dRG3hPYB
 
 # Donation entries
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
