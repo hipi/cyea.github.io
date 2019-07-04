@@ -25,5 +25,5 @@ branches:
     - icarus
 env:
   global:
-    - GH_REF: github.com/cyea/yoaio.com.git
+    - GH_REF: github.com/cyea/hexo-blog.git
     - secure:
