@@ -5,7 +5,7 @@ tag:
   - js
 abbrlink: bd4556bf
 date: 2019-01-20 14:36:19
-cover: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1559115407413-assets/web-upload/b41a2423-5789-44ef-84c0-cafc5574c3ef.jpeg
+cover: https://qiniu.chenyeah.com/img/20190807115557.jpg
 ---
 
 > 使用 React 开发新项目时，遇见了刷新页面，直接访问二级或三级路由时，访问失败，出现 404 或资源加载异常的情况，本篇针对此问题进行分析并总结解决方案。

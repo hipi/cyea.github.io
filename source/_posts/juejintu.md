@@ -1,6 +1,6 @@
 ---
 title: 自建基于掘金API的图床
-cover: https://cdn.nlark.com/yuque/0/2019/png/172796/1559884849437-assets/web-upload/8c166c77-1c7d-4055-8d0f-27eca0fac44d.png
+cover: https://qiniu.chenyeah.com/img/20190807115557.jpg
 categories: 全栈
 abbrlink: 4fdcb40b
 date: 2019-05-31 16:58:12
