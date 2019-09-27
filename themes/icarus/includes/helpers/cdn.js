@@ -13,8 +13,8 @@ const cdn_providers = {
 };
 
 const font_providers = {
-    // google: 'https://fonts.googleapis.com/${ type }?family=${ fontname }'
-    google:'https://fonts.proxy.ustclug.org/${ type }?family=${ fontname }'
+    google: 'https://fonts.googleapis.com/${ type }?family=${ fontname }'
+    // google:'https://fonts.proxy.ustclug.org/${ type }?family=${ fontname }'
 };
 
 const icon_providers = {
