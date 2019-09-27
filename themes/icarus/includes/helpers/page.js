@@ -120,9 +120,11 @@ module.exports = function(hexo) {
         url = result[1];
       }
     }
-    if (!url && coverauto_enable) {
-      url = coverauto_url;
-    }
+    
+    // if (!url && coverauto_enable) {
+    //   url = coverauto_url;
+    // }
+
     return url;
     // const hasCover = hexo.extend.helper.get('has_cover').bind(this)(post);
     // return this.url_for(hasCover ? post.cover : "images/cover.svg");
