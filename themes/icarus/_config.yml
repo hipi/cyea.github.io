@@ -239,19 +239,9 @@ providers:
 # Fill in your Links
 links:
   - nickname: Crito
-    avatar: https://yoaio.com/images/avatar.png
+    avatar: /images/avatar.png
     site: https://yoaio.com
     info: 就是本人了QAQ
-
-  - nickname: 南澈
-    avatar: https://i.loli.net/2019/04/24/5cbff90e7e645.jpg
-    site: https://www.npmrundev.com/
-    info: 无以伦比的追求冰冷的敲打着我的灵魂
-
-  - nickname: 随遇而安
-    avatar: https://i.loli.net/2019/04/24/5cbff910b8183.jpg
-    site: https://www.iszy.cc
-    info: 生活吐槽 & 学习记录
 
   - nickname: LUYMM
     avatar: https://i.loli.net/2019/04/24/5cbff90eeda6c.jpg
@@ -288,11 +278,6 @@ links:
     site: https://Vxxt.cn
     info: 爱情,其实是一种甜蜜的痛苦。
 
-  - nickname: 96SIR - Deng's Blog
-    avatar: https://i.loli.net/2019/04/24/5cbffa06623a0.jpg
-    site: https://www.96sir.com/
-    info: 所谓人生不过是三五好友，一壶老酒，佳人相伴，无灾无难。
-
   - nickname: 王保庆个人博客
     avatar: https://i.loli.net/2019/04/24/5cbffa113c81e.jpg
     site: https://www.imwbq.com/
@@ -307,26 +292,6 @@ links:
     avatar: https://cdn.zrahh.com/img/avatar.jpg
     site: https://zrahh.com
     info: 科技宅有趣的技术分享！
-
-  - nickname: GraFruit’s Blog
-    avatar: https://img.grafruit.cn/images/2019/05/17/7.md.png
-    site: https://Blog.GraFruit.cn/
-    info: 一个自称柚子大叔的 Boy.
-
-  - nickname: GodBMW
-    avatar: https://cn.gravatar.com/avatar/b20750c40cd911256ddbd76a7f7e724c
-    site: https://godbmw.com/
-    info: 目光露着温暖，心间藏着想念
-
-  - nickname: 墨兰blue
-    avatar: https://i.loli.net/2019/06/13/5d019f05d5a9277938.jpg
-    site: https://blog.yfblog.xyz
-    info: 一只爱折腾的小小白
-
-  - nickname: YOHUA
-    avatar: https://yohua.ml/images/avatar.png
-    site: https://yohua.ml
-    info: 做一个有梦想的咸鱼
 
   - nickname: JerryC
     avatar: http://jerryc.me/img/avatar.png
