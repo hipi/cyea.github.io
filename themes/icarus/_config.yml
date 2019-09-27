@@ -55,7 +55,7 @@ article:
   cover: true
   coverauto:
     enable: true
-    url: https://cdn.nlark.com/yuque/0/2019/jpeg/172796/1560818411346-assets/web-upload/30c2d2ca-f8b6-4f8d-9731-3aed88377461.jpeg
+    url: https://qiniu.chenyeah.com/img/20190807135705.jpg
   # Whether to show estimate article reading time
   readtime: true
 
@@ -74,9 +74,8 @@ search:
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment
 comment:
   # Name of the comment plugin
-  type: valine
-  app_id: psJpFJcodbLyU5938xwzn0KK-9Nh9j0Va
-  app_key: 8Anhqwk2clWY0wX7dRG3hPYB
+  type: disqus
+  shortname: yuyehack
 
 # Donation entries
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
@@ -125,7 +124,7 @@ widgets:
     # Where should the widget be placed, left or right
     position: left
     # Author name to be shown in the profile widget
-    author: Crito
+    author: Yu Ye
     # Title of the author to be shown in the profile widget
     author_title: 专注前端技术，更专注生活
     # Author's current location to be shown in the profile widget
@@ -188,7 +187,7 @@ widgets:
       left
       # Links to be shown in the links widget
     links:
-      我的网盘: "https://pan.chenyeah.com"
+      净土: https://yuye.fun
 
 # Other plugin settings
 plugins:

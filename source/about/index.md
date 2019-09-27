@@ -2,6 +2,7 @@
 title: 关于
 date: 2019-01-02 10:56:15
 type: about
+cover: https://qiniu.chenyeah.com/2019/08/13/9c18a0813115046.jpg
 ---
 
 ## 关于本人：

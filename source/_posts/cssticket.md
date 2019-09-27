@@ -4,7 +4,7 @@ categories: 前端
 tags: css
 abbrlink: 65e9dcbb
 date: 2019-01-16 01:21:58
-cover: https://qiniu.chenyeah.com/img/20190807115557.jpg
+
 ---
 
 ## 一、flex 项中子元素文本截断 text-overflow:ellipsis 失效,给你一个完美的解决方案。

@@ -1,6 +1,6 @@
 ---
 title: 优雅的处理 async/await 异常
-cover: https://qiniu.chenyeah.com/img/20190807115557.jpg
+
 categories: 前端
 tag:
   - js

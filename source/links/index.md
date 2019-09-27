@@ -2,6 +2,7 @@
 title: 友链
 date: 2019-01-02 10:56:03
 type: links
+cover: https://qiniu.chenyeah.com/img/20190807135705.jpg
 ---
 
 > 排名不分先后,如需交换友链请看下面

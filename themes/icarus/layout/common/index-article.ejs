@@ -1,6 +1,12 @@
+<% var colorArr = [['#EB3349', '#F45C43'],['#DD5E89', '#F7BB97'],['#4CB8C4', '#3CD3AD'],['#A6FFCB', '#12D8FA', '#1FA2FF'],['#FF512F', '#F09819'],['#1A2980', '#26D0CE'],['#F09819', '#EDDE5D'],['#403B4A', '#E7E9BB'],['#003973', '#E5E5BE'],['#348F50', '#56B4D3'],['#EDE574', '#E1F5C4'],['#16A085', '#F4D03F'],['#314755', '#26a0da'],['#e65c00', '#F9D423'],['#2193b0', '#6dd5ed'],['#ec008c', '#fc6767'],['#1488CC', '#2B32B2'],['#ffe259', '#ffa751'],['#11998e', '#38ef7d'],['#00b09b', '#96c93d'],['#3C3B3F', '#605C3C'],['#fc4a1a', '#f7b733']] %>
+<% var getRandomColor = ()=> colorArr[Math.floor(Math.random()*(colorArr.length))] %>
+<% var bag %>
+<!-- 没有封面就随机颜色 -->
+<% if (post.cover) { bag = `background-image: url('${get_cover(post) }')` } else { bag = `background: linear-gradient(90deg, ${getRandomColor()}`} %>
+
 <div class="card card-index">
         <div class="card-index-image">
-            <a href="<%- url_for(post.link ? post.link : post.path) %>" class="image is-7by1" style="background-image: url('<%= get_cover(post) %>')">
+            <a href="<%- url_for(post.link ? post.link : post.path) %>" class="image is-7by1" style ="<%- bag %>" >
                 <div class="card-index-container">
                     <div class="card-index-content">
                             <% if (post.top) { %>

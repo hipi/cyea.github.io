@@ -14,7 +14,9 @@
                         <img class="cover" src="<%= get_cover(post) %>" alt="<%= post.title %>">
                     </p>
                 </a>
-                <% } %>
+                <% } else { %>
+                    
+                <% } %>    
                 <div class="archives-media-content media-content">
                         <time class="has-text-grey is-size-7  is-uppercase" datetime="<%= date_xml(post.date) %>"><%= date(post.date) %></time>
                         <a href="<%- url_for((post.link?post.link:post.path)) %>" class="has-link-black-ter is-size-6"><%= post.title %></a>

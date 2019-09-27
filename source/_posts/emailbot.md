@@ -6,7 +6,7 @@ tag:
   - node.js
 abbrlink: 713d3487
 date: 2019-04-10 15:45:01
-cover: https://qiniu.chenyeah.com/img/20190807115557.jpg
+
 top: 99
 ---
 

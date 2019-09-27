@@ -4,7 +4,7 @@ categories: 全栈
 abbrlink: aa43c23f
 date: 2019-03-10 11:54:16
 tags:
-cover: https://qiniu.chenyeah.com/img/20190807115557.jpg
+
 ---
 
 ## 一、配置 root 登陆

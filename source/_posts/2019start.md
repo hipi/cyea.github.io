@@ -11,7 +11,7 @@ tag:
   - graphql
 abbrlink: 8058f2c3
 date: 2019-02-13 10:41:34
-cover: https://qiniu.chenyeah.com/img/20190807115557.jpg
+
 ---
 
 > 前端发展依旧迅速 各种技术，我快学不动啦😂😂😂😂😂
