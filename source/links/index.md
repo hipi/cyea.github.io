@@ -18,13 +18,5 @@ cover: https://qiniu.chenyeah.com/img/20190807135705.jpg
 - 先友后链，先友后链, 先友后链：毕竟是“友链”不是“导航页面”
 - 头像尽量`https`协议，而且没有防盗链设置，不然会显示不了头像
 
-## 申请格式( 我的友链信息 )：
 
-尽量填写
-
-名称: 羽叶丶
-链接: https://yoaio.com
-头像: https://yoaio.com/images/avatar.png
-简介: 身体和灵魂，总有一个在路上！
-logo:https://yoaio.com/images/logo.png
 
