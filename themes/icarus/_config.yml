@@ -242,7 +242,7 @@ providers:
 links:
   - nickname: Crito
     avatar: /images/avatar.png
-    site: https://yoaio.com
+    site: /
     info: 就是本人了QAQ
 
   - nickname: LUYMM
