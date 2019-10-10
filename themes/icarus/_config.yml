@@ -74,8 +74,10 @@ search:
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment
 comment:
   # Name of the comment plugin
-  type: disqus
-  shortname: yuyehack
+  type: valine
+  placeholder: 留下你的只言片语吧~~~
+  app_id: bwTxwPTstDRSj9fwUm9zXWXa-gzGzoHsz
+  app_key: 20xgggMoEpTsY95zvB0HudN1
 
 # Donation entries
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
