@@ -28,6 +28,3 @@ cover: https://qiniu.chenyeah.com/img/20190807135705.jpg
 简介: 身体和灵魂，总有一个在路上！
 logo:https://yoaio.com/images/logo.png
 
-## 更新
-
-- ~~[YOHUA](https://yohua.ml) 访问不了已删除，如已修复请告知~~
