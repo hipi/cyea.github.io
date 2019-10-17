@@ -238,6 +238,16 @@ providers:
   # Name or URL of the webfont Icon CDN provider
   iconcdn: fontawesome
 
+# Fill in Music meting.js
+# docs in https://github.com/metowolf/MetingJS setings in /themes/icarus/layout/common/music.ejs
+metingmusic: 
+  server: netease
+  type: playlist
+  id: '2204388891'
+  theme: '#333'
+  volume: '1'
+  autoplay: 'true'
+
 # Fill in your Links
 links:
   - nickname: Crito

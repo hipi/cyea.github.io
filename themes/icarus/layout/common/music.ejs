@@ -11,12 +11,12 @@
 <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
 <meting-js
-  server="netease"
-  type="playlist"
-  id="2602222983"
-  theme="#333"
-  volume="1"
-  autoplay="true"
+  server="<%- theme.metingmusic.server %>"
+  type="<%- theme.metingmusic.type %>"
+  id="<%- theme.metingmusic.id %>"
+  theme="<%- theme.metingmusic.theme %>"
+  volume="<%- theme.metingmusic.volume %>"
+  autoplay="<%- theme.metingmusic.autoplay %>"
 ></meting-js>
 <!-- <script>
   const ap = new APlayer({
