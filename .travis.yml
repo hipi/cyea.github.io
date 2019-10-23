@@ -14,8 +14,8 @@ before_install:
 after_success:
   - cd ./public
   - git init
-  - git config user.name "cyea"
-  - git config user.email "yuyehack@gmail.com"
+  - git config --global user.name "cyea"
+  - git config --global user.email "yuyehack@gmail.com"
   - git add .
   - t=`date '+%Y-%m-%d %H:%M:%S'`
   - git commit -m "Update site by travis-ci from branch icuras $t"
