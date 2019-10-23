@@ -50,7 +50,7 @@ footer:
 article:
   # Code highlight theme
   # https://github.com/highlightjs/highlight.js/tree/master/src/styles
-  highlight: atom-one-dark
+  highlight: ranbow
   # Whether to show article cover images
   cover: true
   coverauto:
