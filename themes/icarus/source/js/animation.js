@@ -3,11 +3,18 @@
         return Array.prototype.slice.call(document.querySelectorAll.apply(document, arguments));
     }
 
-    $('body > .navbar, body > .section, body > .footer').forEach(function (element) {
+
+    /* 去除头部动画 沉浸式体验 */
+    // $('body > .navbar, body > .section, body > .footer').forEach(function (element) {
+    //     element.style.transition = '0s';
+    //     element.style.opacity = '0';
+    // });
+
+    $(' body > .section, body > .footer').forEach(function (element) {
         element.style.transition = '0s';
         element.style.opacity = '0';
     });
-    document.querySelector('body > .navbar').style.transform = 'translateY(-100px)';
+    // document.querySelector('body > .navbar').style.transform = 'translateY(-100px)';
     ['.column-main > .card',
      '.column-left > .card, .column-right-shadow > .card',
      '.column-right > .card'].map(function (selector) {
