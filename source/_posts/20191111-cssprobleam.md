@@ -11,7 +11,7 @@ date: 2019-11-11 18:20:00
 
 事件的起因是朋友给我发的一个微信
 
-![](https://api.chenyeah.com/juejinimg/2019/11/11/16e599b3edafae3b)
+![](https://api.chenyeah.com/v1/juejinimg/2019/11/11/16e599b3edafae3b)
 
 **当时就奇怪字体跟数据绑定有啥关系，处于好奇我让他写个 demo 给我看看 ，然后他发来一个代码文件**
 
@@ -176,11 +176,11 @@ date: 2019-11-11 18:20:00
 
 看下效果
 
-![](https://api.chenyeah.com/juejinimg/2019/11/11/16e59d38907b46bf)
+![](https://api.chenyeah.com/v1/juejinimg/2019/11/11/16e59d38907b46bf)
 
 我当时的表情
 
-![](https://api.chenyeah.com/juejinimg/2019/11/11/16e59d808df63c17)
+![](https://api.chenyeah.com/v1juejinimg/2019/11/11/16e59d808df63c17)
 
 **我想到了是不是浏览器重排和重绘的问题**
 
@@ -293,7 +293,7 @@ date: 2019-11-11 18:20:00
 
 效果如下
 
-![](https://api.chenyeah.com/juejinimg/2019/11/11/16e59e5e5340ae04)
+![](https://api.chenyeah.com/v1/juejinimg/2019/11/11/16e59e5e5340ae04)
 
 **发现确实，文字长度没变，第一个不会重新渲染，长度一旦发生改变，第一个才会改变渲染，而第二个一直在渲染**
 
@@ -372,11 +372,11 @@ date: 2019-11-11 18:20:00
 
 效果如下
 
-![](https://api.chenyeah.com/juejinimg/2019/11/11/16e59eaebf701ffe)
+![](https://api.chenyeah.com/v1/juejinimg/2019/11/11/16e59eaebf701ffe)
 
 好了 我彻底呆了
 
-![](https://api.chenyeah.com/juejinimg/2019/11/11/16e59ebcfa7b8319)
+![](https://api.chenyeah.com/v1/juejinimg/2019/11/11/16e59ebcfa7b8319)
 
 ## 最后
 
