@@ -13,8 +13,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: 
-root: https://cdn.jsdelivr.net/gh/cyea/cyea.github.io@gh/
+url: yuye.js.org
+root: /
 # permalink: :year/:month/:day/:title/
 permalink: posts/:abbrlink/
 permalink_defaults:
