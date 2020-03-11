@@ -13,7 +13,11 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+<<<<<<< HEAD
 url: yuye.js.org
+=======
+url: https://yuye.js.org
+>>>>>>> f1e257b5b8c64bf8e6defcf0449a780da3fb548c
 root: /
 # permalink: :year/:month/:day/:title/
 permalink: posts/:abbrlink/
