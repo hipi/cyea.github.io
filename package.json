@@ -9,10 +9,11 @@
     "c": "hexo clean"
   },
   "hexo": {
-    "version": "3.9.0"
+    "version": "4.2.1"
   },
   "dependencies": {
-    "hexo": "^3.8.0",
+    "cheerio": "^1.0.0-rc.3",
+    "hexo": "^4.2.1",
     "hexo-abbrlink": "^2.0.5",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
@@ -23,10 +24,5 @@
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0"
   },
-  "devDependencies": {
-    "clean-css": "^4.2.1",
-    "html-minifier": "^4.0.0",
-    "minimatch": "^3.0.4",
-    "uglify-es": "^3.3.9"
-  }
+  "devDependencies": {}
 }
