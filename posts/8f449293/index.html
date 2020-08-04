@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>Flex布局兼容国内浏览器的双核模式 - 羽叶丶</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="flex 布局不支持低版本 ie 内核是确定了，没办法的改变的事实，但是国产浏览器采用哪一个内核打开你的页面，这个是你可以控制的。在 html 的标签中加入如下代码： 1  然后浏览器打开你的页面时，会默认采用 chrome 内核来渲染页面，这是 360 浏览器的功能，其他国产浏览器也支持。 但是用户非要点击“兼容模式”怎么办？我们还可以控制浏览器调用的 ie 渲染引擎的版本。在 html 的标签">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flex布局兼容国内浏览器的双核模式">
+<meta property="og:url" content="yuye.js.org/posts/8f449293/index.html">
+<meta property="og:site_name" content="羽叶丶">
+<meta property="og:description" content="flex 布局不支持低版本 ie 内核是确定了，没办法的改变的事实，但是国产浏览器采用哪一个内核打开你的页面，这个是你可以控制的。在 html 的标签中加入如下代码： 1  然后浏览器打开你的页面时，会默认采用 chrome 内核来渲染页面，这是 360 浏览器的功能，其他国产浏览器也支持。 但是用户非要点击“兼容模式”怎么办？我们还可以控制浏览器调用的 ie 渲染引擎的版本。在 html 的标签">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="/">
+<meta property="article:published_time" content="2018-06-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-08-04T06:17:14.392Z">
+<meta property="article:author" content="Yu Ye">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/">
+<meta name="twitter:creator" content="@yuyehack">
+<meta name="twitter:site" content="yuyehack">
+<link rel="publisher" href="yuyehack">
+<meta property="fb:admins" content="yuyehack">
+<meta property="fb:app_id" content="yuyehack">
+
+
+
+
+
+
+
+<link id="dynamic-favicon" rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.9.0/css/all.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/rainbow.css">
+
+
+    
+    
+    
+    <!-- <style>body>.footer,body>.navbar,body>.section{opacity:0}</style> -->
+    <style>body>.footer,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?ab64af1b57db176e2599613d7c393f32";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css?v=1596521853065">
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="Flex布局兼容国内浏览器的双核模式" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/music">音乐</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+                    
+                    <div class="card">
+        
+    <div class="card-content article ">
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Flex布局兼容国内浏览器的双核模式
+            
+        </h1>
+        
+            <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                <div class="level-left">
+                    <time class="level-item has-text-grey" datetime="2018-06-12T16:00:00.000Z">2018-06-13</time>
+                    
+                    <div class="level-item">
+                    <a class="has-link-grey -link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    </div>
+                    
+                    
+                    <span class="level-item has-text-grey">
+                        
+                        
+                        3 分钟 读完 (大约 459 个字)
+                    </span>
+                    
+                    
+                    <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                        <i class="far fa-eye"></i>
+                        <span id="busuanzi_value_page_pv">0</span>次访问
+                    </span>
+                    
+                </div>
+            </div>
+            
+        <div class="content">
+                
+            
+            
+            
+
+
+
+            
+                <html><head></head><body><p>flex 布局不支持低版本 ie 内核是确定了，没办法的改变的事实，但是国产浏览器采用哪一个内核打开你的页面，这个是你可以控制的。在 html 的<code><head></code>标签中加入如下代码：</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><meta name=\"renderer\" content=\"webkit\"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后浏览器打开你的页面时，会默认采用 chrome 内核来渲染页面，这是 360 浏览器的功能，其他国产浏览器也支持。</p>
+<p>但是用户非要点击“兼容模式”怎么办？我们还可以控制浏览器调用的 ie 渲染引擎的版本。在 html 的标签中加入如下代码：</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这个指令不要被 edge 这个单词迷惑，他指的不是 edge 浏览器。而是告诉 ie 渲染引擎，使用最新内核，且采用标准模式渲染页面。chrome 这个指令也建议保留，他是让 IE 用户打开你的网页时，尝试调用 chrome 框架插件的。这是一个很老的 ie 插件，google 出品，让 ie 支持 chrome 内核。</p>
+<blockquote>
+<p>最后这两个指令都添加完毕之后，能实现这样的效果，国产浏览器打开你的网页时，优先调用 chrome 内核渲染。如果用户强制点击，选择兼容模式，会调用操作系统内安装的 IE 的标准模式渲染你的页面。如果用户的操作系统内安装了 ie9 或以上，则正常显示 flex。如果用户使用 ie 打开你的页面，当 ie 版本是 9 以上，或者系统内安装了 chrome 框架插件，flex 也能正常工作。</p>
+</blockquote>
+<p>所以以防万一 尽量 html<code><head></code>标签中都加入如下代码</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><meta name=\"renderer\" content=\"webkit\"></span><br><span class="line"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\"></span><br></pre></td></tr></tbody></table></figure>
+</body></html>
+            
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link-link" href="/tags/css/" rel="tag">css</a>
+                </div>
+            </div>
+        </div>
+        
+
+        <!--  -->
+
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏赞助一下吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/donate.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/posts/f4eb40ab/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Redux流程讲解</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/posts/3a27a8ad/">
+                <span class="level-item">this、apply、call、bind 区别</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">
+            评论
+        </h3>
+        
+<div id="valine-thread" class="content"></div>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'bwTxwPTstDRSj9fwUm9zXWXa-gzGzoHsz',
+        app_key: '20xgggMoEpTsY95zvB0HudN1',
+        placeholder: '留下你的只言片语吧~~~',
+        avatar_cdn:'https://cn.gravatar.com/avatar/',
+        avatar:'robohash'
+    });
+</script>
+
+    </div>
+</div>
+
+
+
+                </div>
+                
+                
+                    
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="avatar is-rounded image is-128x128 has-mb-6" src="/images/avatar.png" alt="Yu Ye">
+                    
+                    <p class="is-size-4 is-block">
+                        Yu Ye
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        专注前端技术，更专注生活
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        34
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        15
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/cyea" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/cyea">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Telegram" href="https://t.me/yuyehack">
+                
+                <i class="fab fa-telegram"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Email" href="mailto:yuyehack@gmail.com">
+                
+                <i class="fas fa-envelope"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+    <div class="card widget" id="toc" >
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                
+            </div>
+        </div>
+    </div>
+    
+
+    
+        
+    
+        
+    
+        
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen "> 
+        
+        
+        </div>
+    
+</div>
+
+                
+                <!--  -->
+                
+
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+  <div class="container">
+    <!-- <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="Flex布局兼容国内浏览器的双核模式" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                
+                &copy; 2020 Yu Ye&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                 
+                <br>
+                
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div> 
+        -->
+  </div>
+  <div class="lever">
+    <p class="is-size-7">
+      Copyright © 2019 Yu Ye |
+      <span id="busuanzi_container_site_uv">
+        共<span id="busuanzi_value_site_uv">0</span>个访客
+      </span>
+    </p>
+    <div class="site-info">
+      已运行
+      <span id="time-to-now"></span>
+      <span class="my-face">(●'◡'●)ﾉ♥</span>
+    </div>
+  </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+<script src="/js/my.js?v=1596521853069" defer></script>
+<script src="/js/baidupush.js" defer></script>
+    
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

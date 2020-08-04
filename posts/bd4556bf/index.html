@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>BrowserHistory刷新页面404问题 - 羽叶丶</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="使用 React 开发新项目时，遇见了刷新页面，直接访问二级或三级路由时，访问失败，出现 404 或资源加载异常的情况，本篇针对此问题进行分析并总结解决方案。  发现问题使用webpack-dev-server做本地开发服务器时，正常情况只需要简单使用webpack-dev-server指令启动即可，但是当项目处于以下两种情况时，往往需要有嵌套路由和异步加载路由：  我们使用 react-rou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BrowserHistory刷新页面404问题">
+<meta property="og:url" content="yuye.js.org/posts/bd4556bf/index.html">
+<meta property="og:site_name" content="羽叶丶">
+<meta property="og:description" content="使用 React 开发新项目时，遇见了刷新页面，直接访问二级或三级路由时，访问失败，出现 404 或资源加载异常的情况，本篇针对此问题进行分析并总结解决方案。  发现问题使用webpack-dev-server做本地开发服务器时，正常情况只需要简单使用webpack-dev-server指令启动即可，但是当项目处于以下两种情况时，往往需要有嵌套路由和异步加载路由：  我们使用 react-rou">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="/">
+<meta property="article:published_time" content="2019-01-20T06:36:19.000Z">
+<meta property="article:modified_time" content="2020-08-04T06:17:14.392Z">
+<meta property="article:author" content="Yu Ye">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/">
+<meta name="twitter:creator" content="@yuyehack">
+<meta name="twitter:site" content="yuyehack">
+<link rel="publisher" href="yuyehack">
+<meta property="fb:admins" content="yuyehack">
+<meta property="fb:app_id" content="yuyehack">
+
+
+
+
+
+
+
+<link id="dynamic-favicon" rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.9.0/css/all.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/rainbow.css">
+
+
+    
+    
+    
+    <!-- <style>body>.footer,body>.navbar,body>.section{opacity:0}</style> -->
+    <style>body>.footer,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?ab64af1b57db176e2599613d7c393f32";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css?v=1596521852897">
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="BrowserHistory刷新页面404问题" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/music">音乐</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+                    
+                    <div class="card">
+        
+    <div class="card-content article ">
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                BrowserHistory刷新页面404问题
+            
+        </h1>
+        
+            <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                <div class="level-left">
+                    <time class="level-item has-text-grey" datetime="2019-01-20T06:36:19.000Z">2019-01-20</time>
+                    
+                    <div class="level-item">
+                    <a class="has-link-grey -link" href="/categories/%E5%85%A8%E6%A0%88/">全栈</a>
+                    </div>
+                    
+                    
+                    <span class="level-item has-text-grey">
+                        
+                        
+                        5 分钟 读完 (大约 689 个字)
+                    </span>
+                    
+                    
+                    <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                        <i class="far fa-eye"></i>
+                        <span id="busuanzi_value_page_pv">0</span>次访问
+                    </span>
+                    
+                </div>
+            </div>
+            
+        <div class="content">
+                
+            
+            
+            
+
+
+
+            
+                <html><head></head><body><blockquote>
+<p>使用 React 开发新项目时，遇见了刷新页面，直接访问二级或三级路由时，访问失败，出现 404 或资源加载异常的情况，本篇针对此问题进行分析并总结解决方案。</p>
+</blockquote>
+<h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><p>使用<code>webpack-dev-server</code>做本地开发服务器时，正常情况只需要简单使用<code>webpack-dev-server</code>指令启动即可，但是当项目处于以下两种情况时，往往需要有嵌套路由和异步加载路由：</p>
+<ul>
+<li>我们使用 react-router 这种路由库构建单页面应用路由；</li>
+<li>使用 html-webpack-plugin 插件动态将加载 js 的<code>script</code>标签注入 html 文档；</li>
+</ul>
+<p>这时，访问首页是可以正常加载页面和 js 等文件的，但是当我们需要访问二级甚至三级路由或者刷新页面时，如<code>/page1</code>时，可能会出现两种情况：</p>
+<ul>
+<li>页面加载失败，返回 Cannot Get（404）；</li>
+<li>服务响应，但是没有返回 webpack 处理输出的 html 文件，导致无法加载 js 资源;</li>
+</ul>
+<h2 id="分析解决问题"><a href="#分析解决问题" class="headerlink" title="分析解决问题"></a>分析解决问题</h2><p>发现问题后，我们就要开始分析，我们判断这个问题一般是两方面原因造成：</p>
+<ul>
+<li><code>react-router</code>路前端由配置；</li>
+<li><code>webpack-dev-server</code>服务配置；</li>
+</ul>
+<p>发现文档中提到了使用<code>browserHistory</code>时，会创建真实的<code>URL</code>，处理初始/请求没有问题，但是对于跳转路由后，刷新页面或者直接访问该 URL 时，会发现无法正确相应.一下是几种服务器配置解决方式：  </p>
+<ul>
+<li>node</li>
+</ul>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)</span><br><span class="line"><span class="hljs-keyword">const</span> port = process.env.PORT || <span class="hljs-number">8080</span></span><br><span class="line"><span class="hljs-keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 通常用于加载静态资源</span></span><br><span class="line">app.use(express.static(__dirname + <span class="hljs-string">'/public'</span>))</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 在你应用 JavaScript 文件中包含了一个 script 标签</span></span><br><span class="line"><span class="hljs-comment">// 的 index.html 中处理任何一个 route</span></span><br><span class="line">app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">request, response</span>)</span>{</span><br><span class="line">   response.sendFile(path.resolve(__dirname, <span class="hljs-string">'public'</span>, <span class="hljs-string">'index.html'</span>))</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">app.listen(port)</span><br><span class="line"><span class="hljs-built_in">console</span>.log(\<span class="hljs-string">"server started on port \" + port);</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>Nginx</li>
+</ul>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server {</span><br><span class="line">   ...</span><br><span class="line"> location / {</span><br><span class="line">    try_files $uri /index.html</span><br><span class="line"> }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>Apache</li>
+</ul>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RewriteBase /</span><br><span class="line">RewriteRule ^index\\.html$ - [L]</span><br><span class="line">RewriteCond %{REQUEST_FILENAME} !-f</span><br><span class="line">RewriteCond %{REQUEST_FILENAME} !-d</span><br><span class="line">RewriteRule . /index.html [L]</span><br></pre></td></tr></tbody></table></figure>
+
+<p>以下都是针对服务器的配置，<br>本地调试，只是使用了<code>webpack-dev-server</code>的内置服务，但是我们已经找到问题所在了，就是路由请求无法匹配返回 html 文档，所以接下来就该去<code>webpack-dev-server</code><a target="_blank" rel="noopener" href="https://webpack.js.org/configuration/dev-server/#devserver-historyapifallback">文档</a>查找解决方式了.</p>
+<p>这里也分两种情况：</p>
+<ul>
+<li>没有修改 output.publicPath，即 webpack 配置文件中没有声明值，属于默认情况；</li>
+<li>设置了 output.publicPath 为自定义值；</li>
+</ul>
+<p>webpack 如下配置：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports = {</span><br><span class="line">    <span class="hljs-comment">//...</span></span><br><span class="line">  devServer: {</span><br><span class="line">      historyApiFallback: <span class="hljs-literal">true</span></span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+</body></html>
+            
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link-link" href="/tags/js/" rel="tag">js</a>
+                </div>
+            </div>
+        </div>
+        
+
+        <!--  -->
+
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏赞助一下吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/donate.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/posts/e84b650a/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">JS的防抖与节流</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/posts/cd22a207/">
+                <span class="level-item">Vue中的eventBus使用</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">
+            评论
+        </h3>
+        
+<div id="valine-thread" class="content"></div>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'bwTxwPTstDRSj9fwUm9zXWXa-gzGzoHsz',
+        app_key: '20xgggMoEpTsY95zvB0HudN1',
+        placeholder: '留下你的只言片语吧~~~',
+        avatar_cdn:'https://cn.gravatar.com/avatar/',
+        avatar:'robohash'
+    });
+</script>
+
+    </div>
+</div>
+
+
+
+                </div>
+                
+                
+                    
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="avatar is-rounded image is-128x128 has-mb-6" src="/images/avatar.png" alt="Yu Ye">
+                    
+                    <p class="is-size-4 is-block">
+                        Yu Ye
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        专注前端技术，更专注生活
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        34
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        15
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/cyea" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/cyea">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Telegram" href="https://t.me/yuyehack">
+                
+                <i class="fab fa-telegram"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Email" href="mailto:yuyehack@gmail.com">
+                
+                <i class="fas fa-envelope"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+    <div class="card widget" id="toc" >
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+            <a class="is-flex" href="#发现问题">
+            <span class="has-mr-6">1</span>
+            <span>发现问题</span>
+            </a></li><li>
+            <a class="is-flex" href="#分析解决问题">
+            <span class="has-mr-6">2</span>
+            <span>分析解决问题</span>
+            </a></li></ul>
+            </div>
+        </div>
+    </div>
+    
+
+    
+        
+    
+        
+    
+        
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen "> 
+        
+        
+        </div>
+    
+</div>
+
+                
+                <!--  -->
+                
+
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+  <div class="container">
+    <!-- <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="BrowserHistory刷新页面404问题" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                
+                &copy; 2020 Yu Ye&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                 
+                <br>
+                
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div> 
+        -->
+  </div>
+  <div class="lever">
+    <p class="is-size-7">
+      Copyright © 2019 Yu Ye |
+      <span id="busuanzi_container_site_uv">
+        共<span id="busuanzi_value_site_uv">0</span>个访客
+      </span>
+    </p>
+    <div class="site-info">
+      已运行
+      <span id="time-to-now"></span>
+      <span class="my-face">(●'◡'●)ﾉ♥</span>
+    </div>
+  </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+<script src="/js/my.js?v=1596521852903" defer></script>
+<script src="/js/baidupush.js" defer></script>
+    
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

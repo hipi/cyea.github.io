@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>this、apply、call、bind 区别 - 羽叶丶</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="这又是一个经典问题&#x2F;(ㄒ o ㄒ)&#x2F;也是 ES5 中众多坑中的一个，在 ES6 中可能会极大避免 this 产生的错误，但是为了一些老代码的维护，最好还是了解一下 this 的指向和 call、apply、bind 三者的区别。” this 的指向在 ES5 中，其实 this 的指向，始终坚持一个原理：this 永远指向最后调用它的那个对象，来，跟着我朗读三遍：this 永远指向最后调用它的那个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="this、apply、call、bind 区别">
+<meta property="og:url" content="yuye.js.org/posts/3a27a8ad/index.html">
+<meta property="og:site_name" content="羽叶丶">
+<meta property="og:description" content="这又是一个经典问题&#x2F;(ㄒ o ㄒ)&#x2F;也是 ES5 中众多坑中的一个，在 ES6 中可能会极大避免 this 产生的错误，但是为了一些老代码的维护，最好还是了解一下 this 的指向和 call、apply、bind 三者的区别。” this 的指向在 ES5 中，其实 this 的指向，始终坚持一个原理：this 永远指向最后调用它的那个对象，来，跟着我朗读三遍：this 永远指向最后调用它的那个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="/">
+<meta property="article:published_time" content="2018-05-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-08-04T06:17:14.392Z">
+<meta property="article:author" content="Yu Ye">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/">
+<meta name="twitter:creator" content="@yuyehack">
+<meta name="twitter:site" content="yuyehack">
+<link rel="publisher" href="yuyehack">
+<meta property="fb:admins" content="yuyehack">
+<meta property="fb:app_id" content="yuyehack">
+
+
+
+
+
+
+
+<link id="dynamic-favicon" rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.9.0/css/all.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/rainbow.css">
+
+
+    
+    
+    
+    <!-- <style>body>.footer,body>.navbar,body>.section{opacity:0}</style> -->
+    <style>body>.footer,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?ab64af1b57db176e2599613d7c393f32";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css?v=1596521853079">
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="this、apply、call、bind 区别" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/music">音乐</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+                    
+                    <div class="card">
+        
+    <div class="card-content article ">
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                this、apply、call、bind 区别
+            
+        </h1>
+        
+            <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                <div class="level-left">
+                    <time class="level-item has-text-grey" datetime="2018-05-20T16:00:00.000Z">2018-05-21</time>
+                    
+                    <div class="level-item">
+                    <a class="has-link-grey -link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    </div>
+                    
+                    
+                    <span class="level-item has-text-grey">
+                        
+                        
+                        24 分钟 读完 (大约 3576 个字)
+                    </span>
+                    
+                    
+                    <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                        <i class="far fa-eye"></i>
+                        <span id="busuanzi_value_page_pv">0</span>次访问
+                    </span>
+                    
+                </div>
+            </div>
+            
+        <div class="content">
+                
+            
+            
+            
+
+
+
+            
+                <html><head></head><body><p>这又是一个经典问题<del>/(ㄒ o ㄒ)/</del>也是 ES5 中众多坑中的一个，在 ES6 中可能会极大避免 this 产生的错误，但是为了一些老代码的维护，最好还是了解一下 this 的指向和 call、apply、bind 三者的区别。”</p>
+<h1 id="this-的指向"><a href="#this-的指向" class="headerlink" title="this 的指向"></a>this 的指向</h1><p>在 ES5 中，其实 this 的指向，始终坚持一个原理：<strong>this 永远指向最后调用它的那个对象</strong>，来，跟着我朗读三遍：<strong>this 永远指向最后调用它的那个对象，this 永远指向最后调用它的那个对象，this 永远指向最后调用它的那个对象</strong>。记住这句话，this 你已经了解一半了。</p>
+<p>下面我们来看一个最简单的例子：<br> 例 1：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">var</span> name = <span class="hljs-string">"Cherry"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name); <span class="hljs-comment">// windowsName</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"inner:"</span> + <span class="hljs-built_in">this</span>); <span class="hljs-comment">// inner: Window</span></span><br><span class="line">}</span><br><span class="line">a();</span><br><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">"outer:"</span> + <span class="hljs-built_in">this</span>); <span class="hljs-comment">// outer: Window</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这个相信大家都知道为什么 log 的是 windowsName，因为根据刚刚的那句话“<strong>this 永远指向最后调用它的那个对象</strong>”，我们看最后调用 <code>a</code> 的地方 <code>a();</code>，前面没有调用的对象那么就是全局对象 window，这就相当于是 <code>window.a()</code>；注意，这里我们没有使用严格模式，如果使用严格模式的话，全局对象就是 <code>undefined</code>，那么就会报错 <code>Uncaught TypeError: Cannot read property 'name' of undefined</code>。</p>
+<p>再看下这个例子：<br> 例 2：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line">  fn: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name); <span class="hljs-comment">// Cherry</span></span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line">a.fn();</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在这个例子中，函数 fn 是对象 a 调用的，所以打印的值就是 a 中的 name 的值。是不是有一点清晰了呢~</p>
+<p>我们做一个小小的改动：<br> 例 3：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line">  fn: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name); <span class="hljs-comment">// Cherry</span></span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"><span class="hljs-built_in">window</span>.a.fn();</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这里打印 Cherry 的原因也是因为刚刚那句话“<strong>this 永远指向最后调用它的那个对象</strong>”，最后调用它的对象仍然是对象 a。</p>
+<p>我们再来看一下这个例子：<br> 例 4：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  <span class="hljs-comment">// name: "Cherry",</span></span><br><span class="line">  fn: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name); <span class="hljs-comment">// undefined</span></span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"><span class="hljs-built_in">window</span>.a.fn();</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这里为什么会打印 <code>undefined</code> 呢？这是因为正如刚刚所描述的那样，调用 fn 的是 a 对象，也就是说 fn 的内部的 this 是对象 a，而对象 a 中并没有对 name 进行定义，所以 log 的 <code>this.name</code> 的值是 <code>undefined</code>。</p>
+<p>这个例子还是说明了：<strong>this 永远指向最后调用它的那个对象</strong>，因为最后调用 fn 的对象是 a，所以就算 a 中没有 name 这个属性，也不会继续向上一个对象寻找 <code>this.name</code>，而是直接输出 <code>undefined</code>。</p>
+<p>再来看一个比较坑的例子：<br> 例 5：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-literal">null</span>,</span><br><span class="line">  <span class="hljs-comment">// name: "Cherry",</span></span><br><span class="line">  fn: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name); <span class="hljs-comment">// windowsName</span></span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> f = a.fn;</span><br><span class="line">f();</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这里你可能会有疑问，为什么不是 <code>Cherry</code>，这是因为虽然将 a 对象的 fn 方法赋值给变量 f 了，但是没有调用，再接着跟我念这一句话：“<strong>this 永远指向最后调用它的那个对象</strong>”，由于刚刚的 f 并没有调用，所以 <code>fn()</code> 最后仍然是被 window 调用的。所以 this 指向的也就是 window。</p>
+<p>由以上五个例子我们可以看出，this 的指向并不是在创建的时候就可以确定的，在 es5 中，永远是<strong>this 永远指向最后调用它的那个对象</strong>。</p>
+<p>再来看一个例子：<br> 例 6：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">var</span> name = <span class="hljs-string">"Cherry"</span>;</span><br><span class="line">  innerFunction();</span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">innerFunction</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name); <span class="hljs-comment">// windowsName</span></span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">fn();</span><br></pre></td></tr></tbody></table></figure>
+
+<p>读到现在了应该能够理解这是为什么了吧(o ﾟ ▽ ﾟ)o。</p>
+<h1 id="怎么改变-this-的指向"><a href="#怎么改变-this-的指向" class="headerlink" title="怎么改变 this 的指向"></a>怎么改变 this 的指向</h1><p>改变 this 的指向我总结有以下几种方法：</p>
+<ul>
+<li>使用 ES6 的箭头函数</li>
+<li>在函数内部使用 <code>_this = this</code></li>
+<li>使用 <code>apply</code>、<code>call</code>、<code>bind</code></li>
+<li>new 实例化一个对象</li>
+</ul>
+<p>例 7：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line"></span><br><span class="line">  func1: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);</span><br><span class="line">  },</span><br><span class="line"></span><br><span class="line">  func2: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">      <span class="hljs-built_in">this</span>.func1();</span><br><span class="line">    }, <span class="hljs-number">100</span>);</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">a.func2(); <span class="hljs-comment">// this.func1 is not a function</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在不使用箭头函数的情况下，是会报错的，因为最后调用 <code>setTimeout</code> 的对象是 window，但是在 window 中并没有 func1 函数。</p>
+<p>我们在改变 this 指向这一节将把这个例子作为 demo 进行改造。</p>
+<p>箭头函数</p>
+<hr>
+<p>众所周知，ES6 的箭头函数是可以避免 ES5 中使用 this 的坑的。<strong>箭头函数的 this 始终指向函数定义时的 this，而非执行时。</strong>，箭头函数需要记着这句话：“箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined”。</p>
+<p>例 8 ：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line"></span><br><span class="line">  func1: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);</span><br><span class="line">  },</span><br><span class="line"></span><br><span class="line">  func2: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =></span> {</span><br><span class="line">      <span class="hljs-built_in">this</span>.func1();</span><br><span class="line">    }, <span class="hljs-number">100</span>);</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">a.func2(); <span class="hljs-comment">// Cherry</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在函数内部使用 <code>_this = this</code></p>
+<hr>
+<p>如果不使用 ES6，那么这种方式应该是最简单的不会出错的方式了，我们是先将调用这个函数的对象保存在变量 <code>_this</code> 中，然后在函数中都使用这个 <code>_this</code>，这样 <code>_this</code> 就不会改变了。<br> 例 9：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line"></span><br><span class="line">  func1: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);</span><br><span class="line">  },</span><br><span class="line"></span><br><span class="line">  func2: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-keyword">var</span> _this = <span class="hljs-built_in">this</span>;</span><br><span class="line">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">      _this.func1();</span><br><span class="line">    }, <span class="hljs-number">100</span>);</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">a.func2(); <span class="hljs-comment">// Cherry</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这个例子中，在 func2 中，首先设置 <code>var _this = this;</code>，这里的 <code>this</code> 是调用 <code>func2</code> 的对象 a，为了防止在 <code>func2</code> 中的 setTimeout 被 window 调用而导致的在 setTimeout 中的 this 为 window。我们将 <code>this(指向变量 a)</code> 赋值给一个变量 <code>_this</code>，这样，在 <code>func2</code> 中我们使用 <code>_this</code> 就是指向对象 a 了。</p>
+<p>使用 apply、call、bind</p>
+<hr>
+<p>使用 apply、call、bind 函数也是可以改变 this 的指向的，原理稍后再讲，我们先来看一下是怎么实现的：</p>
+<h3 id="使用-apply"><a href="#使用-apply" class="headerlink" title="使用 apply"></a>使用 apply</h3><p>例 10：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line"></span><br><span class="line">  func1: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);</span><br><span class="line">  },</span><br><span class="line"></span><br><span class="line">  func2: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">setTimeout</span>(</span><br><span class="line">      <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">        <span class="hljs-built_in">this</span>.func1();</span><br><span class="line">      }.apply(a),</span><br><span class="line">      <span class="hljs-number">100</span></span><br><span class="line">    );</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">a.func2(); <span class="hljs-comment">// Cherry</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="使用-call"><a href="#使用-call" class="headerlink" title="使用 call"></a>使用 call</h3><p>例 11：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line"></span><br><span class="line">  func1: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);</span><br><span class="line">  },</span><br><span class="line"></span><br><span class="line">  func2: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">setTimeout</span>(</span><br><span class="line">      <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">        <span class="hljs-built_in">this</span>.func1();</span><br><span class="line">      }.call(a),</span><br><span class="line">      <span class="hljs-number">100</span></span><br><span class="line">    );</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">a.func2(); <span class="hljs-comment">// Cherry</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="使用-bind"><a href="#使用-bind" class="headerlink" title="使用 bind"></a>使用 bind</h3><p>例 12：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line"></span><br><span class="line">  func1: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);</span><br><span class="line">  },</span><br><span class="line"></span><br><span class="line">  func2: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">setTimeout</span>(</span><br><span class="line">      <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">        <span class="hljs-built_in">this</span>.func1();</span><br><span class="line">      }.bind(a)(),</span><br><span class="line">      <span class="hljs-number">100</span></span><br><span class="line">    );</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">a.func2(); <span class="hljs-comment">// Cherry</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="apply、call、bind-区别"><a href="#apply、call、bind-区别" class="headerlink" title="apply、call、bind 区别"></a>apply、call、bind 区别</h1><p>刚刚我们已经介绍了 apply、call、bind 都是可以改变 this 的指向的，但是这三个函数稍有不同。</p>
+<p>在 <a href="https://link.juejin.im/?target=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">MDN</a> 中定义 apply 如下；</p>
+<blockquote>
+<p>apply() 方法调用一个函数, 其具有一个指定的 this 值，以及作为一个数组（或类似数组的对象）提供的参数</p>
+</blockquote>
+<p>语法：</p>
+<blockquote>
+<p>fun.apply(thisArg, [argsArray])</p>
+</blockquote>
+<ul>
+<li>thisArg：在 fun 函数运行时指定的 this 值。需要注意的是，指定的 this 值并不一定是该函数执行时真正的 this 值，如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动指向全局对象（浏览器中就是 window 对象），同时值为原始值（数字，字符串，布尔值）的 this 会指向该原始值的自动包装对象。</li>
+<li>argsArray：一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 fun 函数。如果该参数的值为 null 或 undefined，则表示不需要传入任何参数。从 ECMAScript 5 开始可以使用类数组对象。浏览器兼容性请参阅本文底部内容。</li>
+</ul>
+<p>apply 和 call 的区别</p>
+<hr>
+<p>其实 apply 和 call 基本类似，他们的区别只是传入的参数不同。</p>
+<p>call 的语法为：</p>
+<pre><code>  fun.call(thisArg[, arg1[, arg2[, ...]]])</code></pre>
+<p>所以 apply 和 call 的区别是 call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。</p>
+<p>例 13：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line">  fn: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(a + b);</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> b = a.fn;</span><br><span class="line">b.apply(a, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]); <span class="hljs-comment">// 3</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>例 14：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line">  fn: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(a + b);</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> b = a.fn;</span><br><span class="line">b.call(a, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// 3</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>bind 和 apply、call 区别</p>
+<hr>
+<p>我们先来将刚刚的例子使用 bind 试一下</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line">  fn: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(a + b);</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> b = a.fn;</span><br><span class="line">b.bind(a, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>我们会发现并没有输出，这是为什么呢，我们来看一下 <a href="https://link.juejin.im/?target=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">MDN</a> 上的文档说明：</p>
+<blockquote>
+<p>bind()方法创建一个新的函数, 当被调用时，将其 this 关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列。</p>
+</blockquote>
+<p>所以我们可以看出，bind 是创建一个新的函数，我们必须要手动去调用：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line">  fn: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(a + b);</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> b = a.fn;</span><br><span class="line">b.bind(a, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>)(); <span class="hljs-comment">// 3</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>==================================== 更新==============================</p>
+<h1 id="JS-中的函数调用"><a href="#JS-中的函数调用" class="headerlink" title="JS 中的函数调用"></a>JS 中的函数调用</h1><p>看到留言说，很多童靴不理解为什么 例 6 的 innerFunction 和 例 7 的 this 是指向 window 的，所以我就来补充一下 JS 中的函数调用。<br> 例 6：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">var</span> name = <span class="hljs-string">"Cherry"</span>;</span><br><span class="line">  innerFunction();</span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">innerFunction</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name); <span class="hljs-comment">// windowsName</span></span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">fn();</span><br></pre></td></tr></tbody></table></figure>
+
+<p>例 7：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line"></span><br><span class="line">  func1: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);</span><br><span class="line">  },</span><br><span class="line"></span><br><span class="line">  func2: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">      <span class="hljs-built_in">this</span>.func1();</span><br><span class="line">    }, <span class="hljs-number">100</span>);</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">a.func2(); <span class="hljs-comment">// this.func1 is not a function</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>函数调用的方法一共有 4 种</p>
+<ol>
+<li>作为一个函数调用</li>
+<li>函数作为方法调用</li>
+<li>使用构造函数调用函数</li>
+<li>作为函数方法调用函数（call、apply）</li>
+</ol>
+<p>作为一个函数调用</p>
+<hr>
+<p>比如上面的 例 1：<br> 例 1：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">var</span> name = <span class="hljs-string">"Cherry"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name); <span class="hljs-comment">// windowsName</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"inner:"</span> + <span class="hljs-built_in">this</span>); <span class="hljs-comment">// inner: Window</span></span><br><span class="line">}</span><br><span class="line">a();</span><br><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">"outer:"</span> + <span class="hljs-built_in">this</span>); <span class="hljs-comment">// outer: Window</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这样一个最简单的函数，不属于任何一个对象，就是一个函数，这样的情况在 JavaScript 的在浏览器中的非严格模式默认是属于全局对象 window 的，在严格模式，就是 undefined。</p>
+<p>但这是一个全局的函数，很容易产生命名冲突，所以不建议这样使用。</p>
+<p>函数作为方法调用</p>
+<hr>
+<p>所以说更多的情况是将函数作为对象的方法使用。比如例 2：<br> 例 2：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line">  fn: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name); <span class="hljs-comment">// Cherry</span></span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line">a.fn();</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这里定义一个对象 <code>a</code>，对象 <code>a</code> 有一个属性（<code>name</code>）和一个方法（<code>fn</code>）。</p>
+<p>然后对象 <code>a</code> 通过 <code>.</code> 方法调用了其中的 fn 方法。</p>
+<p>然后我们一直记住的那句话“<strong>this 永远指向最后调用它的那个对象</strong>”，所以在 fn 中的 this 就是指向 a 的。</p>
+<p>使用构造函数调用函数</p>
+<hr>
+<blockquote>
+<p>如果函数调用前使用了 new 关键字, 则是调用了构造函数。<br>这看起来就像创建了新的函数，但实际上 JavaScript 函数是重新创建的对象：</p>
+</blockquote>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 构造函数:</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myFunction</span>(<span class="hljs-params">arg1, arg2</span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">this</span>.firstName = arg1;</span><br><span class="line">  <span class="hljs-built_in">this</span>.lastName = arg2;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// This    creates a new object</span></span><br><span class="line"><span class="hljs-keyword">var</span> a = <span class="hljs-keyword">new</span> myFunction(<span class="hljs-string">"Li"</span>, <span class="hljs-string">"Cherry"</span>);</span><br><span class="line">a.lastName; <span class="hljs-comment">// 返回 "Cherry"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这就有要说另一个面试经典问题：new 的过程了，(ಥ_ಥ)<br> 这里就简单的来看一下 new 的过程吧：<br> 伪代码表示：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a = <span class="hljs-keyword">new</span> myFunction(<span class="hljs-string">"Li"</span>,<span class="hljs-string">"Cherry"</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">new</span> myFunction{</span><br><span class="line">        <span class="hljs-keyword">var</span> obj = {};</span><br><span class="line">    obj.__proto__ = myFunction.prototype;</span><br><span class="line">    <span class="hljs-keyword">var</span> result = myFunction.call(obj,<span class="hljs-string">"Li"</span>,<span class="hljs-string">"Cherry"</span>);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> result === <span class="hljs-string">'obj'</span>? result : obj;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<ol>
+<li>创建一个空对象 obj;</li>
+<li>将新创建的空对象的隐式原型指向其构造函数的显示原型。</li>
+<li>使用 call 改变 this 的指向</li>
+<li>如果无返回值或者返回一个非对象值，则将 obj 返回作为新对象；如果返回值是一个新对象的话那么直接直接返回该对象。</li>
+</ol>
+<p>所以我们可以看到，在 new 的过程中，我们是使用 call 改变了 this 的指向。</p>
+<p>作为函数方法调用函数</p>
+<hr>
+<blockquote>
+<p>在 JavaScript 中, 函数是对象。</p>
+<p>JavaScript 函数有它的属性和方法。<br>call() 和 apply() 是预定义的函数方法。 两个方法可用于调用函数，两个方法的第一个参数必须是对象本身</p>
+<p>在 JavaScript 严格模式(strict mode)下, 在调用函数时第一个参数会成为 this 的值， 即使该参数不是一个对象。<br>在 JavaScript 非严格模式(non-strict mode)下, 如果第一个参数的值是 null 或 undefined, 它将使用全局对象替代。</p>
+</blockquote>
+<p>这个时候我们再来看例 6：<br> 例 6：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">var</span> name = <span class="hljs-string">"Cherry"</span>;</span><br><span class="line">  innerFunction();</span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">innerFunction</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name); <span class="hljs-comment">// windowsName</span></span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">fn();</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这里的 innerFunction() 的调用是不是属于第一种调用方式：作为一个函数调用（它就是作为一个函数调用的，没有挂载在任何对象上，所以对于没有挂载在任何对象上的函数，在非严格模式下 this 就是指向 window 的）</p>
+<p>然后再看一下 例 7：<br> 例 7：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"windowsName"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> a = {</span><br><span class="line">  name: <span class="hljs-string">"Cherry"</span>,</span><br><span class="line"></span><br><span class="line">  func1: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);</span><br><span class="line">  },</span><br><span class="line"></span><br><span class="line">  func2: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">      <span class="hljs-built_in">this</span>.func1();</span><br><span class="line">    }, <span class="hljs-number">100</span>);</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">a.func2(); <span class="hljs-comment">// this.func1 is not a function</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这个简单一点的理解可以理解为“<strong>匿名函数的 this 永远指向 window</strong>”，你可以这样想，还是那句话<strong>this 永远指向最后调用它的那个对象</strong>，那么我们就来找最后调用匿名函数的对象，这就很尴尬了，因为匿名函数名字啊，笑哭，所以我们是没有办法被其他对象调用匿名函数的。所以说 匿名函数的 this 永远指向 window。</p>
+<p>如果这个时候你要问，那匿名函数都是怎么定义的，首先，我们通常写的匿名函数都是自执行的，就是在匿名函数后面加 <code>()</code> 让其自执行。其次就是虽然匿名函数不能被其他对象调用，但是可以被其他函数调用啊，比如例 7 中的 setTimeout。</p>
+<blockquote>
+<p>本文转自：<a target="_blank" rel="noopener" href="https://cherryblog.site/call-apply-bind-this.html">cherryblog.site/</a></p>
+</blockquote>
+</body></html>
+            
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link-link" href="/tags/js/" rel="tag">js</a>
+                </div>
+            </div>
+        </div>
+        
+
+        <!--  -->
+
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏赞助一下吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/donate.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/posts/8f449293/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Flex布局兼容国内浏览器的双核模式</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/posts/81d5af05/">
+                <span class="level-item">常用正则表达式</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">
+            评论
+        </h3>
+        
+<div id="valine-thread" class="content"></div>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'bwTxwPTstDRSj9fwUm9zXWXa-gzGzoHsz',
+        app_key: '20xgggMoEpTsY95zvB0HudN1',
+        placeholder: '留下你的只言片语吧~~~',
+        avatar_cdn:'https://cn.gravatar.com/avatar/',
+        avatar:'robohash'
+    });
+</script>
+
+    </div>
+</div>
+
+
+
+                </div>
+                
+                
+                    
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="avatar is-rounded image is-128x128 has-mb-6" src="/images/avatar.png" alt="Yu Ye">
+                    
+                    <p class="is-size-4 is-block">
+                        Yu Ye
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        专注前端技术，更专注生活
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        34
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        15
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/cyea" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/cyea">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Telegram" href="https://t.me/yuyehack">
+                
+                <i class="fab fa-telegram"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Email" href="mailto:yuyehack@gmail.com">
+                
+                <i class="fas fa-envelope"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+    <div class="card widget" id="toc" >
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+            <a class="is-flex" href="#this-的指向">
+            <span class="has-mr-6">1</span>
+            <span>this 的指向</span>
+            </a></li><li>
+            <a class="is-flex" href="#怎么改变-this-的指向">
+            <span class="has-mr-6">2</span>
+            <span>怎么改变 this 的指向</span>
+            </a><ul class="menu-list"><li>
+            <a class="is-flex" href="#使用-apply">
+            <span class="has-mr-6">2.1</span>
+            <span>使用 apply</span>
+            </a></li><li>
+            <a class="is-flex" href="#使用-call">
+            <span class="has-mr-6">2.2</span>
+            <span>使用 call</span>
+            </a></li><li>
+            <a class="is-flex" href="#使用-bind">
+            <span class="has-mr-6">2.3</span>
+            <span>使用 bind</span>
+            </a></li></ul></li><li>
+            <a class="is-flex" href="#apply、call、bind-区别">
+            <span class="has-mr-6">3</span>
+            <span>apply、call、bind 区别</span>
+            </a></li><li>
+            <a class="is-flex" href="#JS-中的函数调用">
+            <span class="has-mr-6">4</span>
+            <span>JS 中的函数调用</span>
+            </a></li></ul>
+            </div>
+        </div>
+    </div>
+    
+
+    
+        
+    
+        
+    
+        
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen "> 
+        
+        
+        </div>
+    
+</div>
+
+                
+                <!--  -->
+                
+
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+  <div class="container">
+    <!-- <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="this、apply、call、bind 区别" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                
+                &copy; 2020 Yu Ye&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                 
+                <br>
+                
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div> 
+        -->
+  </div>
+  <div class="lever">
+    <p class="is-size-7">
+      Copyright © 2019 Yu Ye |
+      <span id="busuanzi_container_site_uv">
+        共<span id="busuanzi_value_site_uv">0</span>个访客
+      </span>
+    </p>
+    <div class="site-info">
+      已运行
+      <span id="time-to-now"></span>
+      <span class="my-face">(●'◡'●)ﾉ♥</span>
+    </div>
+  </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+<script src="/js/my.js?v=1596521853102" defer></script>
+<script src="/js/baidupush.js" defer></script>
+    
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>Nodejs 爬取one和墨迹天气定时发邮件 - 羽叶丶</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="根据用户配置 爬取 one 和不同地区墨迹天气 每天定时发邮件，支持多人地区个性化定制 可以的话 可以去https:&#x2F;&#x2F;github.com&#x2F;cyea&#x2F;email-bot 给个小星星  效果展示 如何快速使用1. 拉取代码安装依赖这里使用yarn作为包管理器 123git clone https:&#x2F;&#x2F;github.com&#x2F;cyea&#x2F;email-bot.gitcd email-botyarn  2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nodejs 爬取one和墨迹天气定时发邮件">
+<meta property="og:url" content="yuye.js.org/posts/713d3487/index.html">
+<meta property="og:site_name" content="羽叶丶">
+<meta property="og:description" content="根据用户配置 爬取 one 和不同地区墨迹天气 每天定时发邮件，支持多人地区个性化定制 可以的话 可以去https:&#x2F;&#x2F;github.com&#x2F;cyea&#x2F;email-bot 给个小星星  效果展示 如何快速使用1. 拉取代码安装依赖这里使用yarn作为包管理器 123git clone https:&#x2F;&#x2F;github.com&#x2F;cyea&#x2F;email-bot.gitcd email-botyarn  2">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2019/04/09/5cac0c1ca75f1.png">
+<meta property="article:published_time" content="2019-04-10T07:45:01.000Z">
+<meta property="article:modified_time" content="2020-08-04T06:17:14.392Z">
+<meta property="article:author" content="Yu Ye">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="node.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2019/04/09/5cac0c1ca75f1.png">
+<meta name="twitter:creator" content="@yuyehack">
+<meta name="twitter:site" content="yuyehack">
+<link rel="publisher" href="yuyehack">
+<meta property="fb:admins" content="yuyehack">
+<meta property="fb:app_id" content="yuyehack">
+
+
+
+
+
+
+
+<link id="dynamic-favicon" rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.9.0/css/all.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/rainbow.css">
+
+
+    
+    
+    
+    <!-- <style>body>.footer,body>.navbar,body>.section{opacity:0}</style> -->
+    <style>body>.footer,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?ab64af1b57db176e2599613d7c393f32";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css?v=1596521852675">
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="Nodejs 爬取one和墨迹天气定时发邮件" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/music">音乐</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+                    
+                    <div class="card">
+    
+        <div class="card-image">
+            <span  class="image is-7by1">
+                <img class="cover" src="https://i.loli.net/2019/04/09/5cac0c1ca75f1.png" alt="Nodejs 爬取one和墨迹天气定时发邮件">
+            </span>
+        </div>
+        
+    <div class="card-content article ">
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Nodejs 爬取one和墨迹天气定时发邮件
+            
+        </h1>
+        
+            <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                <div class="level-left">
+                    <time class="level-item has-text-grey" datetime="2019-04-10T07:45:01.000Z">2019-04-10</time>
+                    
+                    <div class="level-item">
+                    <a class="has-link-grey -link" href="/categories/%E5%85%A8%E6%A0%88/">全栈</a>
+                    </div>
+                    
+                    
+                    <span class="level-item has-text-grey">
+                        
+                        
+                        12 分钟 读完 (大约 1748 个字)
+                    </span>
+                    
+                    
+                    <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                        <i class="far fa-eye"></i>
+                        <span id="busuanzi_value_page_pv">0</span>次访问
+                    </span>
+                    
+                </div>
+            </div>
+            
+        <div class="content">
+                
+            
+            
+            
+
+
+
+            
+                <html><head></head><body><blockquote>
+<p>根据用户配置 爬取 one 和不同地区墨迹天气 每天定时发邮件，支持多人地区个性化定制 可以的话 可以去<code>https://github.com/cyea/email-bot</code> 给个小星星</p>
+</blockquote>
+<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><p><img src="https://i.loli.net/2019/04/09/5cac0c1ca75f1.png"><br><img src="https://i.loli.net/2019/04/10/5cadac38610bd.jpg"></p>
+<h2 id="如何快速使用"><a href="#如何快速使用" class="headerlink" title="如何快速使用"></a>如何快速使用</h2><h3 id="1-拉取代码安装依赖"><a href="#1-拉取代码安装依赖" class="headerlink" title="1. 拉取代码安装依赖"></a>1. 拉取代码安装依赖</h3><p><strong>这里使用<code>yarn</code>作为包管理器</strong></p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="hljs-built_in">clone</span> https://github.com/cyea/email-bot.git</span><br><span class="line"><span class="hljs-built_in">cd</span> email-bot</span><br><span class="line">yarn</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="2-配置"><a href="#2-配置" class="headerlink" title="2. 配置"></a>2. 配置</h3><h4 id="①-修改发送者邮箱账号密码敏感配置"><a href="#①-修改发送者邮箱账号密码敏感配置" class="headerlink" title="① 修改发送者邮箱账号密码敏感配置"></a>① 修改发送者邮箱账号密码敏感配置</h4><p>新建<code>.env</code>文件 格式是跟<code>.env.example</code> 一样的 <strong>填入自己的邮箱账号密码及邮件提供商</strong></p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV = production <span class="hljs-comment">#正式环境精简代码所用</span></span><br><span class="line">EmianService = outlook <span class="hljs-comment">#邮件提供商 支持列表：https://nodemailer.com/smtp/well-known/</span></span><br><span class="line">EamilAuth_user = xxxx@outlook.com <span class="hljs-comment">#发送者邮箱地址</span></span><br><span class="line">EamilAuth_pass = xxxxxxxxx <span class="hljs-comment"># smtp 授权码</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="②-修改其他不敏感配置"><a href="#②-修改其他不敏感配置" class="headerlink" title="② 修改其他不敏感配置"></a>② 修改其他不敏感配置</h4><p>修改<code>config/index.js</code>里的配置文件</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> { env } = process;</span><br><span class="line"><span class="hljs-built_in">module</span>.exports = {</span><br><span class="line">  ONE: <span class="hljs-string">"http://wufazhuce.com/"</span>, <span class="hljs-comment">// ONE的web版网站</span></span><br><span class="line">  MOJI_HOST: <span class="hljs-string">"https://tianqi.moji.com/weather/china/"</span>, <span class="hljs-comment">// 中国墨迹天气url,</span></span><br><span class="line">  EmianService: env.EmianService, <span class="hljs-comment">// 发送者邮箱厂家</span></span><br><span class="line">  EamilAuth: {</span><br><span class="line">    <span class="hljs-comment">// 发送者邮箱账户用户名及密码</span></span><br><span class="line">    user: env.EamilAuth_user,</span><br><span class="line">    pass: env.EamilAuth_pass</span><br><span class="line">  },</span><br><span class="line">  EmailFrom: <span class="hljs-string">"yuyehack@outlook.com"</span>, <span class="hljs-comment">// 发送者昵称与邮箱地址</span></span><br><span class="line">  EmailSubject: <span class="hljs-string">"一封暖暖的小邮件"</span>, <span class="hljs-comment">// 邮件主题</span></span><br><span class="line">  <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">   * <span class="hljs-doctag">@description</span>: 收信人详细</span></span><br><span class="line"><span class="hljs-comment">   */</span></span><br><span class="line">  EmailToArr: [</span><br><span class="line">    {</span><br><span class="line">      TO: <span class="hljs-string">"yuyehack@gmail.com"</span>, <span class="hljs-comment">// 接收者邮箱地址</span></span><br><span class="line">      CITY: <span class="hljs-string">"jiangsu"</span>, <span class="hljs-comment">// 墨迹天气链接末尾城市代码</span></span><br><span class="line">      LOCATION: <span class="hljs-string">"pukou-district"</span> <span class="hljs-comment">// 墨迹天气链接末尾详细地区代码</span></span><br><span class="line">    },</span><br><span class="line">    {</span><br><span class="line">      TO: <span class="hljs-string">"yuyehack@qq.com"</span>,</span><br><span class="line">      CITY: <span class="hljs-string">"jiangsu"</span>,</span><br><span class="line">      LOCATION: <span class="hljs-string">"kunshan"</span></span><br><span class="line">    }</span><br><span class="line">  ],</span><br><span class="line">  <span class="hljs-comment">//每日发送时间</span></span><br><span class="line">  SENDDATE: <span class="hljs-string">"58 15 8 * * *"</span></span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="③-运行"><a href="#③-运行" class="headerlink" title="③ 运行"></a>③ 运行</h4><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn start</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="代码详解"><a href="#代码详解" class="headerlink" title="代码详解"></a>代码详解</h2><blockquote>
+<p>具体代码可见 <a target="_blank" rel="noopener" href="https://github.com/cyea/email-bot.git">https://github.com/cyea/email-bot.git</a></p>
+</blockquote>
+<p>先展示下项目结构</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">├─config</span><br><span class="line">│      index.js #配置</span><br><span class="line">│</span><br><span class="line">├─email</span><br><span class="line">│      index.js #发送邮件模块</span><br><span class="line">│</span><br><span class="line">├─superagent</span><br><span class="line">│      index.js #获取天气及ONE 数据</span><br><span class="line">│</span><br><span class="line">├─utils</span><br><span class="line">│      index.js #通用工具函数</span><br><span class="line">│      superagent.js #请求发送封装</span><br><span class="line">│</span><br><span class="line">├─view</span><br><span class="line">|        index.js #生成邮件样式模块</span><br><span class="line">|        index.njk #邮件样式模板模块</span><br><span class="line">│  .env.example #.env</span><br><span class="line">│  index.js #服务启动模块</span><br><span class="line">│  schedule.js #定时模块</span><br><span class="line">│  test.js #模板样式调试模块</span><br><span class="line">│  yarn.lock</span><br><span class="line">│  .gitignore</span><br><span class="line">│  LICENSE</span><br><span class="line">│  package.json</span><br><span class="line">│  README.md</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="1-爬取数据"><a href="#1-爬取数据" class="headerlink" title="1. 爬取数据"></a>1. 爬取数据</h3><p>使用 superagent 和 cheerio 组合来实现爬虫</p>
+<h4 id="①-superagent-使用"><a href="#①-superagent-使用" class="headerlink" title="① superagent 使用"></a>① superagent 使用</h4><p>因为多次两次使用的<code>superagent</code> 函数代码结构类似 所以我再把 <code>superagent</code> 封装了一次 <code>Promise</code> 抛出 <code>fetch</code>方法</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// utils/superagent.js</span></span><br><span class="line"><span class="hljs-keyword">const</span> superagent = <span class="hljs-built_in">require</span>(<span class="hljs-string">"superagent"</span>);</span><br><span class="line"><span class="hljs-comment">//请求</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetch</span>(<span class="hljs-params">url, method, params, data, cookies</span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>{</span><br><span class="line">    superagent(method, url)</span><br><span class="line">      .query(params)</span><br><span class="line">      .send(data)</span><br><span class="line">      .set(<span class="hljs-string">"Content-Type"</span>, <span class="hljs-string">"application/x-www-form-urlencoded"</span>)</span><br><span class="line">      .end(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, response</span>) </span>{</span><br><span class="line">        <span class="hljs-keyword">if</span> (err) {</span><br><span class="line">          reject(err);</span><br><span class="line">        }</span><br><span class="line">        resolve(response);</span><br><span class="line">      });</span><br><span class="line">  });</span><br><span class="line">}</span><br><span class="line"><span class="hljs-built_in">module</span>.exports = fetch;</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="②-数据爬取"><a href="#②-数据爬取" class="headerlink" title="② 数据爬取"></a>② 数据爬取</h4><ul>
+<li>爬取 ONE</li>
+</ul>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> getOne = <span class="hljs-keyword">async</span> () => {</span><br><span class="line">  <span class="hljs-comment">// 获取每日一句</span></span><br><span class="line">  <span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> fetch(config.ONE, <span class="hljs-string">"GET"</span>);</span><br><span class="line">  <span class="hljs-keyword">let</span> $ = cheerio.load(res.text); <span class="hljs-comment">//转化成类似jquery结构</span></span><br><span class="line">  <span class="hljs-keyword">let</span> todayOneList = $(<span class="hljs-string">"#carousel-one .carousel-inner .item"</span>);</span><br><span class="line">  <span class="hljs-comment">// 通过查看DOM获取今日句子</span></span><br><span class="line">  <span class="hljs-keyword">let</span> info = $(todayOneList[<span class="hljs-number">0</span>])</span><br><span class="line">    .find(<span class="hljs-string">".fp-one-cita"</span>)</span><br><span class="line">    .text()</span><br><span class="line">    .replace(<span class="hljs-regexp">/(^\s*)|(\s*$)/g</span>, <span class="hljs-string">""</span>);</span><br><span class="line">  <span class="hljs-keyword">let</span> imgSrc = $(todayOneList[<span class="hljs-number">0</span>])</span><br><span class="line">    .find(<span class="hljs-string">".fp-one-imagen"</span>)</span><br><span class="line">    .attr(<span class="hljs-string">"src"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">return</span> {</span><br><span class="line">    <span class="hljs-comment">// 抛出 one 对象</span></span><br><span class="line">    one: {</span><br><span class="line">      info,</span><br><span class="line">      imgSrc</span><br><span class="line">    }</span><br><span class="line">  };</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>爬取天气</li>
+</ul>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> getWeather = <span class="hljs-keyword">async</span> (city, location) => {</span><br><span class="line">  <span class="hljs-comment">//获取墨迹天气</span></span><br><span class="line">  <span class="hljs-keyword">let</span> url = config.MOJI_HOST + city + <span class="hljs-string">"/"</span> + location; <span class="hljs-comment">// 根据配置得到天气url</span></span><br><span class="line">  <span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> fetch(url, <span class="hljs-string">"GET"</span>);</span><br><span class="line">  <span class="hljs-keyword">let</span> $ = cheerio.load(res.text);</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//获取墨迹天气地址</span></span><br><span class="line">  <span class="hljs-keyword">let</span> addressText = $(<span class="hljs-string">".search_default"</span>)</span><br><span class="line">    .text()</span><br><span class="line">    .trim()</span><br><span class="line">    .split(<span class="hljs-string">"， "</span>)</span><br><span class="line">    .reverse()</span><br><span class="line">    .join(<span class="hljs-string">"-"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//获取墨迹天气提示</span></span><br><span class="line">  <span class="hljs-keyword">let</span> weatherTip = $(<span class="hljs-string">".wea_tips em"</span>).text();</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//  获取现在的天气数据</span></span><br><span class="line">  <span class="hljs-keyword">const</span> now = $(<span class="hljs-string">".wea_weather.clearfix"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">let</span> nowInfo = {</span><br><span class="line">    Temp: now.find(<span class="hljs-string">"em"</span>).text(),</span><br><span class="line">    WeatherText: now.find(<span class="hljs-string">"b"</span>).text(),</span><br><span class="line">    FreshText: now.find(<span class="hljs-string">".info_uptime"</span>).text()</span><br><span class="line">  };</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">// 循环获取未来三天数据</span></span><br><span class="line">  <span class="hljs-keyword">let</span> threeDaysData = [];</span><br><span class="line">  $(<span class="hljs-string">".forecast .days"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">i, elem</span>) </span>{</span><br><span class="line">    <span class="hljs-comment">// 循环获取未来几天天气数据</span></span><br><span class="line">    <span class="hljs-keyword">const</span> SingleDay = $(elem).find(<span class="hljs-string">"li"</span>);</span><br><span class="line">    threeDaysData.push({</span><br><span class="line">      Day: $(SingleDay[<span class="hljs-number">0</span>])</span><br><span class="line">        .text()</span><br><span class="line">        .replace(<span class="hljs-regexp">/(^\s*)|(\s*$)/g</span>, <span class="hljs-string">""</span>),</span><br><span class="line">      WeatherImgUrl: $(SingleDay[<span class="hljs-number">1</span>])</span><br><span class="line">        .find(<span class="hljs-string">"img"</span>)</span><br><span class="line">        .attr(<span class="hljs-string">"src"</span>),</span><br><span class="line">      WeatherText: $(SingleDay[<span class="hljs-number">1</span>])</span><br><span class="line">        .text()</span><br><span class="line">        .replace(<span class="hljs-regexp">/(^\s*)|(\s*$)/g</span>, <span class="hljs-string">""</span>),</span><br><span class="line">      Temperature: $(SingleDay[<span class="hljs-number">2</span>])</span><br><span class="line">        .text()</span><br><span class="line">        .replace(<span class="hljs-regexp">/(^\s*)|(\s*$)/g</span>, <span class="hljs-string">""</span>),</span><br><span class="line">      WindDirection: $(SingleDay[<span class="hljs-number">3</span>])</span><br><span class="line">        .find(<span class="hljs-string">"em"</span>)</span><br><span class="line">        .text()</span><br><span class="line">        .replace(<span class="hljs-regexp">/(^\s*)|(\s*$)/g</span>, <span class="hljs-string">""</span>),</span><br><span class="line">      WindLevel: $(SingleDay[<span class="hljs-number">3</span>])</span><br><span class="line">        .find(<span class="hljs-string">"b"</span>)</span><br><span class="line">        .text()</span><br><span class="line">        .replace(<span class="hljs-regexp">/(^\s*)|(\s*$)/g</span>, <span class="hljs-string">""</span>),</span><br><span class="line">      Pollution: $(SingleDay[<span class="hljs-number">4</span>])</span><br><span class="line">        .text()</span><br><span class="line">        .replace(<span class="hljs-regexp">/(^\s*)|(\s*$)/g</span>, <span class="hljs-string">""</span>),</span><br><span class="line">      PollutionLevel: $(SingleDay[<span class="hljs-number">4</span>])</span><br><span class="line">        .find(<span class="hljs-string">"strong"</span>)</span><br><span class="line">        .attr(<span class="hljs-string">"class"</span>)</span><br><span class="line">    });</span><br><span class="line">  });</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">return</span> {</span><br><span class="line">    moji: {</span><br><span class="line">      addressText,</span><br><span class="line">      weatherTip,</span><br><span class="line">      nowInfo,</span><br><span class="line">      threeDaysData</span><br><span class="line">    }</span><br><span class="line">  };</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="③-数据合并"><a href="#③-数据合并" class="headerlink" title="③ 数据合并"></a>③ 数据合并</h4><p>异步获取两个数据</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> getAllData = <span class="hljs-keyword">async</span> (city, location) => {</span><br><span class="line">  <span class="hljs-keyword">let</span> oneData = <span class="hljs-keyword">await</span> getOne();</span><br><span class="line">  <span class="hljs-keyword">let</span> weatherData = <span class="hljs-keyword">await</span> getWeather(city, location);</span><br><span class="line">  <span class="hljs-keyword">const</span> allData = { <span class="hljs-attr">today</span>: formatDate(), ...oneData, ...weatherData };</span><br><span class="line">  <span class="hljs-keyword">return</span> allData;</span><br><span class="line">};</span><br><span class="line"><span class="hljs-built_in">module</span>.exports = getAllData;</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="2-模版引擎生成-HTML"><a href="#2-模版引擎生成-HTML" class="headerlink" title="2. 模版引擎生成 HTML"></a>2. 模版引擎生成 HTML</h3><h4 id="①-模板编写"><a href="#①-模板编写" class="headerlink" title="① 模板编写"></a>① 模板编写</h4><p>ejs 这种模板已经年老 更新不及时，所以换了更清晰更新的 nunjucks 因为邮件不支持外链 css 所以使用内联 css 虽然比较麻烦</p>
+<p>使用刚获取到数据 模板渲染</p>
+<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"><!-- index.njk --></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"padding: 0;max-width: 600px;margin: 0 auto;"</span>></span></span><br><span class="line">        <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:100%; margin: 40px auto;font-size:20px; color:#5f5e5e;text-align:center"</span>></span></span><br><span class="line">            <span class="hljs-tag"><<span class="hljs-name">span</span>></span>今天是{{today}}<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">        <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line">        <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:100%; margin: 20px auto;font-size:16px;color:#2bbc8a;text-align: center;"</span>></span></span><br><span class="line">            <span class="hljs-tag"><<span class="hljs-name">span</span>></span><span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"font-family: Arial;font-size: 100px;line-height: 1;"</span>></span>{{moji.nowInfo.Temp}}<span class="hljs-tag"></<span class="hljs-name">span</span>></span><span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"vertical-align: top;"</span>></span>℃<span class="hljs-tag"></<span class="hljs-name">span</span>></span><span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">            <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"font-size: 30px;padding-top: 50px;"</span>></span>{{moji.nowInfo.WeatherText}}<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">        <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line">        <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"text-align:center;font-size:12px;color:#d480aa"</span>></span>{{moji.addressText}}<span class="hljs-tag"></<span class="hljs-name">dev</span>></span></span><br><span class="line">        <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:100%; margin: 0 auto;color:#5f5e5e;text-align:center"</span>></span></span><br><span class="line">            <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:block;color:#676767;font-size:20px"</span>></span>{{moji.weatherTip}}<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">            <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:block;margin-top:15px;color:#676767;font-size:15px"</span>></span>近期天气预报<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line"></span><br><span class="line">            {% for item in moji.threeDaysData %}</span><br><span class="line">            <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display: flex;margin-top:5px;height: 30px;line-height: 30px;justify-content: space-around;align-items: center;"</span>></span></span><br><span class="line">                <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:15%; text-align:center;"</span>></span>{{ item.Day }}<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">                <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:25%; text-align:center;"</span>></span></span><br><span class="line">                    <span class="hljs-tag"><<span class="hljs-name">img</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"height:26px;vertical-align:middle;"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">'{{ item.WeatherImgUrl }}'</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span>></span></span><br><span class="line">                    <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:inline-block"</span>></span>{{ item.WeatherText }}<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">                <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line">                <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:25%; text-align:center;"</span>></span>{{ item.Temperature }}<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                {% if (item.PollutionLevel==='level_1') %}</span><br><span class="line">                    <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:35%; "</span>></span></span><br><span class="line">                            <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:inline-block;padding:0 8px;line-height:25px;color:#8fc31f; border-radius:15px; text-align:center;"</span>></span>{{ item.Pollution }}<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">                    <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line"></span><br><span class="line">                {% elif (item.PollutionLevel==='level_2') %}</span><br><span class="line">                    <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:35%; "</span>></span></span><br><span class="line">                            <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:inline-block;padding:0 8px;line-height:25px;color:#d7af0e; border-radius:15px; text-align:center;"</span>></span>{{ item.Pollution }}<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">                    <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line"></span><br><span class="line">                {% elif (item.PollutionLevel==='level_3') %}</span><br><span class="line">                    <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:35%; "</span>></span></span><br><span class="line">                            <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:inline-block;padding:0 8px;line-height:25px;color:#f39800; border-radius:15px; text-align:center;"</span>></span>{{ item.Pollution }}<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">                    <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line">                {% elif (item.PollutionLevel==='level_4') %}</span><br><span class="line">                    <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:35%; "</span>></span></span><br><span class="line">                            <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:inline-block;padding:0 8px;line-height:25px;color:#e2361a; border-radius:15px; text-align:center;"</span>></span>{{ item.Pollution }}<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">                    <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line">                {% elif (item.PollutionLevel==='level_5') %}</span><br><span class="line">                    <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:35%; "</span>></span></span><br><span class="line">                            <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:inline-block;padding:0 8px;line-height:25px;color:#5f52a0; border-radius:15px; text-align:center;"</span>></span>{{ item.Pollution }}<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">                    <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line">                {% elif (item.PollutionLevel==='level_6') %}</span><br><span class="line">                    <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:35%; "</span>></span></span><br><span class="line">                            <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:inline-block;padding:0 8px;line-height:25px;color:#631541; border-radius:15px; text-align:center;"</span>></span>{{ item.Pollution }}<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">                    <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line">                {% else  %}</span><br><span class="line">                <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:35%; "</span>></span></span><br><span class="line">                            <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:inline-block;padding:0 8px;line-height:25px;color:#631541; border-radius:15px; text-align:center;"</span>></span>none<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">                    <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line">                {% endif  %}</span><br><span class="line">            <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line"></span><br><span class="line">            {% endfor %}</span><br><span class="line">        <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line">        <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"text-align:center;margin:35px 0;"</span>></span></span><br><span class="line">                <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:block;margin-top:55px;color:#676767;font-size:15px"</span>></span>ONE · 一个<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">                <span class="hljs-tag"><<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"{{ one.imgSrc }}"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"max-width:100%;margin:10px auto;"</span>  <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span>></span></span><br><span class="line">                <span class="hljs-tag"><<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"color:#b0b0b0;font-size:13px;"</span>></span>摄影<span class="hljs-tag"></<span class="hljs-name">span</span>></span></span><br><span class="line">                <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"margin:10px auto;width:85%;color:#5f5e5e;"</span> ></span>{{one.info}}<span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line">        <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line">    <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="②-模板渲染"><a href="#②-模板渲染" class="headerlink" title="② 模板渲染"></a>② 模板渲染</h4><p>node fs 模块 读取本地模板文件 抛出 渲染好的 html 结构数据</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> nunjucks = <span class="hljs-built_in">require</span>(<span class="hljs-string">"nunjucks"</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">"fs"</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">"path"</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> getHtmlData = <span class="hljs-function"><span class="hljs-params">njkData</span> =></span> {</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =></span> {</span><br><span class="line">    <span class="hljs-keyword">try</span> {</span><br><span class="line">      <span class="hljs-keyword">const</span> njkString = fs.readFileSync(</span><br><span class="line">        path.resolve(__dirname, <span class="hljs-string">"index.njk"</span>),</span><br><span class="line">        <span class="hljs-string">"utf8"</span></span><br><span class="line">      );</span><br><span class="line">      <span class="hljs-keyword">const</span> htmlData = nunjucks.renderString(njkString, njkData);</span><br><span class="line">      resolve(htmlData);</span><br><span class="line">    } <span class="hljs-keyword">catch</span> (error) {</span><br><span class="line">      reject(error);</span><br><span class="line">    }</span><br><span class="line">  });</span><br><span class="line">};</span><br><span class="line"><span class="hljs-built_in">module</span>.exports = getHtmlData;</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="3-使用-Node-发送邮件"><a href="#3-使用-Node-发送邮件" class="headerlink" title="3. 使用 Node 发送邮件"></a>3. 使用 Node 发送邮件</h3><p>这里使用 <code>nodemailer</code></p>
+<p><strong>注意的是邮箱密码不是你登录邮箱的密码，而是 smtp 授权码，什么是 smtp 授权码呢？就是你的邮箱账号可以使用这个 smtp 授权码在别的地方发邮件，一般 smtp 授权码在邮箱官网的设置中可以看的到.不知道的话可以使用邮箱账号及密码试试</strong></p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">"./../config"</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> sendMail = <span class="hljs-function">(<span class="hljs-params">transporter, To, HtmlData</span>) =></span> {</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =></span> {</span><br><span class="line">    <span class="hljs-keyword">let</span> mailOptions = {</span><br><span class="line">      <span class="hljs-keyword">from</span>: config.EmailFrom, <span class="hljs-comment">// 发送者邮箱</span></span><br><span class="line">      to: To, <span class="hljs-comment">// 接收邮箱</span></span><br><span class="line">      subject: config.EmailSubject, <span class="hljs-comment">// // 邮件主题</span></span><br><span class="line">      html: HtmlData <span class="hljs-comment">//模板数据</span></span><br><span class="line">    };</span><br><span class="line">    transporter.sendMail(mailOptions, <span class="hljs-function">(<span class="hljs-params">error, info = {}</span>) =></span> {</span><br><span class="line">      <span class="hljs-keyword">if</span> (error) {</span><br><span class="line">        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">"邮件发送成功"</span> + error);</span><br><span class="line">        reject(error);</span><br><span class="line">      } <span class="hljs-keyword">else</span> {</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"邮件发送成功"</span>, info.messageId);</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"静等下一次发送"</span>);</span><br><span class="line">        resolve();</span><br><span class="line">      }</span><br><span class="line">    });</span><br><span class="line">  });</span><br><span class="line">};</span><br><span class="line"><span class="hljs-built_in">module</span>.exports = sendMail;</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="4-整合运行"><a href="#4-整合运行" class="headerlink" title="4. 整合运行"></a>4. 整合运行</h3><figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> transporter = nodemailer.createTransport({</span><br><span class="line">  service: EmianService,</span><br><span class="line">  port: <span class="hljs-number">465</span>,</span><br><span class="line">  secureConnection: <span class="hljs-literal">true</span>,</span><br><span class="line">  auth: EamilAuth,</span><br><span class="line">  pool: <span class="hljs-literal">true</span></span><br><span class="line">});</span><br><span class="line"><span class="hljs-keyword">const</span> getAllDataAndSendMail = <span class="hljs-keyword">async</span> () => {</span><br><span class="line">  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, len = EmailToArr.length; i < len; i++) {</span><br><span class="line">    <span class="hljs-keyword">try</span> {</span><br><span class="line">      <span class="hljs-keyword">let</span> item = EmailToArr[i];</span><br><span class="line">      <span class="hljs-keyword">let</span> apiData = <span class="hljs-keyword">await</span> getAllData(item.CITY, item.LOCATION);</span><br><span class="line">      <span class="hljs-keyword">let</span> htmlData = <span class="hljs-keyword">await</span> getHtmlData(apiData);</span><br><span class="line">      <span class="hljs-keyword">await</span> sendMail(transporter, item.TO, htmlData);</span><br><span class="line">    } <span class="hljs-keyword">catch</span> (error) {</span><br><span class="line">      <span class="hljs-built_in">console</span>.error(error);</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line">getAllDataAndSendMail();</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="5-定时"><a href="#5-定时" class="headerlink" title="5. 定时"></a>5. 定时</h3><p>这里用到了 <code>node-schedule</code> 来定时执行任务,它跟 <code>corn</code> 很类似 之不是基于<code>Node</code>的<br>具体用法可见 <code>node-schedule</code>文档<br>这里我使用了 每天早上的 08:15:58 定时发送 <strong>尽量不取整点</strong></p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> schedule = <span class="hljs-built_in">require</span>(<span class="hljs-string">"node-schedule"</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">"./config"</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> scheduleRun = <span class="hljs-function"><span class="hljs-params">fn</span> =></span> {</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"NodeMail: 开始等待目标时刻..."</span>);</span><br><span class="line">  <span class="hljs-keyword">let</span> j = schedule.scheduleJob(config.SENDDATE, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-comment">// SENDDATE: "58 15 8 * * *"</span></span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"开始执行任务......"</span>);</span><br><span class="line">    fn();</span><br><span class="line">  });</span><br><span class="line">};</span><br><span class="line"><span class="hljs-built_in">module</span>.exports = scheduleRun;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>所以只要 引入<code>scheduleRun</code>方法</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheduleRun(getAllDataAndSendMail);</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="6-配置详情"><a href="#6-配置详情" class="headerlink" title="6. 配置详情"></a>6. 配置详情</h3><p>因为像邮件 smtp 授权码 是敏感信息 建议放进环境变量 <code>env2</code> 是个不错的工具 ,具体使用可以看<code>env2</code>文档</p>
+<p><strong>具体配置详见<a href="/posts/713d3487/#%E9%85%8D%E7%BD%AE">这里</a></strong></p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="1-邮箱登陆失败"><a href="#1-邮箱登陆失败" class="headerlink" title="1. 邮箱登陆失败"></a>1. 邮箱登陆失败</h3><p>一般是在服务器上运行时,邮箱提供商安全机制 会阻止异地登陆 ,只要去邮箱提供商允许就可以了</p>
+<h3 id="2-发送失败"><a href="#2-发送失败" class="headerlink" title="2. 发送失败"></a>2. 发送失败</h3><p>因为多人定制因为邮件内容不一样,所以不是同一封邮件,会额外开辟一个线程发送,可能会超过邮件提供商允许线程</p>
+</body></html>
+            
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link-link" href="/tags/js/" rel="tag">js</a>, <a class="has-link-grey -link-link" href="/tags/node-js/" rel="tag">node.js</a>
+                </div>
+            </div>
+        </div>
+        
+
+        <!--  -->
+
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏赞助一下吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/donate.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/posts/cdbb0408/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">面试常见手写代码</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/posts/2d537b50/">
+                <span class="level-item">二维码api接口</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">
+            评论
+        </h3>
+        
+<div id="valine-thread" class="content"></div>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'bwTxwPTstDRSj9fwUm9zXWXa-gzGzoHsz',
+        app_key: '20xgggMoEpTsY95zvB0HudN1',
+        placeholder: '留下你的只言片语吧~~~',
+        avatar_cdn:'https://cn.gravatar.com/avatar/',
+        avatar:'robohash'
+    });
+</script>
+
+    </div>
+</div>
+
+
+
+                </div>
+                
+                
+                    
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="avatar is-rounded image is-128x128 has-mb-6" src="/images/avatar.png" alt="Yu Ye">
+                    
+                    <p class="is-size-4 is-block">
+                        Yu Ye
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        专注前端技术，更专注生活
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        34
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        15
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/cyea" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/cyea">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Telegram" href="https://t.me/yuyehack">
+                
+                <i class="fab fa-telegram"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Email" href="mailto:yuyehack@gmail.com">
+                
+                <i class="fas fa-envelope"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+    <div class="card widget" id="toc" >
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+            <a class="is-flex" href="#效果展示">
+            <span class="has-mr-6">1</span>
+            <span>效果展示</span>
+            </a></li><li>
+            <a class="is-flex" href="#如何快速使用">
+            <span class="has-mr-6">2</span>
+            <span>如何快速使用</span>
+            </a><ul class="menu-list"><li>
+            <a class="is-flex" href="#1-拉取代码安装依赖">
+            <span class="has-mr-6">2.1</span>
+            <span>1. 拉取代码安装依赖</span>
+            </a></li><li>
+            <a class="is-flex" href="#2-配置">
+            <span class="has-mr-6">2.2</span>
+            <span>2. 配置</span>
+            </a><ul class="menu-list"><li>
+            <a class="is-flex" href="#①-修改发送者邮箱账号密码敏感配置">
+            <span class="has-mr-6">2.2.1</span>
+            <span>① 修改发送者邮箱账号密码敏感配置</span>
+            </a></li><li>
+            <a class="is-flex" href="#②-修改其他不敏感配置">
+            <span class="has-mr-6">2.2.2</span>
+            <span>② 修改其他不敏感配置</span>
+            </a></li><li>
+            <a class="is-flex" href="#③-运行">
+            <span class="has-mr-6">2.2.3</span>
+            <span>③ 运行</span>
+            </a></li></ul></li></ul></li><li>
+            <a class="is-flex" href="#代码详解">
+            <span class="has-mr-6">3</span>
+            <span>代码详解</span>
+            </a><ul class="menu-list"><li>
+            <a class="is-flex" href="#1-爬取数据">
+            <span class="has-mr-6">3.1</span>
+            <span>1. 爬取数据</span>
+            </a><ul class="menu-list"><li>
+            <a class="is-flex" href="#①-superagent-使用">
+            <span class="has-mr-6">3.1.1</span>
+            <span>① superagent 使用</span>
+            </a></li><li>
+            <a class="is-flex" href="#②-数据爬取">
+            <span class="has-mr-6">3.1.2</span>
+            <span>② 数据爬取</span>
+            </a></li><li>
+            <a class="is-flex" href="#③-数据合并">
+            <span class="has-mr-6">3.1.3</span>
+            <span>③ 数据合并</span>
+            </a></li></ul></li><li>
+            <a class="is-flex" href="#2-模版引擎生成-HTML">
+            <span class="has-mr-6">3.2</span>
+            <span>2. 模版引擎生成 HTML</span>
+            </a><ul class="menu-list"><li>
+            <a class="is-flex" href="#①-模板编写">
+            <span class="has-mr-6">3.2.1</span>
+            <span>① 模板编写</span>
+            </a></li><li>
+            <a class="is-flex" href="#②-模板渲染">
+            <span class="has-mr-6">3.2.2</span>
+            <span>② 模板渲染</span>
+            </a></li></ul></li><li>
+            <a class="is-flex" href="#3-使用-Node-发送邮件">
+            <span class="has-mr-6">3.3</span>
+            <span>3. 使用 Node 发送邮件</span>
+            </a></li><li>
+            <a class="is-flex" href="#4-整合运行">
+            <span class="has-mr-6">3.4</span>
+            <span>4. 整合运行</span>
+            </a></li><li>
+            <a class="is-flex" href="#5-定时">
+            <span class="has-mr-6">3.5</span>
+            <span>5. 定时</span>
+            </a></li><li>
+            <a class="is-flex" href="#6-配置详情">
+            <span class="has-mr-6">3.6</span>
+            <span>6. 配置详情</span>
+            </a></li></ul></li><li>
+            <a class="is-flex" href="#问题">
+            <span class="has-mr-6">4</span>
+            <span>问题</span>
+            </a><ul class="menu-list"><li>
+            <a class="is-flex" href="#1-邮箱登陆失败">
+            <span class="has-mr-6">4.1</span>
+            <span>1. 邮箱登陆失败</span>
+            </a></li><li>
+            <a class="is-flex" href="#2-发送失败">
+            <span class="has-mr-6">4.2</span>
+            <span>2. 发送失败</span>
+            </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+    
+
+    
+        
+    
+        
+    
+        
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen "> 
+        
+        
+        </div>
+    
+</div>
+
+                
+                <!--  -->
+                
+
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+  <div class="container">
+    <!-- <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="Nodejs 爬取one和墨迹天气定时发邮件" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                
+                &copy; 2020 Yu Ye&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                 
+                <br>
+                
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div> 
+        -->
+  </div>
+  <div class="lever">
+    <p class="is-size-7">
+      Copyright © 2019 Yu Ye |
+      <span id="busuanzi_container_site_uv">
+        共<span id="busuanzi_value_site_uv">0</span>个访客
+      </span>
+    </p>
+    <div class="site-info">
+      已运行
+      <span id="time-to-now"></span>
+      <span class="my-face">(●'◡'●)ﾉ♥</span>
+    </div>
+  </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+<script src="/js/my.js?v=1596521852706" defer></script>
+<script src="/js/baidupush.js" defer></script>
+    
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

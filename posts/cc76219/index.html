@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>H5 移动端开发经常遇到的问题 - 羽叶丶</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="1. 弹出数字键盘12345  安卓跟 IOS 的表现形式应该不一样，大家可以自己试试。当运用了正则 pattern 后，就不用关注 input 的类型了 2. 调用系统的某些功能1234567891011121314151617181920打电话给: 10086发短信给: 10086发邮件给：839626987@qq.com  3. 打开原生应用123456打开微信打开支付宝打开支付宝的扫一扫功">
+<meta property="og:type" content="article">
+<meta property="og:title" content="H5 移动端开发经常遇到的问题">
+<meta property="og:url" content="yuye.js.org/posts/cc76219/index.html">
+<meta property="og:site_name" content="羽叶丶">
+<meta property="og:description" content="1. 弹出数字键盘12345  安卓跟 IOS 的表现形式应该不一样，大家可以自己试试。当运用了正则 pattern 后，就不用关注 input 的类型了 2. 调用系统的某些功能1234567891011121314151617181920打电话给: 10086发短信给: 10086发邮件给：839626987@qq.com  3. 打开原生应用123456打开微信打开支付宝打开支付宝的扫一扫功">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="/">
+<meta property="article:published_time" content="2019-10-10T08:58:12.000Z">
+<meta property="article:modified_time" content="2020-08-04T06:17:14.392Z">
+<meta property="article:author" content="Yu Ye">
+<meta property="article:tag" content="Yu Ye,羽叶丶,github.com&#x2F;cyea,web前端,前端开发,前端技术,前端开发博客,前端技术博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/">
+<meta name="twitter:creator" content="@yuyehack">
+<meta name="twitter:site" content="yuyehack">
+<link rel="publisher" href="yuyehack">
+<meta property="fb:admins" content="yuyehack">
+<meta property="fb:app_id" content="yuyehack">
+
+
+
+
+
+
+
+<link id="dynamic-favicon" rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.9.0/css/all.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/rainbow.css">
+
+
+    
+    
+    
+    <!-- <style>body>.footer,body>.navbar,body>.section{opacity:0}</style> -->
+    <style>body>.footer,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?ab64af1b57db176e2599613d7c393f32";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css?v=1596521852561">
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="H5 移动端开发经常遇到的问题" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/music">音乐</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+                    
+                    <div class="card">
+        
+    <div class="card-content article ">
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                H5 移动端开发经常遇到的问题
+            
+        </h1>
+        
+            <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                <div class="level-left">
+                    <time class="level-item has-text-grey" datetime="2019-10-10T08:58:12.000Z">2019-10-10</time>
+                    
+                    <div class="level-item">
+                    <a class="has-link-grey -link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    </div>
+                    
+                    
+                    <span class="level-item has-text-grey">
+                        
+                        
+                        8 分钟 读完 (大约 1156 个字)
+                    </span>
+                    
+                    
+                    <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                        <i class="far fa-eye"></i>
+                        <span id="busuanzi_value_page_pv">0</span>次访问
+                    </span>
+                    
+                </div>
+            </div>
+            
+        <div class="content">
+                
+            
+            
+            
+
+
+
+            
+                <html><head></head><body><h2 id="1-弹出数字键盘"><a href="#1-弹出数字键盘" class="headerlink" title="1. 弹出数字键盘"></a>1. 弹出数字键盘</h2><figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"><!-- 有"#" "*"符号输入 --></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"tel"</span> /></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"><!-- 纯数字 --></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">input</span> <span class="hljs-attr">pattern</span>=<span class="hljs-string">"\d*"</span> /></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>安卓跟 IOS 的表现形式应该不一样，大家可以自己试试。当运用了正则 pattern 后，就不用关注 input 的类型了</p>
+<h2 id="2-调用系统的某些功能"><a href="#2-调用系统的某些功能" class="headerlink" title="2. 调用系统的某些功能"></a>2. 调用系统的某些功能</h2><figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"><!-- 拨号 --></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"tel:10086"</span>></span>打电话给: 10086<span class="hljs-tag"></<span class="hljs-name">a</span>></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"><!-- 发送短信 --></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"sms:10086"</span>></span>发短信给: 10086<span class="hljs-tag"></<span class="hljs-name">a</span>></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"><!-- 发送邮件 --></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"mailto:839626987@qq.com"</span>></span>发邮件给：839626987@qq.com<span class="hljs-tag"></<span class="hljs-name">a</span>></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"><!-- 选择照片或者拍摄照片 --></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span> <span class="hljs-attr">accept</span>=<span class="hljs-string">"image/*"</span> /></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"><!-- 选择视频或者拍摄视频 --></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span> <span class="hljs-attr">accept</span>=<span class="hljs-string">"video/*"</span> /></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"><!-- 多选 --></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span> <span class="hljs-attr">multiple</span> /></span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="3-打开原生应用"><a href="#3-打开原生应用" class="headerlink" title="3. 打开原生应用"></a>3. 打开原生应用</h2><figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"weixin://"</span>></span>打开微信<span class="hljs-tag"></<span class="hljs-name">a</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"alipays://"</span>></span>打开支付宝<span class="hljs-tag"></<span class="hljs-name">a</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"alipays://platformapi/startapp?saId=10000007"</span></span></span><br><span class="line"><span class="hljs-tag">  ></span>打开支付宝的扫一扫功能<span class="hljs-tag"></<span class="hljs-name">a</span></span></span><br><span class="line"><span class="hljs-tag">></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"alipays://platformapi/startapp?appId=60000002"</span>></span>打开支付宝的蚂蚁森林<span class="hljs-tag"></<span class="hljs-name">a</span>></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这种方式叫做 <code>URL Scheme</code>，是一种协议，一般用来访问 APP 或者 APP 中的某个功能/页面（如唤醒 APP 后打开指定页面或者使用某些功能）😒<br>URL Scheme 的基本格式如下：</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">行为(应用的某个功能/页面)</span><br><span class="line">|</span><br><span class="line">scheme://[path][?query]</span><br><span class="line">| |</span><br><span class="line">应用标识 功能需要的参数</span><br></pre></td></tr></tbody></table></figure>
+
+<p>一般是由 APP 开发者自己定义，比如规定一些参数或者路径让其他开发者来访问，就像上面的例子 🍤</p>
+<h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h3><ul>
+<li><p>唤醒 APP 的条件是你的手机已经安装了该 APP</p>
+</li>
+<li><p>某些浏览器会禁用此协议，比如微信内部浏览器（除非开了白名单）</p>
+</li>
+</ul>
+<h2 id="4-解决-active-伪类失效"><a href="#4-解决-active-伪类失效" class="headerlink" title="4. 解决 active 伪类失效"></a>4. 解决 active 伪类失效</h2><figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">body</span> <span class="hljs-attr">ontouchstart</span>></span><span class="hljs-tag"></<span class="hljs-name">body</span>></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>给 body 注册一个空事件即可 😂</p>
+<h2 id="5-忽略自动识别"><a href="#5-忽略自动识别" class="headerlink" title="5. 忽略自动识别"></a>5. 忽略自动识别</h2><figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"><!-- 忽略浏览器自动识别数字为电话号码 --></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"format-detection"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"telephone=no"</span> /></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"><!-- 忽略浏览器自动识别邮箱账号 --></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"format-detection"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"email=no"</span> /></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>当页面上的内容包含了手机号/邮箱等，会自动转换成可点击的链接 😁</p>
+<p>比如你有如下代码：</p>
+<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">p</span>></span>13192733603<span class="hljs-tag"></<span class="hljs-name">p</span>></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>但是有些浏览器会识别为手机，并且可以点击拨号。</p>
+<h2 id="6-解决-input-失焦后页面没有回弹"><a href="#6-解决-input-失焦后页面没有回弹" class="headerlink" title="6. 解决 input 失焦后页面没有回弹"></a>6. 解决 input 失焦后页面没有回弹</h2><p>一般出现在 IOS 设备中的微信内部浏览器，出现的条件为：<br>页面高度过小</p>
+<p>聚焦时，页面需要往上移动的时候</p>
+<p>所以一般 input 在页面上方或者顶部都不会出现无法回弹 🤣<br>解决办法为，在聚焦时，获取当前滚动条高度，然后失焦时，赋值之前获取的高度：</p>
+<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">template</span>></span></span><br><span class="line">  <span class="hljs-tag"><<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> @<span class="hljs-attr">focus</span>=<span class="hljs-string">"focus"</span> @<span class="hljs-attr">blur</span>=<span class="hljs-string">"blur"</span> /></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">template</span>></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">script</span>></span></span><br><span class="line"><span class="hljs-javascript">  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {</span></span><br><span class="line">    data() {</span><br><span class="line"><span class="hljs-javascript">      <span class="hljs-keyword">return</span> {</span></span><br><span class="line">        scrollTop: 0</span><br><span class="line">      };</span><br><span class="line">    },</span><br><span class="line"></span><br><span class="line">    methods: {</span><br><span class="line">      focus() {</span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-built_in">this</span>.scrollTop = <span class="hljs-built_in">document</span>.scrollingElement.scrollTop;</span></span><br><span class="line">      },</span><br><span class="line"></span><br><span class="line">      blur() {</span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-built_in">document</span>.scrollingElement.scrollTo(<span class="hljs-number">0</span>, <span class="hljs-built_in">this</span>.scrollTop);</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  };</span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">script</span>></span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="6-禁止长按"><a href="#6-禁止长按" class="headerlink" title="6. 禁止长按"></a>6. 禁止长按</h2><p>以上行为可以总结成这几个（每个手机以及浏览器的表现形式不一样）：长按图片保存、长按选择文字、长按链接/手机号/邮箱时呼出菜单。<br>想要禁止这些浏览器的默认行为，可以使用以下 CSS：</p>
+<figure class="highlight css hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 禁止长按图片保存</span><br><span class="line"><span class="hljs-selector-tag">img</span> {</span><br><span class="line">  <span class="hljs-attribute">-webkit-touch-callout</span>: none;</span><br><span class="line">  pointer-events: none; // 像微信浏览器还是无法禁止，加上这行样式即可</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 禁止长按选择文字</span><br><span class="line"><span class="hljs-selector-tag">div</span> {</span><br><span class="line">  <span class="hljs-attribute">-webkit-user-select</span>: none;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 禁止长按呼出菜单</span><br><span class="line"><span class="hljs-selector-tag">div</span> {</span><br><span class="line">  <span class="hljs-attribute">-webkit-touch-callout</span>: none;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="7-滑动不顺畅，粘手"><a href="#7-滑动不顺畅，粘手" class="headerlink" title="7. 滑动不顺畅，粘手"></a>7. 滑动不顺畅，粘手</h2><p>一般出现在 IOS 设备中，自定义盒子使用了 overflow: auto || scroll 后出现的情况。<br>优化代码：</p>
+<figure class="highlight css hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-tag">div</span> {</span><br><span class="line">  <span class="hljs-attribute">-webkit-overflow-scrolling</span>: touch;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="8-屏幕旋转为横屏时，字体大小会变"><a href="#8-屏幕旋转为横屏时，字体大小会变" class="headerlink" title="8. 屏幕旋转为横屏时，字体大小会变"></a>8. 屏幕旋转为横屏时，字体大小会变</h2><p>具体出现的情况不明 😒，有时候有有时候没有，欢迎指出。</p>
+<p>优化代码：</p>
+<figure class="highlight css hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* {</span><br><span class="line">  <span class="hljs-attribute">-webkit-text-size-adjust</span>: <span class="hljs-number">100%</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="9-最简单的-rem-自适应"><a href="#9-最简单的-rem-自适应" class="headerlink" title="9. 最简单的 rem 自适应"></a>9. 最简单的 rem 自适应</h2><p>大家都知道，rem 的值是根据根元素的字体大小相对计算的，但是我们每个设备的大小不一样，所以根元素的字体大小要动态设置 😂</p>
+<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">html { font-size: calc(100vw / 3.75); } body { font-size: .14rem; }</span><br></pre></td></tr></tbody></table></figure>
+
+<p>像我一般的话，直接搞 lib-flexible、postcss-pxtorem 就完事啦！</p>
+<h2 id="10-滑动穿透"><a href="#10-滑动穿透" class="headerlink" title="10. 滑动穿透"></a>10. 滑动穿透</h2><p>当你想在出现遮罩的时候，锁住用户的滚动行为，你可以这么做。<br>假设 HTML 结构如下：</p>
+<div class="mask">
+  <div class="content">我是弹框</div>
+</div>
+
+<p>CSS 样式如下：</p>
+<figure class="highlight css hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.mask</span> {</span><br><span class="line">  <span class="hljs-attribute">position</span>: fixed;</span><br><span class="line">  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;</span><br><span class="line">  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;</span><br><span class="line">  <span class="hljs-attribute">display</span>: flex;</span><br><span class="line">  <span class="hljs-attribute">justify-content</span>: center;</span><br><span class="line">  <span class="hljs-attribute">align-items</span>: center;</span><br><span class="line">  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span><br><span class="line">  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span><br><span class="line">  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>($color: #<span class="hljs-number">333</span>, $alpha: <span class="hljs-number">0.6</span>);</span><br><span class="line"></span><br><span class="line">  .content {</span><br><span class="line">    <span class="hljs-selector-tag">padding</span>: 20<span class="hljs-selector-tag">px</span>;</span><br><span class="line">    <span class="hljs-selector-tag">background-color</span>: <span class="hljs-selector-id">#fff</span>;</span><br><span class="line">    <span class="hljs-selector-tag">width</span>: 300<span class="hljs-selector-tag">px</span>;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>可以看到，当在遮罩上滑动的时候，是会穿透到父节点的，最简单的办法就是阻住默认行为：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">".mask"</span>).addEventListener(<span class="hljs-string">"touchmove"</span>, <span class="hljs-function"><span class="hljs-params">event</span> =></span> {</span><br><span class="line">  event.preventDefault();</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果在 vue 中，你可以这么写：</p>
+<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mask"</span> @<span class="hljs-attr">touchumove.prevent</span>></span><span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果.content 也有滚动条，那么只要阻止遮罩本身就行：</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">".mask"</span>).addEventListener(<span class="hljs-string">"touchmove"</span>, <span class="hljs-function"><span class="hljs-params">event</span> =></span> {</span><br><span class="line">  <span class="hljs-keyword">if</span> (event.target.classList.contains(<span class="hljs-string">"mask"</span>)) event.preventDefault();</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+
+<p>或者：</p>
+<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mask"</span> @<span class="hljs-attr">touchumove.self.prevent</span>></span><span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这样，当出现遮罩的时候用户的滑动就会被锁住啦 👌</p>
+</body></html>
+            
+        </div>
+        
+
+        <!--  -->
+
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏赞助一下吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/donate.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/posts/40a782b4/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Vue3 中的 Proxy API</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/posts/8f1dd2ab/">
+                <span class="level-item">Mac OS 终端利器 iTerm2 + Oh My Zsh</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">
+            评论
+        </h3>
+        
+<div id="valine-thread" class="content"></div>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'bwTxwPTstDRSj9fwUm9zXWXa-gzGzoHsz',
+        app_key: '20xgggMoEpTsY95zvB0HudN1',
+        placeholder: '留下你的只言片语吧~~~',
+        avatar_cdn:'https://cn.gravatar.com/avatar/',
+        avatar:'robohash'
+    });
+</script>
+
+    </div>
+</div>
+
+
+
+                </div>
+                
+                
+                    
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="avatar is-rounded image is-128x128 has-mb-6" src="/images/avatar.png" alt="Yu Ye">
+                    
+                    <p class="is-size-4 is-block">
+                        Yu Ye
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        专注前端技术，更专注生活
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        34
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        15
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/cyea" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/cyea">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Telegram" href="https://t.me/yuyehack">
+                
+                <i class="fab fa-telegram"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Email" href="mailto:yuyehack@gmail.com">
+                
+                <i class="fas fa-envelope"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+    <div class="card widget" id="toc" >
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+            <a class="is-flex" href="#1-弹出数字键盘">
+            <span class="has-mr-6">1</span>
+            <span>1. 弹出数字键盘</span>
+            </a></li><li>
+            <a class="is-flex" href="#2-调用系统的某些功能">
+            <span class="has-mr-6">2</span>
+            <span>2. 调用系统的某些功能</span>
+            </a></li><li>
+            <a class="is-flex" href="#3-打开原生应用">
+            <span class="has-mr-6">3</span>
+            <span>3. 打开原生应用</span>
+            </a><ul class="menu-list"><li>
+            <a class="is-flex" href="#注意事项：">
+            <span class="has-mr-6">3.1</span>
+            <span>注意事项：</span>
+            </a></li></ul></li><li>
+            <a class="is-flex" href="#4-解决-active-伪类失效">
+            <span class="has-mr-6">4</span>
+            <span>4. 解决 active 伪类失效</span>
+            </a></li><li>
+            <a class="is-flex" href="#5-忽略自动识别">
+            <span class="has-mr-6">5</span>
+            <span>5. 忽略自动识别</span>
+            </a></li><li>
+            <a class="is-flex" href="#6-解决-input-失焦后页面没有回弹">
+            <span class="has-mr-6">6</span>
+            <span>6. 解决 input 失焦后页面没有回弹</span>
+            </a></li><li>
+            <a class="is-flex" href="#6-禁止长按">
+            <span class="has-mr-6">7</span>
+            <span>6. 禁止长按</span>
+            </a></li><li>
+            <a class="is-flex" href="#7-滑动不顺畅，粘手">
+            <span class="has-mr-6">8</span>
+            <span>7. 滑动不顺畅，粘手</span>
+            </a></li><li>
+            <a class="is-flex" href="#8-屏幕旋转为横屏时，字体大小会变">
+            <span class="has-mr-6">9</span>
+            <span>8. 屏幕旋转为横屏时，字体大小会变</span>
+            </a></li><li>
+            <a class="is-flex" href="#9-最简单的-rem-自适应">
+            <span class="has-mr-6">10</span>
+            <span>9. 最简单的 rem 自适应</span>
+            </a></li><li>
+            <a class="is-flex" href="#10-滑动穿透">
+            <span class="has-mr-6">11</span>
+            <span>10. 滑动穿透</span>
+            </a></li></ul>
+            </div>
+        </div>
+    </div>
+    
+
+    
+        
+    
+        
+    
+        
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen "> 
+        
+        
+        </div>
+    
+</div>
+
+                
+                <!--  -->
+                
+
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+  <div class="container">
+    <!-- <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="H5 移动端开发经常遇到的问题" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                
+                &copy; 2020 Yu Ye&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                 
+                <br>
+                
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div> 
+        -->
+  </div>
+  <div class="lever">
+    <p class="is-size-7">
+      Copyright © 2019 Yu Ye |
+      <span id="busuanzi_container_site_uv">
+        共<span id="busuanzi_value_site_uv">0</span>个访客
+      </span>
+    </p>
+    <div class="site-info">
+      已运行
+      <span id="time-to-now"></span>
+      <span class="my-face">(●'◡'●)ﾉ♥</span>
+    </div>
+  </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+<script src="/js/my.js?v=1596521852571" defer></script>
+<script src="/js/baidupush.js" defer></script>
+    
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

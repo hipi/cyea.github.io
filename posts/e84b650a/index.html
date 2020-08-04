@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>JS的防抖与节流 - 羽叶丶</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="12345678910111213141516171819202122                  demo            body{            height:3000px;        }                function fn(){            console.log(&quot;invoke fn function&quot;);        };">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS的防抖与节流">
+<meta property="og:url" content="yuye.js.org/posts/e84b650a/index.html">
+<meta property="og:site_name" content="羽叶丶">
+<meta property="og:description" content="12345678910111213141516171819202122                  demo            body{            height:3000px;        }                function fn(){            console.log(&quot;invoke fn function&quot;);        };">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="/">
+<meta property="article:published_time" content="2019-01-22T17:34:51.000Z">
+<meta property="article:modified_time" content="2020-08-04T06:17:14.392Z">
+<meta property="article:author" content="Yu Ye">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/">
+<meta name="twitter:creator" content="@yuyehack">
+<meta name="twitter:site" content="yuyehack">
+<link rel="publisher" href="yuyehack">
+<meta property="fb:admins" content="yuyehack">
+<meta property="fb:app_id" content="yuyehack">
+
+
+
+
+
+
+
+<link id="dynamic-favicon" rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.9.0/css/all.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/rainbow.css">
+
+
+    
+    
+    
+    <!-- <style>body>.footer,body>.navbar,body>.section{opacity:0}</style> -->
+    <style>body>.footer,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?ab64af1b57db176e2599613d7c393f32";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css?v=1596521852876">
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="JS的防抖与节流" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/music">音乐</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+                    
+                    <div class="card">
+        
+    <div class="card-content article ">
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                JS的防抖与节流
+            
+        </h1>
+        
+            <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                <div class="level-left">
+                    <time class="level-item has-text-grey" datetime="2019-01-22T17:34:51.000Z">2019-01-23</time>
+                    
+                    <div class="level-item">
+                    <a class="has-link-grey -link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    </div>
+                    
+                    
+                    <span class="level-item has-text-grey">
+                        
+                        
+                        14 分钟 读完 (大约 2169 个字)
+                    </span>
+                    
+                    
+                    <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                        <i class="far fa-eye"></i>
+                        <span id="busuanzi_value_page_pv">0</span>次访问
+                    </span>
+                    
+                </div>
+            </div>
+            
+        <div class="content">
+                
+            
+            
+            
+
+
+
+            
+                <html><head></head><body><figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">  <span class="hljs-meta"><!DOCTYPE <span class="hljs-meta-keyword">html</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">head</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">title</span>></span>demo<span class="hljs-tag"></<span class="hljs-name">title</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>></span></span><br><span class="line">        body{</span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">height</span><span class="hljs-selector-pseudo">:3000px</span>;</span></span><br><span class="line">        }</span><br><span class="line">    <span class="hljs-tag"></<span class="hljs-name">style</span>></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">head</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">body</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">script</span>></span></span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{</span></span><br><span class="line"><span class="hljs-javascript">            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"invoke fn function"</span>);</span></span><br><span class="line">        };</span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-built_in">document</span>.body.onscroll = fn;</span></span><br><span class="line">    <span class="hljs-tag"></<span class="hljs-name">script</span>></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">body</span>></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">html</span>></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>我们打开浏览器，然后打开控制台，滚动鼠标的时候，控制台频繁的打印“invoke fn function”。我们这里为了显示，所以没有涉及到相关dom操作，但是实际开发过程中，更多场景是操作dom，那么将会使你的浏览器瞬间卡卡的感觉，有没有法子来限制一下fn的调用频率呢，答案是可以的，对此，我们将上面的代码改变如下：</p>
+<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta"><!DOCTYPE <span class="hljs-meta-keyword">html</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">head</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">title</span>></span>demo<span class="hljs-tag"></<span class="hljs-name">title</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>></span></span><br><span class="line">        body{</span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">height</span><span class="hljs-selector-pseudo">:3000px</span>;</span></span><br><span class="line">        }</span><br><span class="line">    <span class="hljs-tag"></<span class="hljs-name">style</span>></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">head</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">body</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">script</span>></span></span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{</span></span><br><span class="line"><span class="hljs-javascript">            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"invoke fn function"</span>);</span></span><br><span class="line">        };</span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-built_in">document</span>.body.onscroll = avoidShak(fn,<span class="hljs-number">300</span>);</span></span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-comment">// 限制调用频率</span></span></span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">avoidShak</span>(<span class="hljs-params">fn,time</span>)</span>{</span></span><br><span class="line"><span class="hljs-javascript">            <span class="hljs-comment">//设置定时器</span></span></span><br><span class="line"><span class="hljs-javascript">            <span class="hljs-keyword">let</span> timer;</span></span><br><span class="line"><span class="hljs-javascript">            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">...args</span>)</span>{</span></span><br><span class="line"><span class="hljs-javascript">                <span class="hljs-comment">//清空上一次的定时器</span></span></span><br><span class="line"><span class="hljs-javascript">                <span class="hljs-built_in">clearTimeout</span>(timer);</span></span><br><span class="line"><span class="hljs-javascript">                <span class="hljs-comment">//获取执行环境的上下文</span></span></span><br><span class="line"><span class="hljs-javascript">                <span class="hljs-keyword">let</span> context = <span class="hljs-built_in">this</span>;</span></span><br><span class="line"><span class="hljs-javascript">                <span class="hljs-keyword">let</span> _arguments = args;</span></span><br><span class="line"><span class="hljs-javascript">                timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=></span>{</span></span><br><span class="line">                    fn.apply(context,_arguments);</span><br><span class="line">                },time);</span><br><span class="line">            };</span><br><span class="line">        };</span><br><span class="line">    <span class="hljs-tag"></<span class="hljs-name">script</span>></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">body</span>></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">html</span>></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>我们现在发现打开浏览器，滚动的时候不会那么频繁的调用fn函数了，只有当我们滚动的间隙稍微停顿300毫秒的时候才会调用一次，这样我们就做到了降低函数调用的频率了。</p>
+<p>它的<strong>原理</strong>其实很简单：1 用闭包实现一个timer变量，用来保存上一次调用函数的定时器id;2 我们不是直接调用函数，而是中间需要一个间隔，如果两次调用之间的时间差小于我们传递的值，那么清空上一次的调用值；3 我们每一次调用的时候都清除一下上一次的调用定时器id，这样就保证了，如果间隔时间小于我们设置的值，那么上一次函数一定不会调用，从而达到了降低调用频率的效果。</p>
+<p>上面这种通过设置定时器保证一段时间内事件回调函数只能执行一次的做法在javascript业界有一个专业的术语称谓——<strong>防抖</strong>！</p>
+<p>上面的防抖操作，我们发现减少了回调函数调用的频率，但是它有一点点瑕疵：如果我们一直触发事件，回调函数只会在我们停止触发事件并达到了设置的时间间隔之后才会调用一次，也就是说在我们触发事件的过程中，回调函数一直没有执行，这在某些情况下，会跟实际业务需求不符。实际业务需求可能是，1 减少触发频率；2 但不能中间很大一段时间一直不执行。ok，那么此时我们就需要通过函数<strong>节流</strong>来实现！</p>
+<p>把下面的代码在浏览器中打开，并水平缩放浏览器，看效果：</p>
+<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta"><!DOCTYPE <span class="hljs-meta-keyword">html</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">head</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">title</span>></span>demo<span class="hljs-tag"></<span class="hljs-name">title</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>></span></span><br><span class="line">        *{</span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">margin</span><span class="hljs-selector-pseudo">:0px</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">padding</span><span class="hljs-selector-pseudo">:0px</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">vertical-align</span><span class="hljs-selector-pseudo">:baseline</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">-webkit-box-sizing</span><span class="hljs-selector-pseudo">:border-box</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">-moz-box-sizing</span><span class="hljs-selector-pseudo">:border-box</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">box-sizing</span><span class="hljs-selector-pseudo">:border-box</span>;</span></span><br><span class="line">        }</span><br><span class="line"><span class="hljs-css">        <span class="hljs-selector-class">.box</span>{</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">width</span><span class="hljs-selector-pseudo">:1000px</span>;</span></span><br><span class="line">            height: 500px;</span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">background-color</span>:<span class="hljs-selector-id">#ccc</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">color</span>:<span class="hljs-selector-id">#fff</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">font-size</span><span class="hljs-selector-pseudo">:20px</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">padding</span><span class="hljs-selector-pseudo">:15px</span> 20<span class="hljs-selector-tag">px</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">text-align</span><span class="hljs-selector-pseudo">:left</span>;</span></span><br><span class="line">        }</span><br><span class="line">    <span class="hljs-tag"></<span class="hljs-name">style</span>></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">head</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">body</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"box"</span>></span>i am a div box,please resize the browser horizontally!<span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>></span></span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-keyword">let</span> dom = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'box'</span>);</span></span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setWidth</span>(<span class="hljs-params"></span>)</span>{</span></span><br><span class="line"><span class="hljs-javascript">            <span class="hljs-keyword">let</span> windowWidth = <span class="hljs-built_in">window</span>.innerWidth;</span></span><br><span class="line"><span class="hljs-javascript">            <span class="hljs-keyword">if</span>(windowWidth>=<span class="hljs-number">1000</span>)<span class="hljs-keyword">return</span>;</span></span><br><span class="line"><span class="hljs-javascript">            dom.style.width = windowWidth + <span class="hljs-string">'px'</span>;</span></span><br><span class="line">        };</span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-comment">//采用防抖实现限制回调函数调用频率</span></span></span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">avoidShak</span>(<span class="hljs-params">fn,time</span>)</span>{</span></span><br><span class="line"><span class="hljs-javascript">            <span class="hljs-keyword">let</span> timer;</span></span><br><span class="line"><span class="hljs-javascript">            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">...args</span>)</span>{</span></span><br><span class="line"><span class="hljs-javascript">                <span class="hljs-built_in">clearTimeout</span>(timer);</span></span><br><span class="line"><span class="hljs-javascript">                <span class="hljs-keyword">let</span> context = <span class="hljs-built_in">this</span>;</span></span><br><span class="line"><span class="hljs-javascript">                <span class="hljs-keyword">let</span> _arguments = args;</span></span><br><span class="line"><span class="hljs-javascript">                timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=></span>{</span></span><br><span class="line">                    fn.apply(context,_arguments);</span><br><span class="line">                },time);</span><br><span class="line">            };</span><br><span class="line">        };</span><br><span class="line"></span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-built_in">window</span>.onresize = avoidShak(setWidth,<span class="hljs-number">300</span>);</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-tag"></<span class="hljs-name">script</span>></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">body</span>></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">html</span>></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>先来说下上面的页面需求：打开页面，在浏览器水平缩放的过程中，如果浏览器宽度不小于1000，那么不做任何事，否则设置dom的宽度为当前浏览器的宽度。</p>
+<p>但是我们发现，我们在缩放的过程中，dom的尺寸并未做相应的更新，只有在停止缩放一段时间后，dom的宽度才更新到浏览器的宽度，这跟业务需求不符，于是我们代码改变如下：</p>
+<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta"><!DOCTYPE <span class="hljs-meta-keyword">html</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">head</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">title</span>></span>demo<span class="hljs-tag"></<span class="hljs-name">title</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>></span></span><br><span class="line">        *{</span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">margin</span><span class="hljs-selector-pseudo">:0px</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">padding</span><span class="hljs-selector-pseudo">:0px</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">vertical-align</span><span class="hljs-selector-pseudo">:baseline</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">-webkit-box-sizing</span><span class="hljs-selector-pseudo">:border-box</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">-moz-box-sizing</span><span class="hljs-selector-pseudo">:border-box</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">box-sizing</span><span class="hljs-selector-pseudo">:border-box</span>;</span></span><br><span class="line">        }</span><br><span class="line"><span class="hljs-css">        <span class="hljs-selector-class">.box</span>{</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">width</span><span class="hljs-selector-pseudo">:1000px</span>;</span></span><br><span class="line">            height: 500px;</span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">background-color</span>:<span class="hljs-selector-id">#ccc</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">color</span>:<span class="hljs-selector-id">#fff</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">font-size</span><span class="hljs-selector-pseudo">:20px</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">padding</span><span class="hljs-selector-pseudo">:15px</span> 20<span class="hljs-selector-tag">px</span>;</span></span><br><span class="line"><span class="hljs-css">            <span class="hljs-selector-tag">text-align</span><span class="hljs-selector-pseudo">:left</span>;</span></span><br><span class="line">        }</span><br><span class="line">    <span class="hljs-tag"></<span class="hljs-name">style</span>></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">head</span>></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">body</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"box"</span>></span>i am a div box,please resize the browser horizontally!<span class="hljs-tag"></<span class="hljs-name">div</span>></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>></span></span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-keyword">let</span> dom = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'box'</span>);</span></span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setWidth</span>(<span class="hljs-params"></span>)</span>{</span></span><br><span class="line"><span class="hljs-javascript">            <span class="hljs-keyword">let</span> windowWidth = <span class="hljs-built_in">window</span>.innerWidth;</span></span><br><span class="line"><span class="hljs-javascript">            <span class="hljs-keyword">if</span>(windowWidth>=<span class="hljs-number">1000</span>)<span class="hljs-keyword">return</span>;</span></span><br><span class="line"><span class="hljs-javascript">            dom.style.width = windowWidth + <span class="hljs-string">'px'</span>;</span></span><br><span class="line">        };</span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-comment">//采用节流实现限制回调函数调用频率</span></span></span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ttrottle</span>(<span class="hljs-params">fn,time</span>)</span>{</span></span><br><span class="line"><span class="hljs-javascript">            <span class="hljs-keyword">let</span> isNeedInvoke = <span class="hljs-literal">true</span>;</span></span><br><span class="line"><span class="hljs-javascript">            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">...args</span>)</span>{</span></span><br><span class="line"><span class="hljs-javascript">                <span class="hljs-keyword">if</span>(!isNeedInvoke)<span class="hljs-keyword">return</span>;</span></span><br><span class="line"><span class="hljs-javascript">                <span class="hljs-keyword">let</span> context = <span class="hljs-built_in">this</span>;</span></span><br><span class="line"><span class="hljs-javascript">                <span class="hljs-keyword">let</span> _arguments = args;</span></span><br><span class="line"><span class="hljs-javascript">                isNeedInvoke = <span class="hljs-literal">false</span>;</span></span><br><span class="line"><span class="hljs-javascript">                <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=></span>{</span></span><br><span class="line">                    fn.apply(context,_arguments);</span><br><span class="line"><span class="hljs-javascript">                    isNeedInvoke = <span class="hljs-literal">true</span>;</span></span><br><span class="line">                },time);</span><br><span class="line">            };</span><br><span class="line">        };</span><br><span class="line"></span><br><span class="line"><span class="hljs-javascript">        <span class="hljs-built_in">window</span>.onresize = ttrottle(setWidth,<span class="hljs-number">300</span>);</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-tag"></<span class="hljs-name">script</span>></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">body</span>></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">html</span>></span></span><br></pre></td></tr></tbody></table></figure>
+<p>我们发现经过这样改过之后，dom的宽度变成在我们缩放的过程中也会更新了，满足了我们业务需求。</p>
+<p>好了，我们来简单介绍下什么是<strong>节流</strong>！</p>
+<p>节流其实从名字上就知道它的含义——就是限制函数调用频率。</p>
+<p>主要有两种方式实现：</p>
+<ul>
+<li>法一：时间差，原理无非就是两次调用之间的时间差小于设置时，那么不调用，反之调用。代码如下：</li>
+</ul>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ttrottle</span>(<span class="hljs-params">fn,time</span>)</span>{</span><br><span class="line">  <span class="hljs-comment">//上一次调用时间</span></span><br><span class="line">  <span class="hljs-keyword">let</span> lastInvokeTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime();</span><br><span class="line">  <span class="hljs-comment">//当前调用时间</span></span><br><span class="line">  <span class="hljs-keyword">let</span> currentInvokeTime;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">...args</span>)</span>{</span><br><span class="line">    currentInvokeTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime();</span><br><span class="line">    <span class="hljs-keyword">if</span>(currentInvokeTime - lastInvokeTime <= time)<span class="hljs-keyword">return</span>;</span><br><span class="line">    <span class="hljs-keyword">let</span> context = <span class="hljs-built_in">this</span>;</span><br><span class="line">    <span class="hljs-keyword">let</span> _arguments = args;</span><br><span class="line">    lastInvokeTime = currentInvokeTime;</span><br><span class="line">    fn.apply(context,_arguments);</span><br><span class="line">  };</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>法二：定时器实现，原理就是设置时间间隔，如果达不到时间间隔，就清除上一次调用回调定时器id。代码如下：</li>
+</ul>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ttrottle</span>(<span class="hljs-params">fn,time</span>)</span>{</span><br><span class="line">    <span class="hljs-keyword">let</span> isNeedInvoke = <span class="hljs-literal">true</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">...args</span>)</span>{</span><br><span class="line">        <span class="hljs-keyword">if</span>(!isNeedInvoke)<span class="hljs-keyword">return</span>;</span><br><span class="line">        <span class="hljs-keyword">let</span> context = <span class="hljs-built_in">this</span>;</span><br><span class="line">        <span class="hljs-keyword">let</span> _arguments = args;</span><br><span class="line">        isNeedInvoke = <span class="hljs-literal">false</span>;</span><br><span class="line">        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=></span>{</span><br><span class="line">            fn.apply(context,_arguments);</span><br><span class="line">            isNeedInvoke = <span class="hljs-literal">true</span>;</span><br><span class="line">        },time);</span><br><span class="line">    };</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>ok，到这里大家应该知道<strong>节流</strong>的是干嘛以及原理了吧。</p>
+<p>最后，再来总结一下<strong>防抖</strong>和<strong>节流</strong>的区别：</p>
+<ul>
+<li><p><strong>防抖</strong>和<strong>节流</strong>的相同点就是限制回调函数调用频率；</p>
+</li>
+<li><p><strong>防抖</strong>在一段时间内，回调函数只会调用一次，即触发事件的最后一次；</p>
+</li>
+<li><p><strong>节流</strong>在一段时间内，会每隔一段时间调用一次；</p>
+</li>
+</ul>
+<h2 id="下面是具体函数"><a href="#下面是具体函数" class="headerlink" title="下面是具体函数"></a>下面是具体函数</h2><blockquote>
+<p>这只是简单的实现方法</p>
+</blockquote>
+<h3 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h3><p>函数防抖（debounce）：当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时。</p>
+<p>如下，持续触发scroll事件时，并不执行handle函数，当1000毫秒内没有触发scroll事件时，才会延时触发scroll事件</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">debounce</span>(<span class="hljs-params">fn, wait</span>) </span>{   </span><br><span class="line">    <span class="hljs-keyword">var</span> timeout = <span class="hljs-literal">null</span>;   </span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{       </span><br><span class="line">        <span class="hljs-keyword">if</span>(timeout !== <span class="hljs-literal">null</span>) <span class="hljs-built_in">clearTimeout</span>(timeout);       </span><br><span class="line">        timeout = <span class="hljs-built_in">setTimeout</span>(fn, wait);   </span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="hljs-comment">// 处理函数</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handle</span>(<span class="hljs-params"></span>) </span>{   </span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.random());</span><br><span class="line">}</span><br><span class="line"><span class="hljs-comment">// 滚动事件</span></span><br><span class="line"><span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'scroll'</span>, debounce(handle, <span class="hljs-number">1000</span>));</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h3><p>函数节流（throttle）：当持续触发事件时，保证一定时间段内只调用一次事件处理函数。</p>
+<p>节流通俗解释就比如我们水龙头放水，阀门一打开，水哗哗的往下流，秉着勤俭节约的优良传统美德，我们要把水龙头关小点，最好是如我们心意按照一定规律在某个时间间隔内一滴一滴的往下滴。</p>
+<p>如下，持续触发scroll事件时，并不立即执行handle函数，每隔1000毫秒才会执行一次handle函数。</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> throttle = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">func, delay</span>) </span>{           </span><br><span class="line">    <span class="hljs-keyword">var</span> prev = <span class="hljs-built_in">Date</span>.now();           </span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{               </span><br><span class="line">        <span class="hljs-keyword">var</span> context = <span class="hljs-built_in">this</span>;               </span><br><span class="line">        <span class="hljs-keyword">var</span> args = <span class="hljs-built_in">arguments</span>;               </span><br><span class="line">        <span class="hljs-keyword">var</span> now = <span class="hljs-built_in">Date</span>.now();               </span><br><span class="line">        <span class="hljs-keyword">if</span> (now - prev >= delay) {                   </span><br><span class="line">            func.apply(context, args);                   </span><br><span class="line">            prev = <span class="hljs-built_in">Date</span>.now();               </span><br><span class="line">        }           </span><br><span class="line">    }       </span><br><span class="line">}       </span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handle</span>(<span class="hljs-params"></span>) </span>{           </span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.random());       </span><br><span class="line">}       </span><br><span class="line"><span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'scroll'</span>, throttle(handle, <span class="hljs-number">1000</span>));</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="函数防抖-1"><a href="#函数防抖-1" class="headerlink" title="函数防抖"></a>函数防抖</h3><p>将几次操作合并为一此操作进行。原理是维护一个计时器，规定在delay时间后触发函数，但是在delay时间内再次触发的话，就会取消之前的计时器而重新设置。这样一来，只有最后一次操作能被触发。</p>
+<h3 id="函数节流-1"><a href="#函数节流-1" class="headerlink" title="函数节流"></a>函数节流</h3><p>使得一定时间内只触发一次函数。原理是通过判断是否到达一定时间来触发函数。</p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>函数节流不管事件触发有多频繁，都会保证在规定时间内一定会执行一次真正的事件处理函数，而函数防抖只是在最后一次事件后才触发一次函数。比如在页面的无限加载场景下，我们需要用户在滚动页面时，每隔一段时间发一次 Ajax 请求，而不是在用户停下滚动页面操作时才去请求数据。这样的场景，就适合用节流技术来实现。</p>
+</body></html>
+            
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link-link" href="/tags/js/" rel="tag">js</a>
+                </div>
+            </div>
+        </div>
+        
+
+        <!--  -->
+
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏赞助一下吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/donate.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/posts/48bbcb52/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">webhook初次体验尝试</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/posts/bd4556bf/">
+                <span class="level-item">BrowserHistory刷新页面404问题</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">
+            评论
+        </h3>
+        
+<div id="valine-thread" class="content"></div>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'bwTxwPTstDRSj9fwUm9zXWXa-gzGzoHsz',
+        app_key: '20xgggMoEpTsY95zvB0HudN1',
+        placeholder: '留下你的只言片语吧~~~',
+        avatar_cdn:'https://cn.gravatar.com/avatar/',
+        avatar:'robohash'
+    });
+</script>
+
+    </div>
+</div>
+
+
+
+                </div>
+                
+                
+                    
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="avatar is-rounded image is-128x128 has-mb-6" src="/images/avatar.png" alt="Yu Ye">
+                    
+                    <p class="is-size-4 is-block">
+                        Yu Ye
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        专注前端技术，更专注生活
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        34
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        15
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/cyea" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/cyea">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Telegram" href="https://t.me/yuyehack">
+                
+                <i class="fab fa-telegram"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Email" href="mailto:yuyehack@gmail.com">
+                
+                <i class="fas fa-envelope"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+    <div class="card widget" id="toc" >
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+            <a class="is-flex" href="#下面是具体函数">
+            <span class="has-mr-6">1</span>
+            <span>下面是具体函数</span>
+            </a><ul class="menu-list"><li>
+            <a class="is-flex" href="#函数防抖">
+            <span class="has-mr-6">1.1</span>
+            <span>函数防抖</span>
+            </a></li><li>
+            <a class="is-flex" href="#函数节流">
+            <span class="has-mr-6">1.2</span>
+            <span>函数节流</span>
+            </a></li></ul></li><li>
+            <a class="is-flex" href="#总结">
+            <span class="has-mr-6">2</span>
+            <span>总结</span>
+            </a><ul class="menu-list"><li>
+            <a class="is-flex" href="#函数防抖-1">
+            <span class="has-mr-6">2.1</span>
+            <span>函数防抖</span>
+            </a></li><li>
+            <a class="is-flex" href="#函数节流-1">
+            <span class="has-mr-6">2.2</span>
+            <span>函数节流</span>
+            </a></li><li>
+            <a class="is-flex" href="#区别">
+            <span class="has-mr-6">2.3</span>
+            <span>区别</span>
+            </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+    
+
+    
+        
+    
+        
+    
+        
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen "> 
+        
+        
+        </div>
+    
+</div>
+
+                
+                <!--  -->
+                
+
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+  <div class="container">
+    <!-- <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="JS的防抖与节流" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                
+                &copy; 2020 Yu Ye&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                 
+                <br>
+                
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div> 
+        -->
+  </div>
+  <div class="lever">
+    <p class="is-size-7">
+      Copyright © 2019 Yu Ye |
+      <span id="busuanzi_container_site_uv">
+        共<span id="busuanzi_value_site_uv">0</span>个访客
+      </span>
+    </p>
+    <div class="site-info">
+      已运行
+      <span id="time-to-now"></span>
+      <span class="my-face">(●'◡'●)ﾉ♥</span>
+    </div>
+  </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+<script src="/js/my.js?v=1596521852894" defer></script>
+<script src="/js/baidupush.js" defer></script>
+    
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

