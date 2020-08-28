@@ -124,7 +124,7 @@
           </svg>
           HOME
         </a>
-        <a onclick="goBlog" class="btn">
+        <a onclick="goBlog()" class="btn">
           <svg
             t="1598580719308"
             class="icon"
@@ -147,6 +147,7 @@
     <footer class="footer"></footer>
     <script>
       function goBlog() {
+        console.log(111)
         location.href = `https://yoaio.com${location.pathname}`
       }
     </script>
