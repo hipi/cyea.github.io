@@ -1,0 +1,29 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1579252231567'); /* IE9 */
+  src: url('iconfont.eot?t=1579252231567#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAOwAAsAAAAAB9QAAANiAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDHAqDFIJaATYCJAMQCwoABCAFhG0HQhvGBhHVm9/Ifh7YbtHQSLbrinqh49NFJSO99xw8jzrzfUlOZF+JGKcjTsoT8lofbguTUi4kLH7Vrn0btzHw494CoO7wfZ7L6U3x+e3sXO4aY/Ocz+9FASYY6F4WJdwGyjmThrErL+I4BPAoRAWkRasOPbAYjHECyISxo4diU0FMTbtgEQIlS0112YKDVWtVHLDZ/7x8oZpYUDga46Quo1qOoMm7zB9cvcRf4gzQ61k7Xhxgq0ADFQADMqY0OQwdFiqg8ZTvGGoBFouCd5nf5/rg+j4078VpzRSo3j+eBDBaMwBQA/o1J2ayZSh4n0uGhg+u+QZaDQA2LE0DTmA2xx8XFNIimDnP/LS3PdKf9zy5W3qlhXJfepTj3OmcNx/yNL30/su5Q6Feh8Pld4WqL03vGbu+bTjM1bQcZ9MLpqX12HmxYI8lO0uHX/YOvZ8++pSXZV2JsaP2YA4m18x6O7WwszTf0P7TT58qMWXYrePt599PLjLnQFS9YT12nPCK6OnPTZEi5rk6/1jvq1HMzwePztKqZalyTQhFNek5X7fqzcLa6k5fZ/1ovcnN12Jd32DrErq5bVMxaUWSowa3qUsEW/ddl6+FqzdtGN3HvGys2BDhF9tX47FW583zIkWg9pMnuXLUyR54ku/Xr/cF67hrttTZssatUyBEZKts+dykTNELFm/M3vd79dEt5OiQJvcilg8+2GZnvvhVK+IP56YLAP66AD3D/+8L0vX6H3Ye8QUGLBucucE/mxsAXrTeH/St7Vy8dVNr0+/xm/gaolW1GCFjZJOttQjiJtwteucU4JkR+CkVyMabMbw577wkWHLGUAQpCI2lBGnYCnCIoAYCWBrDozytV0eQnWloxLhAOVYCCFm4DEUmHkOThXjSsK/hkItvCJBFNDx6SfYtIygFi82OhIKxBfkHq5ZZWxHOgvYbmvcoKGnxuRfSbtNQF1W2fMUZaYwZ+8c0zBo0LRNcwGk4jgustPSouOiY10NZ6rIrFWqZnMw5EgrGFpB/wKpl1m5vznLvv6F5j4JqdBXlC2m3/QM1BVUL8uqcW+mu5ZL9YxqYNaBpmYALiONoFhZgLR/Uo+KCrkduPVCibrqts5jfPT1AA+vA2DlwlWgx4hAZy91bhjgJO8bnWGdITI4DAAA=') format('woff2'),
+  url('iconfont.woff?t=1579252231567') format('woff'),
+  url('iconfont.ttf?t=1579252231567') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1579252231567#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-github:before {
+  content: "\e709";
+}
+
+.icon-email:before {
+  content: "\e50f";
+}
+
+.icon-telgram:before {
+  content: "\e616";
+}
+
