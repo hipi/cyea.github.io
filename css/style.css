@@ -1,7 +1,7 @@
 @font-face {
-  font-family: 'FZXiJinLJW';
+  font-family: "FZXiJinLJW";
   src: url(https://cdn.jsdelivr.net/gh/cyea/distribute@master/font/FZXiJinLJW.ttf)
-    format('truetype');
+    format("truetype");
 }
 
 body {
@@ -52,13 +52,15 @@ header {
   display: flex;
   justify-content: space-between;
   font-size: calc(15px + 1vw);
-  line-height: 40px;
   box-sizing: border-box;
   align-items: center;
   z-index: 99;
 }
 header .logo {
-  font-family: 'FZXiJinLJW';
+  font-family: "FZXiJinLJW";
+}
+header .social {
+  display: flex;
 }
 header .social a {
   color: #fff;
@@ -74,7 +76,7 @@ footer {
   bottom: 0;
   text-align: center;
   line-height: 1.5;
-  font-family: 'FZXiJinLJW';
+  font-family: "FZXiJinLJW";
   font-size: 14px;
 }
 footer a {
@@ -90,7 +92,7 @@ footer a {
   width: 80vw;
 }
 #root .verses {
-  font-family: 'FZXiJinLJW';
+  font-family: "FZXiJinLJW";
   text-align: center;
   word-break: keep-all;
   word-wrap: break-word;
@@ -144,7 +146,7 @@ footer a {
   margin: 10px 20px;
   text-decoration: none;
   color: #fff;
-  font-family: 'FZXiJinLJW';
+  font-family: "FZXiJinLJW";
   font-size: 20px;
   background: linear-gradient(to left, #fff, #fff) left top no-repeat,
     linear-gradient(to bottom, #fff, #fff) left top no-repeat,
