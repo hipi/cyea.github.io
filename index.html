@@ -43,25 +43,25 @@
       $(function () {
         /* 今日诗词 */
         jinrishici.load(function (result) {
-          if (result.status === "success") {
-            const data = result.data;
+          if (result.status === 'success') {
+            const data = result.data
             const shiciStr =
               data.content &&
-              data.content.replace("。", "").split("，").join("<br>");
-            $(".verses-content").html(shiciStr);
-            $(".verses-origin .title").html(`「${data.origin.title}」`);
-            $(".verses-origin .author").html(data.origin.author);
+              data.content.replace('。', '').split('，').join('<br>')
+            $('.verses-content').html(shiciStr)
+            $('.verses-origin .title').html(`「${data.origin.title}」`)
+            $('.verses-origin .author').html(data.origin.author)
           }
-        });
+        })
 
         function debounce(fn, wait) {
-          var timeout = null;
+          var timeout = null
           return function () {
-            if (timeout !== null) clearTimeout(timeout);
-            timeout = setTimeout(fn, wait);
-          };
+            if (timeout !== null) clearTimeout(timeout)
+            timeout = setTimeout(fn, wait)
+          }
         }
-      });
+      })
     </script>
   </head>
   <body>
@@ -142,32 +142,32 @@
     </footer>
     <script>
       console.log(
-        "%c\n          ",
+        '%c\n          ',
         "font-size:40px;background:url('https://img.shields.io/badge/%E7%BE%BD%E5%8F%B6-https%3A%2F%2Fchenyeah.com-2bbc8a') no-repeat 0px 6px"
-      );
+      )
     </script>
     <!-- 天气插件 -->
     <script>
       WIDGET = {
         CONFIG: {
-          modules: "01234",
+          modules: '01234',
           background: 5,
-          tmpColor: "FFFFFF",
-          tmpSize: "14",
-          cityColor: "FFFFFF",
-          citySize: "14",
-          aqiSize: "14",
+          tmpColor: 'FFFFFF',
+          tmpSize: '14',
+          cityColor: 'FFFFFF',
+          citySize: '14',
+          aqiSize: '14',
           weatherIconSize: 24,
-          alertIconSize: "14",
-          padding: "0px 0px 0px 0px",
-          shadow: "0",
-          language: "auto",
-          fixed: "false",
-          vertical: "middle",
-          horizontal: "center",
-          key: "543e7ebde0d7439a91181d3e9788d865",
+          alertIconSize: '14',
+          padding: '0px 0px 0px 0px',
+          shadow: '0',
+          language: 'auto',
+          fixed: 'false',
+          vertical: 'middle',
+          horizontal: 'center',
+          key: '543e7ebde0d7439a91181d3e9788d865',
         },
-      };
+      }
     </script>
     <script src="https://widget.heweather.net/simple/static/js/he-simple-common.js?v=1.1"></script>
     <!-- 背景切换 -->
@@ -177,31 +177,31 @@
     ></script>
     <script>
       var IMG_LIST = [
-        "https://ddcdn.jd.com/ddimg/jfs/t1/145323/36/5358/7582843/5f338445Ee8a22695/fed129a5beea22e3.png",
-        "https://ddcdn.jd.com/ddimg/jfs/t1/132742/13/6853/1444759/5f338449E7d2a0d73/908dd78107e12dc2.png",
-        "https://ddcdn.jd.com/ddimg/jfs/t1/149266/28/5239/2163925/5f338450Ee4f77f50/d54947ba45e7e6dc.png",
-        "https://ddcdn.jd.com/ddimg/jfs/t1/129338/37/9566/5905388/5f33845eE0cf07600/59fcf0b5f8200671.png",
-        "https://ddcdn.jd.com/ddimg/jfs/t1/131115/32/6802/6670735/5f338465E1c191905/b6cb21c7a9113b56.png",
-        "https://ddcdn.jd.com/ddimg/jfs/t1/121592/3/9573/2646224/5f338466E57cc0e4c/793db51feef1ad1f.png",
-        "https://ddcdn.jd.com/ddimg/jfs/t1/146539/26/5126/1672592/5f338469Edec2ed30/c20673d992fc69d8.png",
-        "https://ddcdn.jd.com/ddimg/jfs/t1/139931/28/5197/7918992/5f33846fE5bdeb35a/75e73f0debc25aa5.png",
-        "https://ddcdn.jd.com/ddimg/jfs/t1/146427/31/5335/6999530/5f338472E218f4ac8/17a0a409cfcec483.png",
-        "https://ddcdn.jd.com/ddimg/jfs/t1/148077/7/5263/4795304/5f338473E3638ff63/c02e809f1feca56f.png",
-        "https://ddcdn.jd.com/ddimg/jfs/t1/131713/2/6821/1281833/5f33847bE6d15bb01/603ad27d56c685ed.png",
-        "https://ddcdn.jd.com/ddimg/jfs/t1/116950/26/14803/1413278/5f33847eE9f9720b0/ce6e36cbbaf47529.png",
-        "https://ddcdn.jd.com/ddimg/jfs/t1/129920/22/6833/1983284/5f338481E680ab78f/8d88a153341ca787.png",
-      ];
-      $.backstretch(IMG_LIST, { duration: 9000, fade: 1000 });
+        'https://ddcdn.jd.com/ddimg/jfs/t1/145323/36/5358/7582843/5f338445Ee8a22695/fed129a5beea22e3.png',
+        'https://ddcdn.jd.com/ddimg/jfs/t1/132742/13/6853/1444759/5f338449E7d2a0d73/908dd78107e12dc2.png',
+        'https://ddcdn.jd.com/ddimg/jfs/t1/149266/28/5239/2163925/5f338450Ee4f77f50/d54947ba45e7e6dc.png',
+        'https://ddcdn.jd.com/ddimg/jfs/t1/129338/37/9566/5905388/5f33845eE0cf07600/59fcf0b5f8200671.png',
+        'https://ddcdn.jd.com/ddimg/jfs/t1/131115/32/6802/6670735/5f338465E1c191905/b6cb21c7a9113b56.png',
+        'https://ddcdn.jd.com/ddimg/jfs/t1/121592/3/9573/2646224/5f338466E57cc0e4c/793db51feef1ad1f.png',
+        'https://ddcdn.jd.com/ddimg/jfs/t1/146539/26/5126/1672592/5f338469Edec2ed30/c20673d992fc69d8.png',
+        'https://ddcdn.jd.com/ddimg/jfs/t1/139931/28/5197/7918992/5f33846fE5bdeb35a/75e73f0debc25aa5.png',
+        'https://ddcdn.jd.com/ddimg/jfs/t1/146427/31/5335/6999530/5f338472E218f4ac8/17a0a409cfcec483.png',
+        'https://ddcdn.jd.com/ddimg/jfs/t1/148077/7/5263/4795304/5f338473E3638ff63/c02e809f1feca56f.png',
+        'https://ddcdn.jd.com/ddimg/jfs/t1/131713/2/6821/1281833/5f33847bE6d15bb01/603ad27d56c685ed.png',
+        'https://ddcdn.jd.com/ddimg/jfs/t1/116950/26/14803/1413278/5f33847eE9f9720b0/ce6e36cbbaf47529.png',
+        'https://ddcdn.jd.com/ddimg/jfs/t1/129920/22/6833/1983284/5f338481E680ab78f/8d88a153341ca787.png',
+      ]
+      $.backstretch(IMG_LIST, { duration: 9000, fade: 1000 })
     </script>
     <!-- 统计代码 -->
     <script>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?ab64af1b57db176e2599613d7c393f32";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
+      var _hmt = _hmt || []
+      ;(function () {
+        var hm = document.createElement('script')
+        hm.src = 'https://hm.baidu.com/hm.js?4acd4332b8b5641542150bb2453c8450'
+        var s = document.getElementsByTagName('script')[0]
+        s.parentNode.insertBefore(hm, s)
+      })()
     </script>
   </body>
 </html>
