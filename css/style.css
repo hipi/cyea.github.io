@@ -46,6 +46,7 @@ header .logo {
 }
 header .social {
   display: flex;
+  align-items: center;
 }
 header .social a {
   color: #fff;
@@ -54,6 +55,9 @@ header .social a {
 header .social .iconfont {
   margin: 0 10px;
   font-size: calc(15px + 1vw);
+}
+header #he-plugin-simple{
+  display: inline-table;
 }
 footer {
   position: fixed;
