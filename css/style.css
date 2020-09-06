@@ -3,12 +3,12 @@
   src: url(https://cdn.jsdelivr.net/gh/cyea/distribute@master/font/FZXiJinLJW.ttf)
     format("truetype");
 }
-
 body {
   margin: 0;
   padding: 0;
   color: #fff;
 }
+/* 背景缩小放大动画 */
 @keyframes slideshow {
   0% {
     transform: scale(1);
@@ -26,22 +26,7 @@ body {
   height: 100vh;
   left: 0;
   top: 0;
-  -o-object-fit: cover;
-  object-fit: cover;
-  z-index: -2;
-  animation: slideshow 10s infinite ease-in-out;
-}
-.bg.bg-img {
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
-}
-.backstretch {
-  animation: slideshow 10s infinite ease-in-out;
-}
-.bg.bg-cover {
-  z-index: -1;
-  background: rgba(30, 32, 35, 0.38);
-  transition: 0.65s ease background;
+  background: linear-gradient(to bottom, #000000 0%, #5788fe 100%);
 }
 header {
   position: fixed;
@@ -123,7 +108,7 @@ footer a {
   text-align: center;
 }
 @keyframes mouse-like {
-  0% {
+  /* 0% {
     opacity: 0.5;
   }
   10% {
@@ -131,8 +116,24 @@ footer a {
     opacity: 1;
   }
   to {
-    transform: translateY(8px);
+    transform: translateY(6px);
     opacity: 0.5;
+  } */
+
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  75% {
+    ransform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 #root .list-container .list {
@@ -160,5 +161,5 @@ footer a {
 }
 #root .list-container .list:hover {
   color: #88ff8c;
-  animation: mouse-like 2s infinite;
+  animation: mouse-like 1.5s linear infinite;
 }
