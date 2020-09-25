@@ -43,32 +43,29 @@
       $(function () {
         /* 今日诗词 */
         jinrishici.load(function (result) {
-          if (result.status === "success") {
-            const data = result.data;
+          if (result.status === 'success') {
+            const data = result.data
             const shiciStr =
               data.content &&
-              data.content.replace("。", "").split("，").join("<br>");
-            $(".verses-content").html(shiciStr);
-            $(".verses-origin .title").html(`「${data.origin.title}」`);
-            $(".verses-origin .author").html(data.origin.author);
+              data.content.replace('。', '').split('，').join('<br>')
+            $('.verses-content').html(shiciStr)
+            $('.verses-origin .title').html(`「${data.origin.title}」`)
+            $('.verses-origin .author').html(data.origin.author)
           }
-        });
+        })
 
         function debounce(fn, wait) {
-          var timeout = null;
+          var timeout = null
           return function () {
-            if (timeout !== null) clearTimeout(timeout);
-            timeout = setTimeout(fn, wait);
-          };
+            if (timeout !== null) clearTimeout(timeout)
+            timeout = setTimeout(fn, wait)
+          }
         }
-      });
+      })
     </script>
   </head>
   <body>
-    <canvas
-      id="canvas"
-      class="bg"
-    ></canvas>
+    <canvas id="canvas" class="bg"></canvas>
     <header>
       <div class="logo">羽叶 Life</div>
       <div class="social">
@@ -145,9 +142,9 @@
     </footer>
     <script>
       console.log(
-        "%c\n          ",
+        '%c\n          ',
         "font-size:40px;background:url('https://img.shields.io/badge/%E7%BE%BD%E5%8F%B6-https%3A%2F%2Fchenyeah.com-2bbc8a') no-repeat 0px 6px"
-      );
+      )
     </script>
     <!-- 天气插件 -->
     <style>
@@ -158,37 +155,37 @@
     <script>
       WIDGET = {
         CONFIG: {
-          modules: "01234",
+          modules: '01234',
           background: 3,
-          tmpColor: "FFFFFF",
-          tmpSize: "14",
-          cityColor: "FFFFFF",
-          citySize: "14",
-          aqiSize: "14",
+          tmpColor: 'FFFFFF',
+          tmpSize: '14',
+          cityColor: 'FFFFFF',
+          citySize: '14',
+          aqiSize: '14',
           weatherIconSize: 24,
-          alertIconSize: "14",
-          padding: "0px 0px 0px 0px",
-          shadow: "0",
-          language: "auto",
-          fixed: "false",
-          vertical: "middle",
-          horizontal: "center",
-          key: "543e7ebde0d7439a91181d3e9788d865",
+          alertIconSize: '14',
+          padding: '0px 0px 0px 0px',
+          shadow: '0',
+          language: 'auto',
+          fixed: 'false',
+          vertical: 'middle',
+          horizontal: 'center',
+          key: '543e7ebde0d7439a91181d3e9788d865',
         },
-      };
+      }
     </script>
     <script src="https://widget.heweather.net/simple/static/js/he-simple-common.js?v=1.1"></script>
     <!-- 背景 -->
     <script src="./js/sky.js"></script>
     <!-- 统计代码 -->
     <script>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?4acd4332b8b5641542150bb2453c8450";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
+      var _hmt = _hmt || []
+      ;(function () {
+        var hm = document.createElement('script')
+        hm.src = 'https://hm.baidu.com/hm.js?f6e096d84b7007c5a59f134a1a717b77'
+        var s = document.getElementsByTagName('script')[0]
+        s.parentNode.insertBefore(hm, s)
+      })()
     </script>
   </body>
 </html>
