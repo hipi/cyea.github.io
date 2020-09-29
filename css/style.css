@@ -36,7 +36,7 @@ header {
   padding: 0 20px;
   display: flex;
   justify-content: space-between;
-  font-size: calc(15px + 1vw);
+  font-size: calc(12px + 1vw);
   box-sizing: border-box;
   align-items: center;
   z-index: 99;
@@ -51,10 +51,12 @@ header .social {
 header .social a {
   color: #fff;
   text-decoration: none;
+  line-height: 100%;
 }
 header .social .iconfont {
   margin: 0 10px;
-  font-size: calc(15px + 1vw);
+  font-size: 14px;
+  vertical-align: middle;
 }
 header #he-plugin-simple{
   display: inline-table;
