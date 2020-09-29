@@ -65,7 +65,10 @@
     </script>
   </head>
   <body>
-    <div class="bg bg-cover"></div>
+    <canvas
+      id="canvas"
+      class="bg"
+    ></canvas>
     <header>
       <div class="logo">羽叶 Life</div>
       <div class="social">
@@ -94,7 +97,11 @@
           >元素音乐</a
         >
 
+<<<<<<< HEAD
         <a class="list" target="_blank" href="https://www.dogged.cn">文件加密</a>
+=======
+        <a class="list" target="_blank" href="https://dogged.cn">文件加密</a>
+>>>>>>> dba30971361b6a9da95e767f311c30c5af1675bc
 
         <a class="list" target="_blank" href="https://img.elem.fun">图床</a>
 
@@ -114,20 +121,20 @@
     </script>
     <!-- 天气插件 -->
     <style>
-      #he-plugin-simple .s-sticker{
-        background-color: transparent!important;
+      #he-plugin-simple .s-sticker {
+        background-color: transparent !important;
       }
     </style>
     <script>
       WIDGET = {
         CONFIG: {
-          modules: '01234',
+          modules: "01234",
           background: 3,
-          tmpColor: 'FFFFFF',
-          tmpSize: '14',
-          cityColor: 'FFFFFF',
-          citySize: '14',
-          aqiSize: '14',
+          tmpColor: "FFFFFF",
+          tmpSize: "14",
+          cityColor: "FFFFFF",
+          citySize: "14",
+          aqiSize: "14",
           weatherIconSize: 24,
           alertIconSize: '14',
           padding: '0px 0px 0px 0px',
@@ -141,13 +148,21 @@
       }
     </script>
     <script src="https://widget.heweather.net/simple/static/js/he-simple-common.js?v=1.1"></script>
-    <!-- 背景切换 -->
-    <script
-      rel="preload"
-      src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"
-    ></script>
+    <!-- 背景 -->
+    <script src="./js/sky.js"></script>
+    <!-- 统计代码 -->
     <script>
-      var IMG_LIST = [
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ab64af1b57db176e2599613d7c393f32";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>      
+      
+    <script>
+    var IMG_LIST = [
         'https://ddcdn.jd.com/ddimg/jfs/t1/145323/36/5358/7582843/5f338445Ee8a22695/fed129a5beea22e3.png',
         'https://ddcdn.jd.com/ddimg/jfs/t1/132742/13/6853/1444759/5f338449E7d2a0d73/908dd78107e12dc2.png',
         'https://ddcdn.jd.com/ddimg/jfs/t1/149266/28/5239/2163925/5f338450Ee4f77f50/d54947ba45e7e6dc.png',
@@ -162,17 +177,6 @@
         'https://ddcdn.jd.com/ddimg/jfs/t1/116950/26/14803/1413278/5f33847eE9f9720b0/ce6e36cbbaf47529.png',
         'https://ddcdn.jd.com/ddimg/jfs/t1/129920/22/6833/1983284/5f338481E680ab78f/8d88a153341ca787.png',
       ]
-      $.backstretch(IMG_LIST, { duration: 9000, fade: 1000 })
-    </script>
-    <!-- 统计代码 -->
-    <script>
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?ab64af1b57db176e2599613d7c393f32";
-        var s = document.getElementsByTagName("script")[0]; 
-        s.parentNode.insertBefore(hm, s);
-      })();
-      </script>      
+     </script>  
   </body>
 </html>
