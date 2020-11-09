@@ -1,175 +1,159 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>羽叶 Life</title>
 
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no, viewport-fit=cover"
-    />
-    <meta name="renderer" content="webkit" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="description" content="羽叶 Life" />
-    <meta name="keywords" content="羽叶 Life" />
+<head>
+  <meta charset="utf-8" />
+  <title>羽叶 Life</title>
 
-    <meta name="apple-mobile-web-app-title" content="羽叶 Life" />
-    <meta name="application-name" content="羽叶 Life" />
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no, viewport-fit=cover" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="羽叶 Life" />
+  <meta name="keywords" content="羽叶 Life" />
 
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
-    <link rel="apple-touch-icon" href="./logo_180x180.png"/>
-    <link rel="image_src" href="./logo_512x512.png"/>
-    
-    <link rel="stylesheet" href="./css/style.css?v=1.8" />
-    <link rel="stylesheet" href="./font/iconfont.css" />
-    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
-    <script>
-      $(function () {
-        /* 今日诗词 */
-        jinrishici.load(function (result) {
-          if (result.status === 'success') {
-            const data = result.data
-            const shiciStr =
-              data.content &&
-              data.content.replace('。', '').split('，').join('<br>')
-            $('.verses-content').html(shiciStr)
-            $('.verses-origin .title').html(`「${data.origin.title}」`)
-            $('.verses-origin .author').html(data.origin.author)
-          }
-        })
+  <meta name="apple-mobile-web-app-title" content="羽叶 Life" />
+  <meta name="application-name" content="羽叶 Life" />
 
-        function debounce(fn, wait) {
-          var timeout = null
-          return function () {
-            if (timeout !== null) clearTimeout(timeout)
-            timeout = setTimeout(fn, wait)
-          }
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="./logo_180x180.png" />
+  <link rel="image_src" href="./logo_512x512.png" />
+
+  <link rel="stylesheet" href="./css/style.css?v=1.8" />
+  <link rel="stylesheet" href="./font/iconfont.css" />
+  <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+  <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
+  <script>
+    $(function () {
+      /* 今日诗词 */
+      jinrishici.load(function (result) {
+        if (result.status === "success") {
+          const data = result.data;
+          const shiciStr =
+            data.content &&
+            data.content.replace("。", "").split("，").join("<br>");
+          $(".verses-content").html(shiciStr);
+          $(".verses-origin .title").html(`「${data.origin.title}」`);
+          $(".verses-origin .author").html(data.origin.author);
         }
-      })
-    </script>
-  </head>
-  <body>
-    <canvas id="canvas" class="bg"></canvas>
-    <header>
-      <div class="logo">羽叶 Life</div>
-      <div class="social">
-        <!-- 和风天气 -->
-        <div id="he-plugin-simple"></div>
-        <a target="_blank" href="https://github.com/cyea" title="GitHub">
-          <span class="iconfont icon-github"></span>
-        </a>
-        <a target="_blank" href="mailto:yuyehack@gmail.com" title="Mail">
-          <span class="iconfont icon-email"></span>
-        </a>
-      </div>
-    </header>
-    <div id="root">
-      <div class="verses">
-        <div class="verses-content">滚滚长江东逝水，浪花淘尽英雄。</div>
-        <div class="verses-origin">
-          <span class="title">「念奴娇·赤壁怀古」</span>
-          <span class="author">苏轼</span>
-        </div>
-      </div>
-      <div class="list-container">
-        <a class="list" target="_blank" href="https://yoaio.com">博客</a>
+      });
 
-        <a class="list" target="_blank" href="https://dogged.cn">
-          文件加密
-        </a>
+      function debounce(fn, wait) {
+        var timeout = null;
+        return function () {
+          if (timeout !== null) clearTimeout(timeout);
+          timeout = setTimeout(fn, wait);
+        };
+      }
+    });
+  </script>
+</head>
 
-        <a class="list" target="_blank" href="https://dc4.cn">
-          网址缩短
-        </a>
-
-        <a class="list" target="_blank" href="https://music.elem.fun">
-          元素音乐
-        </a>
-
+<body>
+  <canvas id="canvas" class="bg"></canvas>
+  <header>
+    <div class="logo">羽叶 Life</div>
+    <div class="social">
+      <!-- 和风天气 -->
+      <div id="he-plugin-simple"></div>
+      <a target="_blank" href="https://github.com/cyea" title="GitHub">
+        <span class="iconfont icon-github"></span>
+      </a>
+      <a target="_blank" href="mailto:yuyehack@gmail.com" title="Mail">
+        <span class="iconfont icon-email"></span>
+      </a>
+    </div>
+  </header>
+  <div id="root">
+    <div class="verses">
+      <div class="verses-content">滚滚长江东逝水，浪花淘尽英雄。</div>
+      <div class="verses-origin">
+        <span class="title">「念奴娇·赤壁怀古」</span>
+        <span class="author">苏轼</span>
       </div>
     </div>
-    <footer>
-      <div>
-        Hosted BY
-        <a
-          style="color: #88ff8c"
-          target="_blank"
-          href="https://cloud.tencent.com/product/wh?from=12331"
-          >云开发 Cloudbase</a
-        >
-      </div>
-      <div>
-        友情链接：
-        <a style="color: #fff" target="_blank" href="https://hao.su">不死鸟</a>
-        <span>|</span>
-        <a
-          style="color: #fff"
-          target="_blank"
-          href="https://www.sanshuifeibing.com"
-          >三水非冰</a
-        >
-        <span>|</span>
-        <a style="color: #fff" target="_blank" href="https://www.luymm.com"
-          >luymm</a
-        >
-      </div>
-      <div>
-        <span class="title">羽叶 Life</span>
-        <span>|</span>
-        <a href="https://status.elem.fun" target="_blank">站点状态</a>
-        <span>|</span>
-        <a href="http://beian.miit.gov.cn" target="_blank"
-          >苏ICP备16044037号-3</a
-        >
-      </div>
-    </footer>
-    <script>
-      console.log(
-        '%c\n          ',
-        "font-size:40px;background:url('https://img.shields.io/badge/%E7%BE%BD%E5%8F%B6-https%3A%2F%2Fchenyeah.com-2bbc8a') no-repeat 0px 6px"
-      )
-    </script>
-    <!-- 天气插件 -->
-    <style>
-      #he-plugin-simple .s-sticker {
-        background-color: transparent !important;
-      }
-    </style>
-    <script>
-      WIDGET = {
-        CONFIG: {
-          modules: '01234',
-          background: 3,
-          tmpColor: 'FFFFFF',
-          tmpSize: '14',
-          cityColor: 'FFFFFF',
-          citySize: '14',
-          aqiSize: '14',
-          weatherIconSize: 24,
-          alertIconSize: '14',
-          padding: '0px 0px 0px 0px',
-          shadow: '0',
-          language: 'auto',
-          fixed: 'false',
-          vertical: 'middle',
-          horizontal: 'center',
-          key: '543e7ebde0d7439a91181d3e9788d865',
-        },
-      }
-    </script>
-    <script src="https://widget.heweather.net/simple/static/js/he-simple-common.js?v=1.1"></script>
-    <!-- 背景 -->
-    <script src="./js/sky.js"></script>
-    <!-- 统计代码 -->
-    <script>
-      var _hmt = _hmt || []
-      ;(function () {
-        var hm = document.createElement('script')
-        hm.src = 'https://hm.baidu.com/hm.js?2910f606a3fad06aa8ff9453493865ce'
-        var s = document.getElementsByTagName('script')[0]
-        s.parentNode.insertBefore(hm, s)
-      })()
-    </script>
-  </body>
+    <div class="list-container">
+      <a class="list" target="_blank" href="https://yoaio.com">博客</a>
+
+      <a class="list" target="_blank" href="https://dogged.cn"> 文件加密 </a>
+
+      <a class="list" target="_blank" href="https://dc4.cn"> 网址缩短 </a>
+
+      <a class="list" target="_blank" href="https://music.elem.fun">
+        元素音乐
+      </a>
+    </div>
+  </div>
+  <footer>
+    <div>
+      Hosted BY
+      <a style="color: #88ff8c" target="_blank" href="https://cloud.tencent.com/product/wh?from=12331">云开发 Cloudbase</a>
+    </div>
+    <div>
+      友情链接：
+      <a style="color: #fff" target="_blank" href="https://hao.su">不死鸟</a>
+      <span>|</span>
+      <a style="color: #fff" target="_blank" href="https://www.sanshuifeibing.com">
+        三水非冰
+      </a>
+      <span>|</span>
+      <a style="color: #fff" target="_blank" href="https://www.luymm.com">luymm</a>
+    </div>
+    <div>
+      <span class="title">羽叶 Life</span>
+      <span>|</span>
+      <a href="https://status.elem.fun" target="_blank">站点状态</a>
+      <span>|</span>
+      <a href="http://beian.miit.gov.cn" target="_blank">苏ICP备16044037号-3</a>
+    </div>
+  </footer>
+  <script>
+    console.log(
+      "%c\n          ",
+      "font-size:40px;background:url('https://img.shields.io/badge/%E7%BE%BD%E5%8F%B6-https%3A%2F%2Fchenyeah.com-2bbc8a') no-repeat 0px 6px"
+    );
+  </script>
+  <!-- 天气插件 -->
+  <style>
+    #he-plugin-simple .s-sticker {
+      background-color: transparent !important;
+    }
+  </style>
+  <script>
+    WIDGET = {
+      CONFIG: {
+        modules: "01234",
+        background: 3,
+        tmpColor: "FFFFFF",
+        tmpSize: "14",
+        cityColor: "FFFFFF",
+        citySize: "14",
+        aqiSize: "14",
+        weatherIconSize: 24,
+        alertIconSize: "14",
+        padding: "0px 0px 0px 0px",
+        shadow: "0",
+        language: "auto",
+        fixed: "false",
+        vertical: "middle",
+        horizontal: "center",
+        key: "543e7ebde0d7439a91181d3e9788d865",
+      },
+    };
+  </script>
+  <script src="https://widget.heweather.net/simple/static/js/he-simple-common.js?v=1.1"></script>
+  <!-- 背景 -->
+  <script src="./js/sky.js"></script>
+  <!-- 统计代码 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2910f606a3fad06aa8ff9453493865ce";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</body>
+
 </html>
